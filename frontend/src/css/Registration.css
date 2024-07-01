@@ -36,10 +36,6 @@
     margin-bottom: 20px;
 }
 
-.registration-form form div {
-    margin-bottom: 10px;
-}
-
 .registration-form label {
     display: block;
     margin-bottom: 5px;
@@ -48,9 +44,8 @@
 .registration-form input {
     width: 100%;
     padding: 8px;
-    margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 5px;
 }
 
 .registration-form button {
@@ -94,15 +89,34 @@
     font-size: 16px;
 }
 
-.input-with-logo {
-    background: url('../assets/registrationForm/mail.svg') no-repeat;
-    background-position: 10px center;
-    background-size: 20px 20px;
-    padding-left: 40px; /* Увеличьте отступ слева для размещения текста */
+
+.input-container {
+    display: flex;
+    align-items: center;
     border: 1px solid #ccc;
-    border-radius: 20px;
-    padding: 8px;
+    border-radius: 10px;
+    padding: 10px 15px;
     width: 100%;
     margin-bottom: 10px;
-    box-sizing: border-box; /* Убедитесь, что padding входит в ширину элемента */
+    box-sizing: border-box;
+}
+
+.input-container img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.input-container .divider {
+    width: 1px;
+    height: 24px;
+    background-color: #ccc;
+    margin-right: 10px;
+}
+
+.input-container input {
+    border: none;
+    flex: 1;
+    padding: 8px;
+    outline: none;
 }

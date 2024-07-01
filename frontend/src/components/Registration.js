@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/Registration.css';
+import logo from '../assets/registrationForm/mail.svg'; // Убедитесь, что путь к логотипу верный
 
 const Registration = ({ onClose }) => {
     return (
@@ -11,23 +12,43 @@ const Registration = ({ onClose }) => {
                         <form>
                             <div>
                                 <label>Имя</label>
-                                <input type="text" placeholder="Напишите свое имя" className="input-with-logo" />
+                                <div className="input-container">
+                                    <img src={logo} alt="logo" />
+                                    <div className="divider"></div>
+                                    <input type="text" placeholder="Напишите свое имя" />
+                                </div>
                             </div>
                             <div>
                                 <label>Канал</label>
-                                <input type="text" placeholder="Ссылка на канал" className="input-with-logo" />
+                                <div className="input-container">
+                                    <img src={logo} alt="logo" />
+                                    <div className="divider"></div>
+                                    <input type="text" placeholder="Ссылка на канал" />
+                                </div>
                             </div>
                             <div>
                                 <label>Email</label>
-                                <input type="email" placeholder="Ваша почта" className="input-with-logo" />
+                                <div className="input-container">
+                                    <img src={logo} alt="logo" />
+                                    <div className="divider"></div>
+                                    <input type="email" placeholder="Ваша почта" />
+                                </div>
                             </div>
                             <div>
                                 <label>Пароль</label>
-                                <input type="password" placeholder="Придумайте пароль" className="input-with-logo" />
+                                <div className="input-container">
+                                    <img src={logo} alt="logo" />
+                                    <div className="divider"></div>
+                                    <input type="password" placeholder="Придумайте пароль" />
+                                </div>
                             </div>
                             <div>
                                 <label>Повторите пароль</label>
-                                <input type="password" placeholder="Повторите пароль" className="input-with-logo" />
+                                <div className="input-container">
+                                    <img src={logo} alt="logo" />
+                                    <div className="divider"></div>
+                                    <input type="password" placeholder="Повторите пароль" />
+                                </div>
                             </div>
                             <button type="submit">Создать аккаунт</button>
                         </form>
