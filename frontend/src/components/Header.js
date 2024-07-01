@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../css/Header.css'; // Подключаем CSS файл
+import Registration from './Registration';
 
 const Header = () => {
+    const [showRegistration, setShowRegistration] = useState(false);
+
+    const handleRegistrationClick = () => {
+        setShowRegistration(true);
+    };
+
+    const handleClose = () => {
+        setShowRegistration(false);
+    };
+
     return (
         <header className="header">
             <div className="header-left">
@@ -15,8 +26,9 @@ const Header = () => {
             </div>
             <nav className="header-right">
                 <button className="header-button">Войти</button>
-                <button className="header-button register-button">Регистрация</button>
+                <button className="header-button register-button" onClick={handleRegistrationClick}>Регистрация</button>
             </nav>
+            {showRegistration && <Registration onClose={handleClose} />}
         </header>
     );
 }
