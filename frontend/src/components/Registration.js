@@ -31,8 +31,8 @@ const RegistrationForm = () => (
         <form>
             <InputField label="Email" type="email" placeholder="Ваша почта" logo={mailLogo} />
             <div className="email-channel-container">
+            <InputField label="Имя" type="text" placeholder="Напишите имя" logo={loginLogo} />
                 <InputField label="Канал" type="text" placeholder="Ссылка на канал" logo={telegramLogo} />
-                <InputField label="Имя" type="text" placeholder="Напишите имя" logo={loginLogo} />
             </div>
             <InputField label="Пароль" type="password" placeholder="Придумайте пароль" logo={passwordLogo} />
             <InputField label="Повторите пароль" type="password" placeholder="Повторите пароль" logo={passwordLogo} />
