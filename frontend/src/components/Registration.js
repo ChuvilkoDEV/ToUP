@@ -5,6 +5,17 @@ import mailLogo from '../assets/registrationForm/mail.svg';
 import telegramLogo from '../assets/registrationForm/telegram.svg';
 import passwordLogo from '../assets/registrationForm/password.svg';
 
+const InputField = ({ label, type, placeholder, logo }) => (
+    <div>
+        <label>{label}</label>
+        <div className="input-container">
+            <img src={logo} alt="logo" />
+            <div className="divider"></div>
+            <input type={type} placeholder={placeholder} />
+        </div>
+    </div>
+);
+
 const Registration = ({ onClose }) => {
     return (
         <div className="registration-window-overlay" onClick={onClose}>
@@ -13,48 +24,13 @@ const Registration = ({ onClose }) => {
                     <div className="registration-form">
                         <h2>Добро пожаловать в ToUP</h2>
                         <form>
-                            <div>
-                                <label>Имя</label>
-                                <div className="input-container">
-                                    <img src={loginLogo} alt="logo" />
-                                    <div className="divider"></div>
-                                    <input type="text" placeholder="Напишите свое имя" />
-                                </div>
-                            </div>
+                            <InputField label="Имя" type="text" placeholder="Напишите свое имя" logo={loginLogo} />
                             <div className="email-channel-container">
-                                <div>
-                                    <label>Канал</label>
-                                    <div className="input-container">
-                                        <img src={telegramLogo} alt="logo" />
-                                        <div className="divider"></div>
-                                        <input type="text" placeholder="Ссылка на канал" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <label>Email</label>
-                                    <div className="input-container">
-                                        <img src={mailLogo} alt="logo" />
-                                        <div className="divider"></div>
-                                        <input type="email" placeholder="Ваша почта" />
-                                    </div>
-                                </div>
+                                <InputField label="Канал" type="text" placeholder="Ссылка на канал" logo={telegramLogo} />
+                                <InputField label="Email" type="email" placeholder="Ваша почта" logo={mailLogo} />
                             </div>
-                            <div>
-                                <label>Пароль</label>
-                                <div className="input-container">
-                                    <img src={passwordLogo} alt="logo" />
-                                    <div className="divider"></div>
-                                    <input type="password" placeholder="Придумайте пароль" />
-                                </div>
-                            </div>
-                            <div>
-                                <label>Повторите пароль</label>
-                                <div className="input-container">
-                                    <img src={passwordLogo} alt="logo" />
-                                    <div className="divider"></div>
-                                    <input type="password" placeholder="Повторите пароль" />
-                                </div>
-                            </div>
+                            <InputField label="Пароль" type="password" placeholder="Придумайте пароль" logo={passwordLogo} />
+                            <InputField label="Повторите пароль" type="password" placeholder="Повторите пароль" logo={passwordLogo} />
                             <button type="submit">Создать аккаунт</button>
                         </form>
                         <p>Уже есть аккаунт? <a href="#">Войти</a></p>
