@@ -1,6 +1,9 @@
 import React from 'react';
 import '../css/Registration.css';
-import logo from '../assets/registrationForm/mail.svg'; // Убедитесь, что путь к логотипу верный
+import loginLogo from '../assets/registrationForm/login.svg';
+import mailLogo from '../assets/registrationForm/mail.svg';
+import telegramLogo from '../assets/registrationForm/telegram.svg';
+import passwordLogo from '../assets/registrationForm/password.svg';
 
 const Registration = ({ onClose }) => {
     return (
@@ -13,31 +16,33 @@ const Registration = ({ onClose }) => {
                             <div>
                                 <label>Имя</label>
                                 <div className="input-container">
-                                    <img src={logo} alt="logo" />
+                                    <img src={loginLogo} alt="logo" />
                                     <div className="divider"></div>
                                     <input type="text" placeholder="Напишите свое имя" />
                                 </div>
                             </div>
-                            <div>
-                                <label>Канал</label>
-                                <div className="input-container">
-                                    <img src={logo} alt="logo" />
-                                    <div className="divider"></div>
-                                    <input type="text" placeholder="Ссылка на канал" />
+                            <div className="email-channel-container">
+                                <div>
+                                    <label>Канал</label>
+                                    <div className="input-container">
+                                        <img src={telegramLogo} alt="logo" />
+                                        <div className="divider"></div>
+                                        <input type="text" placeholder="Ссылка на канал" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <label>Email</label>
-                                <div className="input-container">
-                                    <img src={logo} alt="logo" />
-                                    <div className="divider"></div>
-                                    <input type="email" placeholder="Ваша почта" />
+                                <div>
+                                    <label>Email</label>
+                                    <div className="input-container">
+                                        <img src={mailLogo} alt="logo" />
+                                        <div className="divider"></div>
+                                        <input type="email" placeholder="Ваша почта" />
+                                    </div>
                                 </div>
                             </div>
                             <div>
                                 <label>Пароль</label>
                                 <div className="input-container">
-                                    <img src={logo} alt="logo" />
+                                    <img src={passwordLogo} alt="logo" />
                                     <div className="divider"></div>
                                     <input type="password" placeholder="Придумайте пароль" />
                                 </div>
@@ -45,7 +50,7 @@ const Registration = ({ onClose }) => {
                             <div>
                                 <label>Повторите пароль</label>
                                 <div className="input-container">
-                                    <img src={logo} alt="logo" />
+                                    <img src={passwordLogo} alt="logo" />
                                     <div className="divider"></div>
                                     <input type="password" placeholder="Повторите пароль" />
                                 </div>

@@ -39,12 +39,13 @@
 .registration-form label {
     display: block;
     margin-bottom: 5px;
+    text-align: left;
+    margin-left: 10px;
 }
 
 .registration-form input {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ccc;
     border-radius: 5px;
 }
 
@@ -89,7 +90,6 @@
     font-size: 16px;
 }
 
-
 .input-container {
     display: flex;
     align-items: center;
@@ -119,4 +119,13 @@
     flex: 1;
     padding: 8px;
     outline: none;
+}
+
+.email-channel-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.email-channel-container>div {
+    width: 48%;
 }
