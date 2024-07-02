@@ -14,7 +14,7 @@
     background: white;
     padding: 20px;
     border-radius: 20px;
-    width: 800px;
+    width: 850px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
@@ -45,8 +45,8 @@
 
 .registration-form input {
     width: 100%;
-    padding: 8px;
     border-radius: 5px;
+    font-size: 14px;
 }
 
 .registration-form button {
@@ -69,49 +69,75 @@
     color: white;
     border-radius: 20px;
     padding: 20px;
-    width: 300px;
-    display: grid;
-    grid-template-rows: auto auto auto auto;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    width: 382px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.overlay-text {
+    position: absolute;
+    padding-left: 30px;
+    font-size: 42px;
+    color: white;
+    line-height: 1.2;
+    z-index: 1000;
+    text-align: left;
+}
+
+.info-block-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 120px;
+}
+
+.left-block {
+    flex-basis: 48%;
+    margin-right: auto;
+}
+
+.right-block {
+    flex-basis: 48%;
+    margin-left: auto;
+}
+
+.info-content {
+    display: flex;
     align-items: center;
 }
 
-.blue-rectangle p {
-    font-size: 18px;
-    margin-bottom: 20px;
-    text-align: center;
-    grid-column: span 2;
+.arrow1-icon {
+    width: 106px;
+    height: 83px;
+    margin-top: 25px;
+}
+
+.arrow2-icon {
+    width: 97px;
+    height: 83px;
+    margin-top: 25px;
+}
+
+.arrow3-icon {
+    width: 80px;
+    height: 83px;
+    margin-top: 25px;
 }
 
 .info-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: white;
     color: #007bff;
     border-radius: 10px;
     padding: 10px 20px;
-    width: 100%;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.registration {
-    grid-column: 2;
-    justify-self: end;
-}
-
-.subscribers {
-    grid-column: 1;
-    justify-self: start;
-}
-
-.recharge {
-    grid-column: 2;
-    justify-self: end;
-}
-
-.task {
-    grid-column: 1;
-    justify-self: start;
+    margin-bottom: 55px;
+    width: 186px;
+    height: 55px;
 }
 
 .input-container {
@@ -141,7 +167,6 @@
 .input-container input {
     border: none;
     flex: 1;
-    padding: 8px;
     outline: none;
 }
 

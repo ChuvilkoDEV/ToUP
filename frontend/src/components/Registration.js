@@ -4,6 +4,10 @@ import loginLogo from '../assets/registrationForm/login.svg';
 import mailLogo from '../assets/registrationForm/mail.svg';
 import telegramLogo from '../assets/registrationForm/telegram.svg';
 import passwordLogo from '../assets/registrationForm/password.svg';
+import arrow1 from '../assets/registrationForm/arrow1.svg';
+import arrow2 from '../assets/registrationForm/arrow2.svg';
+import arrow3 from '../assets/registrationForm/arrow3.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const InputField = ({ label, type, placeholder, logo }) => (
     <div>
@@ -20,10 +24,10 @@ const RegistrationForm = () => (
     <div className="registration-form">
         <h2>Добро пожаловать в ToUP</h2>
         <form>
-            <InputField label="Имя" type="text" placeholder="Напишите свое имя" logo={loginLogo} />
+            <InputField label="Email" type="email" placeholder="Ваша почта" logo={mailLogo} />
             <div className="email-channel-container">
                 <InputField label="Канал" type="text" placeholder="Ссылка на канал" logo={telegramLogo} />
-                <InputField label="Email" type="email" placeholder="Ваша почта" logo={mailLogo} />
+                <InputField label="Имя" type="text" placeholder="Напишите имя" logo={loginLogo} />
             </div>
             <InputField label="Пароль" type="password" placeholder="Придумайте пароль" logo={passwordLogo} />
             <InputField label="Повторите пароль" type="password" placeholder="Повторите пароль" logo={passwordLogo} />
@@ -34,14 +38,38 @@ const RegistrationForm = () => (
 );
 
 const InfoBlock = () => (
-    <div className="blue-rectangle">
-        <p>Увеличьте свою аудиторию с нами</p>
-        <div className="info-block registration">Регистрация</div>
-        <div className="info-block subscribers">Выбор кол-ва подписчиков</div>
-        <div className="info-block recharge">Пополнить счет</div>
-        <div className="info-block task">Добавить задачу</div>
+    <div className="blue-rectangle p-3">
+        <p className="overlay-text mb-4">Увеличьте свою аудиторию с нами</p>
+        <div className="container">
+            <div className="info-block-container">
+                <div className="right-block align-self-end">
+                    <div className="info-content">
+                        <img src={arrow1} alt="logo" className="arrow1-icon" />
+                        <div className="info-block">Регистрация</div>
+                    </div>
+                </div>
+                <div className="left-block align-self-start">
+                    <div className="info-content">
+                        <div className="info-block">Выбор кол-ва подписчиков</div>
+                        <img src={arrow2} alt="logo" className="arrow2-icon" />
+                    </div>
+                </div>
+                <div className="right-block align-self-end">
+                    <div className="info-content">
+                        <img src={arrow3} alt="logo" className="arrow3-icon" />
+                        <div className="info-block">Пополнить счет</div>
+                    </div>
+                </div>
+                <div className="left-block align-self-start">
+                    <div className="info-content">
+                        <div className="info-block mb-0">Добавить задачу</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 );
+
 
 const Registration = ({ onClose }) => {
     return (
