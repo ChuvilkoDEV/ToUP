@@ -7,6 +7,24 @@
   pointer-events: none;
 }
 
+@font-face {
+  font-family: 'EuclidCircularA-Medium';
+  src: url('./fonts/EuclidCircularA-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EuclidCircularA-Bold';
+  src: url('./fonts/EuclidCircularA-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'EuclidCircularA-Medium', sans-serif;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

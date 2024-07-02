@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../css/Registration.css';
 import loginLogo from '../assets/registrationForm/login.svg';
 import mailLogo from '../assets/registrationForm/mail.svg';
@@ -22,7 +22,8 @@ const InputField = ({ label, type, placeholder, logo }) => (
 
 const RegistrationForm = () => (
     <div className="registration-form">
-        <h2>Добро пожаловать в ToUP</h2>
+        <p className='text-blue-left'>Создайте аккаунт</p>
+        <h2>ДОБРО ПОЖАЛОВАТЬ в ToUP</h2>
         <form>
             <InputField label="Email" type="email" placeholder="Ваша почта" logo={mailLogo} />
             <div className="email-channel-container">
@@ -70,11 +71,23 @@ const InfoBlock = () => (
     </div>
 );
 
-
 const Registration = ({ onClose }) => {
+    useEffect(() => {
+        const handleMouseDown = (e) => {
+            if (!e.target.closest('.registration-window')) {
+                onClose();
+            }
+        };
+
+        document.addEventListener('mousedown', handleMouseDown);
+        return () => {
+            document.removeEventListener('mousedown', handleMouseDown);
+        };
+    }, [onClose]);
+
     return (
-        <div className="registration-window-overlay" onClick={onClose}>
-            <div className="registration-window" onClick={(e) => e.stopPropagation()}>
+        <div className="registration-window-overlay">
+            <div className="registration-window">
                 <div className="registration-content">
                     <RegistrationForm />
                     <InfoBlock />

@@ -33,7 +33,9 @@
 }
 
 .registration-form h2 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    width: 330px;
+    text-align: left;
 }
 
 .registration-form label {
@@ -57,11 +59,23 @@
     border: none;
     border-radius: 20px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .registration-form p {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.registration-form form {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
+}
+
+.text-blue-left {
+    color: #007bff;
+    text-align: left !important;
+    margin: 5px !important;
 }
 
 .blue-rectangle {
