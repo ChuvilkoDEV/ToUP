@@ -7,6 +7,10 @@ import passwordLogo from '../assets/registrationForm/password.svg';
 import arrow1 from '../assets/registrationForm/arrow1.svg';
 import arrow2 from '../assets/registrationForm/arrow2.svg';
 import arrow3 from '../assets/registrationForm/arrow3.svg';
+import registrationInfoLogo from '../assets/registrationForm/registrationInfo.svg';
+import subscribersInfoLogo from '../assets/registrationForm/subscribersInfo.svg';
+import walletInfoLogo from '../assets/registrationForm/wallet.svg';
+import taskInfoLogo from '../assets/registrationForm/task.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const InputField = ({ label, type, placeholder, logo }) => (
@@ -38,34 +42,33 @@ const RegistrationForm = () => (
     </div>
 );
 
+const InfoItem = ({ logo, text, isMargin = false }) => (
+    <div className={`info-block ${isMargin ? 'mb-0' : ''}`}>
+        <img src={logo} alt="logo" className='info-logo' />
+        {text}
+    </div>
+);
+
 const InfoBlock = () => (
     <div className="blue-rectangle p-3">
         <p className="overlay-text mb-4">Увеличьте свою аудиторию с нами</p>
-        <div className="container">
-            <div className="info-block-container">
-                <div className="right-block align-self-end">
-                    <div className="info-content">
-                        <img src={arrow1} alt="logo" className="arrow1-icon" />
-                        <div className="info-block">Регистрация</div>
-                    </div>
-                </div>
-                <div className="left-block align-self-start">
-                    <div className="info-content">
-                        <div className="info-block">Выбор кол-ва подписчиков</div>
-                        <img src={arrow2} alt="logo" className="arrow2-icon" />
-                    </div>
-                </div>
-                <div className="right-block align-self-end">
-                    <div className="info-content">
-                        <img src={arrow3} alt="logo" className="arrow3-icon" />
-                        <div className="info-block">Пополнить счет</div>
-                    </div>
-                </div>
-                <div className="left-block align-self-start">
-                    <div className="info-content">
-                        <div className="info-block mb-0">Добавить задачу</div>
-                    </div>
-                </div>
+        <div className="container info-block-container">
+            <div className="right-block align-self-end info-content">
+                <img src={arrow1} alt="logo" className="arrow1-icon" />
+                <InfoItem logo={registrationInfoLogo} text="Регистрация" />
+            </div>
+            <div className="left-block align-self-start info-content">
+                <InfoItem logo={subscribersInfoLogo} text="Выбор кол-ва подписчиков" />
+                <img src={arrow2} alt="logo" className="arrow2-icon" />
+            </div>
+            <div className="right-block align-self-end info-content">
+                <img src={arrow3} alt="logo" className="arrow3-icon" />
+                <InfoItem logo={walletInfoLogo} text="Пополнить счет" />
+            </div>
+        </div>
+        <div className="left-block align-self-start">
+            <div className="info-content">
+                <InfoItem logo={taskInfoLogo} text="Добавить задачу" isMargin={true} />
             </div>
         </div>
     </div>
