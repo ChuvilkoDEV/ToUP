@@ -16,34 +16,40 @@ const InputField = ({ label, type, placeholder, logo }) => (
     </div>
 );
 
+const RegistrationForm = () => (
+    <div className="registration-form">
+        <h2>Добро пожаловать в ToUP</h2>
+        <form>
+            <InputField label="Имя" type="text" placeholder="Напишите свое имя" logo={loginLogo} />
+            <div className="email-channel-container">
+                <InputField label="Канал" type="text" placeholder="Ссылка на канал" logo={telegramLogo} />
+                <InputField label="Email" type="email" placeholder="Ваша почта" logo={mailLogo} />
+            </div>
+            <InputField label="Пароль" type="password" placeholder="Придумайте пароль" logo={passwordLogo} />
+            <InputField label="Повторите пароль" type="password" placeholder="Повторите пароль" logo={passwordLogo} />
+            <button type="submit">Создать аккаунт</button>
+        </form>
+        <p>Уже есть аккаунт? <a href="#">Войти</a></p>
+    </div>
+);
+
+const InfoBlock = () => (
+    <div className="blue-rectangle">
+        <p>Увеличьте свою аудиторию с нами</p>
+        <div className="info-block registration">Регистрация</div>
+        <div className="info-block subscribers">Выбор кол-ва подписчиков</div>
+        <div className="info-block recharge">Пополнить счет</div>
+        <div className="info-block task">Добавить задачу</div>
+    </div>
+);
+
 const Registration = ({ onClose }) => {
     return (
         <div className="registration-window-overlay" onClick={onClose}>
             <div className="registration-window" onClick={(e) => e.stopPropagation()}>
                 <div className="registration-content">
-                    <div className="registration-form">
-                        <h2>Добро пожаловать в ToUP</h2>
-                        <form>
-                            <InputField label="Имя" type="text" placeholder="Напишите свое имя" logo={loginLogo} />
-                            <div className="email-channel-container">
-                                <InputField label="Канал" type="text" placeholder="Ссылка на канал" logo={telegramLogo} />
-                                <InputField label="Email" type="email" placeholder="Ваша почта" logo={mailLogo} />
-                            </div>
-                            <InputField label="Пароль" type="password" placeholder="Придумайте пароль" logo={passwordLogo} />
-                            <InputField label="Повторите пароль" type="password" placeholder="Повторите пароль" logo={passwordLogo} />
-                            <button type="submit">Создать аккаунт</button>
-                        </form>
-                        <p>Уже есть аккаунт? <a href="#">Войти</a></p>
-                    </div>
-                    <div className="blue-rectangle">
-                        <p>Увеличьте свою аудиторию с нами</p>
-                        <ul>
-                            <li>Регистрация</li>
-                            <li>Выбор кол-ва подписчиков</li>
-                            <li>Пополнить счет</li>
-                            <li>Добавить задачу</li>
-                        </ul>
-                    </div>
+                    <RegistrationForm />
+                    <InfoBlock />
                 </div>
             </div>
         </div>

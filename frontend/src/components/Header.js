@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../css/Header.css'; // Подключаем CSS файл
+import '../css/Header.css'; 
 import Registration from './Registration';
 
 const Header = () => {

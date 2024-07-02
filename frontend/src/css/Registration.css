@@ -70,24 +70,48 @@
     border-radius: 20px;
     padding: 20px;
     width: 300px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
     align-items: center;
 }
 
 .blue-rectangle p {
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    grid-column: span 2;
 }
 
-.blue-rectangle ul {
-    list-style-type: none;
-    padding: 0;
+.info-block {
+    background-color: white;
+    color: #007bff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.blue-rectangle li {
-    margin-bottom: 10px;
-    font-size: 16px;
+.registration {
+    grid-column: 2;
+    justify-self: end;
+}
+
+.subscribers {
+    grid-column: 1;
+    justify-self: start;
+}
+
+.recharge {
+    grid-column: 2;
+    justify-self: end;
+}
+
+.task {
+    grid-column: 1;
+    justify-self: start;
 }
 
 .input-container {
