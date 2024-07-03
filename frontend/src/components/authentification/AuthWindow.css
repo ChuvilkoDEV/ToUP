@@ -41,6 +41,7 @@
     width: 320px;
     text-align: left;
     font-size: 28px;
+    font-family: 'EuclidCircularA-Bold', sans-serif;
 }
 
 .auth-form label {

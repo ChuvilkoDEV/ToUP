@@ -40,9 +40,12 @@ const InfoBlock = () => (
     <div className="blue-rectangle p-3">
         <p className="overlay-text mb-4">Увеличьте свою аудиторию с нами</p>
         <div className="container registration-info-block-container">
-            <InfoItem logo={images['registrationInfo.svg']} text="Регистрация" leftArrow={<img src={images['arrow1.svg']} alt="logo" className="registration-arrow1-icon" />} />
-            <InfoItem logo={images['subscribersInfo.svg']} text="Выбор кол-ва подписчиков" rightArrow={<img src={images['arrow2.svg']} alt="logo" className="registration-arrow2-icon" />} />
-            <InfoItem logo={images['wallet.svg']} text="Пополнить счет" leftArrow={<img src={images['arrow3.svg']} alt="logo" className="registration-arrow3-icon" />} />
+            <InfoItem logo={images['registrationInfo.svg']} text="Регистрация"
+                leftArrow={<img src={images['arrow1.svg']} alt="logo" className="registration-arrow1-icon" />} />
+            <InfoItem logo={images['subscribersInfo.svg']} text="Выбор кол-ва подписчиков"
+                rightArrow={<img src={images['arrow2.svg']} alt="logo" className="registration-arrow2-icon" />} />
+            <InfoItem logo={images['wallet.svg']} text="Пополнить счет"
+                leftArrow={<img src={images['arrow3.svg']} alt="logo" className="registration-arrow3-icon" />} />
             <InfoItem logo={images['task.svg']} text="Добавить задачу" isMargin={true} />
         </div>
     </div>
