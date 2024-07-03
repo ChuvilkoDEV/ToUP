@@ -1,4 +1,5 @@
-.registration-window-overlay {
+/* Стили для окна входа */
+.login-window-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -10,7 +11,7 @@
     align-items: center;
 }
 
-.registration-window {
+.login-window {
     background: white;
     padding: 20px;
     border-radius: 20px;
@@ -22,53 +23,53 @@
     position: relative;
 }
 
-.registration-content {
+.login-content {
     display: flex;
     width: 100%;
 }
 
-.registration-form {
+.login-form {
     flex: 1;
     padding-right: 20px;
 }
 
-.registration-form h2 {
+.login-form h2 {
     margin-bottom: 10px;
     width: 320px;
     text-align: left;
     font-size: 28px;
 }
 
-.registration-form label {
+.login-form label {
     display: block;
     margin-bottom: 5px;
     text-align: left;
     margin-left: 10px;
 }
 
-.registration-form input {
+.login-form input {
     width: 100%;
     border-radius: 5px;
     font-size: 14px;
 }
 
-.registration-form button {
+.login-form button {
     width: 100%;
     padding: 10px;
     background-color: #2D8EFF;
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
     cursor: pointer;
     margin-top: 10px;
 }
 
-.registration-form p {
+.login-form p {
     text-align: left;
     margin-top: 15px;
 }
 
-.registration-form form {
+.login-form form {
     text-align: center;
     margin-top: 10px;
 }
@@ -191,22 +192,13 @@
     outline: none;
 }
 
-.email-channel-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.email-channel-container>div {
-    width: 48%;
-}
-
 /* Медиазапрос для мобильных устройств */
 @media (max-width: 768px) {
     .blue-rectangle {
         display: none;
     }
 
-    .registration-window {
+    .login-window {
         width: 90%;
         padding: 10px;
         border-radius: 10px;
@@ -215,16 +207,16 @@
         align-items: center;
     }
 
-    .registration-form {
+    .login-form {
         padding-right: 0;
     }
 
-    .registration-content {
+    .login-content {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .registration-form h2 {
+    .login-form h2 {
         margin-bottom: 10px;
         width: 290px;
         text-align: left;

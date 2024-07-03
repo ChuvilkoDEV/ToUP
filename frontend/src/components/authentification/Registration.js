@@ -1,28 +1,20 @@
 import React, { useEffect } from 'react';
-import '../css/Registration.css';
-import loginLogo from '../assets/registrationForm/login.svg';
-import mailLogo from '../assets/registrationForm/mail.svg';
-import telegramLogo from '../assets/registrationForm/telegram.svg';
-import passwordLogo from '../assets/registrationForm/password.svg';
-import arrow1 from '../assets/registrationForm/arrow1.svg';
-import arrow2 from '../assets/registrationForm/arrow2.svg';
-import arrow3 from '../assets/registrationForm/arrow3.svg';
-import registrationInfoLogo from '../assets/registrationForm/registrationInfo.svg';
-import subscribersInfoLogo from '../assets/registrationForm/subscribersInfo.svg';
-import walletInfoLogo from '../assets/registrationForm/wallet.svg';
-import taskInfoLogo from '../assets/registrationForm/task.svg';
+import InputField from './InputField';
+
+import '../../css/Registration.css';
+import loginLogo from '../../assets/registrationForm/login.svg';
+import mailLogo from '../../assets/registrationForm/mail.svg';
+import telegramLogo from '../../assets/registrationForm/telegram.svg';
+import passwordLogo from '../../assets/registrationForm/password.svg';
+import arrow1 from '../../assets/registrationForm/arrow1.svg';
+import arrow2 from '../../assets/registrationForm/arrow2.svg';
+import arrow3 from '../../assets/registrationForm/arrow3.svg';
+import registrationInfoLogo from '../../assets/registrationForm/registrationInfo.svg';
+import subscribersInfoLogo from '../../assets/registrationForm/subscribersInfo.svg';
+import walletInfoLogo from '../../assets/registrationForm/wallet.svg';
+import taskInfoLogo from '../../assets/registrationForm/task.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const InputField = ({ label, type, placeholder, logo }) => (
-    <div>
-        <label>{label}</label>
-        <div className="input-container">
-            <img src={logo} alt="logo" />
-            <div className="divider"></div>
-            <input type={type} placeholder={placeholder} />
-        </div>
-    </div>
-);
 
 const RegistrationForm = () => (
     <div className="registration-form">
@@ -31,7 +23,7 @@ const RegistrationForm = () => (
         <form>
             <InputField label="Email" type="email" placeholder="Ваша почта" logo={mailLogo} />
             <div className="email-channel-container">
-            <InputField label="Имя" type="text" placeholder="Напишите имя" logo={loginLogo} />
+                <InputField label="Имя" type="text" placeholder="Напишите имя" logo={loginLogo} />
                 <InputField label="Канал" type="text" placeholder="Ссылка на канал" logo={telegramLogo} />
             </div>
             <InputField label="Пароль" type="password" placeholder="Придумайте пароль" logo={passwordLogo} />
