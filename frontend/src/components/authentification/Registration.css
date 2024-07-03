@@ -1,0 +1,72 @@
+/* Стили для окна регистрации */
+@import 'AuthWindow.css';
+
+/* Уникальные стили для окна регистрации */
+.registration-email-channel-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.registration-email-channel-container>div {
+    width: 48%;
+}
+
+.registration-info-block-container {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    margin-top: 120px;
+}
+
+.mr-0 {
+    margin-right: 0 !important;
+}
+
+.ml-0 {
+    margin-left: 0 !important;
+}
+
+.registration-info-content {
+    display: flex;
+    flex-basis: 48%;
+    margin: auto;
+}
+
+.registration-info-logo {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.registration-arrow1-icon {
+    width: 106px;
+    height: 83px;
+    margin-top: 25px;
+}
+
+.registration-arrow2-icon {
+    width: 97px;
+    height: 83px;
+    margin-top: 25px;
+}
+
+.registration-arrow3-icon {
+    width: 80px;
+    height: 83px;
+    margin-top: 25px;
+}
+
+.registration-info-block {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    padding: 10px 10px;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 55px;
+    width: 186px;
+    height: 55px;
+}

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import InputField from './InputField';
 
-import '../../css/Registration.css';
+import './Registration.css';
 import loginLogo from '../../assets/registrationForm/login.svg';
 import mailLogo from '../../assets/registrationForm/mail.svg';
 import telegramLogo from '../../assets/registrationForm/telegram.svg';
@@ -15,14 +16,13 @@ import walletInfoLogo from '../../assets/registrationForm/wallet.svg';
 import taskInfoLogo from '../../assets/registrationForm/task.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 const RegistrationForm = () => (
-    <div className="registration-form">
-        <p className='text-blue-left'>Создайте аккаунт</p>
+    <div className="auth-form">
+        <p className="text-blue-left">Создайте аккаунт</p>
         <h2>ДОБРО ПОЖАЛОВАТЬ в ToUP</h2>
         <form>
             <InputField label="Email" type="email" placeholder="Ваша почта" logo={mailLogo} />
-            <div className="email-channel-container">
+            <div className="registration-email-channel-container">
                 <InputField label="Имя" type="text" placeholder="Напишите имя" logo={loginLogo} />
                 <InputField label="Канал" type="text" placeholder="Ссылка на канал" logo={telegramLogo} />
             </div>
@@ -34,34 +34,25 @@ const RegistrationForm = () => (
     </div>
 );
 
-const InfoItem = ({ logo, text, isMargin = false }) => (
-    <div className={`info-block ${isMargin ? 'mb-0' : ''}`}>
-        <img src={logo} alt="logo" className='info-logo' />
-        {text}
+const InfoItem = ({ logo, text, leftArrow = null, rightArrow = null, isMargin = false }) => (
+    <div className={`registration-info-content ${leftArrow ? 'mr-0' : 'ml-0'}`}>
+        {leftArrow}
+        <div className={`registration-info-block ${isMargin ? 'mb-0' : ''}`}>
+            <img src={logo} alt="logo" className="registration-info-logo" />
+            {text}
+        </div>
+        {rightArrow}
     </div>
 );
 
 const InfoBlock = () => (
     <div className="blue-rectangle p-3">
         <p className="overlay-text mb-4">Увеличьте свою аудиторию с нами</p>
-        <div className="container info-block-container">
-            <div className="right-block align-self-end info-content">
-                <img src={arrow1} alt="logo" className="arrow1-icon" />
-                <InfoItem logo={registrationInfoLogo} text="Регистрация" />
-            </div>
-            <div className="left-block align-self-start info-content">
-                <InfoItem logo={subscribersInfoLogo} text="Выбор кол-ва подписчиков" />
-                <img src={arrow2} alt="logo" className="arrow2-icon" />
-            </div>
-            <div className="right-block align-self-end info-content">
-                <img src={arrow3} alt="logo" className="arrow3-icon" />
-                <InfoItem logo={walletInfoLogo} text="Пополнить счет" />
-            </div>
-        </div>
-        <div className="left-block align-self-start">
-            <div className="info-content">
-                <InfoItem logo={taskInfoLogo} text="Добавить задачу" isMargin={true} />
-            </div>
+        <div className="container registration-info-block-container">
+            <InfoItem logo={registrationInfoLogo} text="Регистрация" leftArrow={<img src={arrow1} alt="logo" className="registration-arrow1-icon" />}/>
+            <InfoItem logo={subscribersInfoLogo} text="Выбор кол-ва подписчиков" rightArrow={<img src={arrow2} alt="logo" className="registration-arrow2-icon" />}/>
+            <InfoItem logo={walletInfoLogo} text="Пополнить счет" leftArrow={<img src={arrow3} alt="logo" className="registration-arrow3-icon" />}/>
+            <InfoItem logo={taskInfoLogo} text="Добавить задачу" isMargin={true} />
         </div>
     </div>
 );
@@ -69,7 +60,7 @@ const InfoBlock = () => (
 const Registration = ({ onClose }) => {
     useEffect(() => {
         const handleMouseDown = (e) => {
-            if (!e.target.closest('.registration-window')) {
+            if (!e.target.closest('.auth-window')) {
                 onClose();
             }
         };
@@ -81,9 +72,9 @@ const Registration = ({ onClose }) => {
     }, [onClose]);
 
     return (
-        <div className="registration-window-overlay">
-            <div className="registration-window">
-                <div className="registration-content">
+        <div className="auth-window-overlay">
+            <div className="auth-window">
+                <div className="auth-content">
                     <RegistrationForm />
                     <InfoBlock />
                 </div>

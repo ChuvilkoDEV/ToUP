@@ -1,5 +1,7 @@
-/* Стили для окна входа */
-.login-window-overlay {
+/* AuthWindow.css */
+
+/* Стили для общих элементов окон входа и регистрации */
+.auth-window-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,7 +13,7 @@
     align-items: center;
 }
 
-.login-window {
+.auth-window {
     background: white;
     padding: 20px;
     border-radius: 20px;
@@ -23,37 +25,37 @@
     position: relative;
 }
 
-.login-content {
+.auth-content {
     display: flex;
     width: 100%;
 }
 
-.login-form {
+.auth-form {
     flex: 1;
     padding-right: 20px;
 }
 
-.login-form h2 {
+.auth-form h2 {
     margin-bottom: 10px;
     width: 320px;
     text-align: left;
     font-size: 28px;
 }
 
-.login-form label {
+.auth-form label {
     display: block;
     margin-bottom: 5px;
     text-align: left;
     margin-left: 10px;
 }
 
-.login-form input {
+.auth-form input {
     width: 100%;
     border-radius: 5px;
     font-size: 14px;
 }
 
-.login-form button {
+.auth-form button {
     width: 100%;
     padding: 10px;
     background-color: #2D8EFF;
@@ -62,104 +64,6 @@
     border-radius: 20px;
     cursor: pointer;
     margin-top: 10px;
-}
-
-.login-form p {
-    text-align: left;
-    margin-top: 15px;
-}
-
-.login-form form {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.text-blue-left {
-    color: #2D8EFF;
-    text-align: left !important;
-    margin: 5px !important;
-}
-
-.blue-rectangle {
-    background-color: #2D8EFF;
-    color: white;
-    border-radius: 20px;
-    padding: 20px;
-    width: 382px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-}
-
-.overlay-text {
-    position: absolute;
-    padding-left: 30px;
-    font-size: 42px;
-    color: white;
-    line-height: 1.2;
-    z-index: 1000;
-    text-align: left;
-}
-
-.info-block-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 120px;
-}
-
-.left-block {
-    flex-basis: 48%;
-    margin-right: auto;
-}
-
-.right-block {
-    flex-basis: 48%;
-    margin-left: auto;
-}
-
-.info-content {
-    display: flex;
-    align-items: center;
-}
-
-.info-logo {
-    width: 35px;
-    height: 35px;
-    margin-right: 10px;
-}
-
-.arrow1-icon {
-    width: 106px;
-    height: 83px;
-    margin-top: 25px;
-}
-
-.arrow2-icon {
-    width: 97px;
-    height: 83px;
-    margin-top: 25px;
-}
-
-.arrow3-icon {
-    width: 80px;
-    height: 83px;
-    margin-top: 25px;
-}
-
-.info-block {
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    background-color: white;
-    color: black;
-    border-radius: 10px;
-    padding: 10px 10px;
-    text-align: left;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 55px;
-    width: 186px;
-    height: 55px;
 }
 
 .input-container {
@@ -192,13 +96,49 @@
     outline: none;
 }
 
+.auth-form p {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.auth-form form {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.text-blue-left {
+    color: #2D8EFF;
+    text-align: left !important;
+    margin: 5px !important;
+}
+
+.blue-rectangle {
+    background-color: #2D8EFF;
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    width: 382px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.overlay-text {
+    font-size: 42px;
+    color: white;
+    line-height: 1.2;
+    z-index: 1000;
+    text-align: left;
+}
+
 /* Медиазапрос для мобильных устройств */
 @media (max-width: 768px) {
     .blue-rectangle {
         display: none;
     }
 
-    .login-window {
+    .auth-window {
         width: 90%;
         padding: 10px;
         border-radius: 10px;
@@ -207,16 +147,16 @@
         align-items: center;
     }
 
-    .login-form {
+    .auth-form {
         padding-right: 0;
     }
 
-    .login-content {
+    .auth-content {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .login-form h2 {
+    .auth-form h2 {
         margin-bottom: 10px;
         width: 290px;
         text-align: left;
