@@ -15,9 +15,10 @@
 
 .auth-window {
     background: white;
-    padding: 20px;
+    padding: 10px 8px 10px 20px;
     border-radius: 20px;
     width: 850px;
+    height: 557px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
@@ -109,7 +110,7 @@
 .text-blue-left {
     color: #2D8EFF;
     text-align: left !important;
-    margin: 5px !important;
+    margin: 0px !important;
 }
 
 .blue-rectangle {
@@ -118,6 +119,7 @@
     border-radius: 20px;
     padding: 20px;
     width: 382px;
+    height: 537px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,6 +132,7 @@
     line-height: 1.2;
     z-index: 1000;
     text-align: left;
+    margin-bottom: 0;
 }
 
 /* Медиазапрос для мобильных устройств */

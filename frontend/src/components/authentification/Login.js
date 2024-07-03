@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import './Login.css';
 import InputField from './InputField';
+import ImageUtils from '../imageUtils'; 
 
-import loginLogo from '../../assets/registrationForm/login.svg';
-import passwordLogo from '../../assets/registrationForm/password.svg';
+// const images = ImageUtils.importAllImages(require.context('../../assets/auth', false, /\.(svg)$/));
+import loginLogo from '../../assets/auth/login.svg';
+import passwordLogo from '../../assets/auth/password.svg';
 
 const LoginForm = () => (
     <div className="auth-form">
-        <p className="text-blue-left">Войдите в аккаунт</p>
+        <p className="text-blue-left">Войдите в аcккаунт</p>
         <h2>МЫ РАДЫ ВАС ВИДЕТЬ СНОВА</h2>
         <form>
             <InputField label="Email" type="email" placeholder="Ваша почта" logo={loginLogo} />
@@ -25,16 +27,15 @@ const InfoBlock = () => (
             <div className="login-info-block block1">
                 <p className="login-info-block-title">Более 5000 пользователей</p>
             </div>
-            {/* <div className="login-info-block" style={{ top: '150px', left: '50px' }}>
-                <p className="login-info-block-title">Охват широкой аудитории</p>
-                <p className="login-info-block-description">Наш сервис охватывает огромное количество тематических</p>
+            <div className="login-info-block block2">
+                
             </div>
-            <div className="login-info-block" style={{ top: '250px', left: '50px' }}>
-                <p className="login-info-block-title">N1 в сфере накрутки</p>
+            <div className="login-info-block block3">
+                
             </div>
-            <div className="login-info-block" style={{ top: '350px', left: '50px' }}>
-                <p className="login-info-block-title">Бонусы для новых пользователей</p>
-            </div> */}
+            <div className="login-info-block block4">
+                
+            </div>
         </div>
     </div>
 );

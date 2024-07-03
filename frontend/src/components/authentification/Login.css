@@ -8,7 +8,7 @@
     border-radius: 10px;
     position: relative;
     width: 382px;
-    height: 500px;
+    height: 537px;
     overflow: hidden;
 }
 
@@ -46,8 +46,29 @@
 }
 
 .block1 {
-    /* margin-top: 160px; */
+    margin-top: 15px; 
     margin-left: 186px;
     width: 165px;
+    height: 55px;
+}
+
+.block2 {
+    margin-top: 60px;
+    margin-left: 3px;
+    width: 165px;
+    height: 154px;
+}
+
+.block3 {
+    margin-top: 182px;
+    margin-left: 186px;
+    width: 165px;
+    height: 101px;
+}
+
+.block4 {
+    margin-top: 298px;
+    margin-left: 3px;
+    width: 226px;
     height: 55px;
 }

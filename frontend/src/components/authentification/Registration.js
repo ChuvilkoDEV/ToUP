@@ -1,33 +1,24 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import InputField from './InputField';
-
-import './Registration.css';
-import loginLogo from '../../assets/registrationForm/login.svg';
-import mailLogo from '../../assets/registrationForm/mail.svg';
-import telegramLogo from '../../assets/registrationForm/telegram.svg';
-import passwordLogo from '../../assets/registrationForm/password.svg';
-import arrow1 from '../../assets/registrationForm/arrow1.svg';
-import arrow2 from '../../assets/registrationForm/arrow2.svg';
-import arrow3 from '../../assets/registrationForm/arrow3.svg';
-import registrationInfoLogo from '../../assets/registrationForm/registrationInfo.svg';
-import subscribersInfoLogo from '../../assets/registrationForm/subscribersInfo.svg';
-import walletInfoLogo from '../../assets/registrationForm/wallet.svg';
-import taskInfoLogo from '../../assets/registrationForm/task.svg';
+import ImageUtils from '../imageUtils'; // Используем алиас
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Registration.css';
+
+// Импорт всех изображений
+const images = ImageUtils.importAllImages(require.context('../../assets/auth', false, /\.(svg)$/));
 
 const RegistrationForm = () => (
     <div className="auth-form">
         <p className="text-blue-left">Создайте аккаунт</p>
         <h2>ДОБРО ПОЖАЛОВАТЬ в ToUP</h2>
         <form>
-            <InputField label="Email" type="email" placeholder="Ваша почта" logo={mailLogo} />
+            <InputField label="Email" type="email" placeholder="Ваша почта" logo={images['mail.svg']} />
             <div className="registration-email-channel-container">
-                <InputField label="Имя" type="text" placeholder="Напишите имя" logo={loginLogo} />
-                <InputField label="Канал" type="text" placeholder="Ссылка на канал" logo={telegramLogo} />
+                <InputField label="Имя" type="text" placeholder="Напишите имя" logo={images['login.svg']} />
+                <InputField label="Канал" type="text" placeholder="Ссылка на канал" logo={images['telegram.svg']} />
             </div>
-            <InputField label="Пароль" type="password" placeholder="Придумайте пароль" logo={passwordLogo} />
-            <InputField label="Повторите пароль" type="password" placeholder="Повторите пароль" logo={passwordLogo} />
+            <InputField label="Пароль" type="password" placeholder="Придумайте пароль" logo={images['password.svg']} />
+            <InputField label="Повторите пароль" type="password" placeholder="Повторите пароль" logo={images['password.svg']} />
             <button type="submit">Создать аккаунт</button>
         </form>
         <p>Уже есть аккаунт? <a href="#">Войти</a></p>
@@ -49,10 +40,10 @@ const InfoBlock = () => (
     <div className="blue-rectangle p-3">
         <p className="overlay-text mb-4">Увеличьте свою аудиторию с нами</p>
         <div className="container registration-info-block-container">
-            <InfoItem logo={registrationInfoLogo} text="Регистрация" leftArrow={<img src={arrow1} alt="logo" className="registration-arrow1-icon" />}/>
-            <InfoItem logo={subscribersInfoLogo} text="Выбор кол-ва подписчиков" rightArrow={<img src={arrow2} alt="logo" className="registration-arrow2-icon" />}/>
-            <InfoItem logo={walletInfoLogo} text="Пополнить счет" leftArrow={<img src={arrow3} alt="logo" className="registration-arrow3-icon" />}/>
-            <InfoItem logo={taskInfoLogo} text="Добавить задачу" isMargin={true} />
+            <InfoItem logo={images['registrationInfo.svg']} text="Регистрация" leftArrow={<img src={images['arrow1.svg']} alt="logo" className="registration-arrow1-icon" />} />
+            <InfoItem logo={images['subscribersInfo.svg']} text="Выбор кол-ва подписчиков" rightArrow={<img src={images['arrow2.svg']} alt="logo" className="registration-arrow2-icon" />} />
+            <InfoItem logo={images['wallet.svg']} text="Пополнить счет" leftArrow={<img src={images['arrow3.svg']} alt="logo" className="registration-arrow3-icon" />} />
+            <InfoItem logo={images['task.svg']} text="Добавить задачу" isMargin={true} />
         </div>
     </div>
 );
