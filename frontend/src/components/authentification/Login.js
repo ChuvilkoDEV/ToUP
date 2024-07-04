@@ -26,16 +26,16 @@ const InfoBlock = () => (
         <div className="login-info-block-container">
             <div className="login-info-block block1">
                 <img src={images['check.svg']} alt="logo" />
-                <p className="login-info-block-title">Более 5000 пользователей</p>
+                <span className="login-info-block-title">Более 5000 пользователей</span>
             </div>
             <div className="login-info-block block2">
                 <img src={images['community.svg']} alt="logo"/>
-                <p className="login-info-block-title">Охват широкой аудитории</p>
-                <p className="login-info-block-description">Наш сервис охватывает огромное количество тематических</p>
+                <span className="login-info-block-title">Охват широкой аудитории</span>
+                <span className="login-info-block-description">Наш сервис охватывает огромное количество тематических</span>
             </div>
             <div className="login-info-block block3">
                 <img src={images['trophy.svg']} alt="logo"/>
-                <div className="login-info-block-title">N1 в сфере накрутки</div>
+                <span className="login-info-block-title">N1 в сфере накрутки</span>
             </div>
             <div className="login-info-block block4">
                 <img src={images['check.svg']} alt="logo" />
