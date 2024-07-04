@@ -1,29 +1,99 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import InputField from './InputField';
 import ImageUtils from '../imageUtils'; // Используем алиас
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Registration.css';
+import axios from 'axios'; // Добавьте импорт axios, если его еще нет
 
 // Импорт всех изображений
 const images = ImageUtils.importAllImages(require.context('../../assets/auth', false, /\.(svg)$/));
 
-const RegistrationForm = () => (
-    <div className="auth-form">
-        <p className="text-blue-left">Создайте аккаунт</p>
-        <h2>ДОБРО ПОЖАЛОВАТЬ в ToUP</h2>
-        <form>
-            <InputField label="Email" type="email" placeholder="Ваша почта" logo={images['mail.svg']} />
-            <div className="registration-email-channel-container">
-                <InputField label="Имя" type="text" placeholder="Напишите имя" logo={images['login.svg']} />
-                <InputField label="Канал" type="text" placeholder="Ссылка на канал" logo={images['telegram.svg']} />
-            </div>
-            <InputField label="Пароль" type="password" placeholder="Придумайте пароль" logo={images['password.svg']} />
-            <InputField label="Повторите пароль" type="password" placeholder="Повторите пароль" logo={images['password.svg']} />
-            <button type="submit">Создать аккаунт</button>
-        </form>
-        <p>Уже есть аккаунт? <a href="#">Войти</a></p>
-    </div>
-);
+const RegistrationForm = () => {
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [channel, setChannel] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState(null);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!email || !name || !channel || !password || !confirmPassword) {
+            setError('Пожалуйста, заполните все поля.');
+            return;
+        }
+        if (password !== confirmPassword) {
+            setError('Пароли не совпадают.');
+            return;
+        }
+        try {
+            const response = await axios.post('http://147.45.111.226:8001/api/reg', { 
+                email: email, 
+                password: password, 
+                name: name, 
+                channels: channel 
+            });
+            console.log(response.data); // Обработка успешного ответа
+        } catch (err) {
+            console.error(err);
+            setError('Ошибка при регистрации.'); // Обработка ошибки
+        }
+    };
+
+    return (
+        <div className="auth-form">
+            <p className="text-blue-left">Создайте аккаунт</p>
+            <h2>ДОБРО ПОЖАЛОВАТЬ в ToUP</h2>
+            <form onSubmit={handleSubmit}>
+                <InputField
+                    label="Email"
+                    type="email"
+                    placeholder="Ваша почта"
+                    logo={images['mail.svg']}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <div className="registration-email-channel-container">
+                    <InputField
+                        label="Имя"
+                        type="text"
+                        placeholder="Напишите имя"
+                        logo={images['login.svg']}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    <InputField
+                        label="Канал"
+                        type="text"
+                        placeholder="Ссылка на канал"
+                        logo={images['telegram.svg']}
+                        value={channel}
+                        onChange={(e) => setChannel(e.target.value)}
+                    />
+                </div>
+                <InputField
+                    label="Пароль"
+                    type="password"
+                    placeholder="Придумайте пароль"
+                    logo={images['password.svg']}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <InputField
+                    label="Повторите пароль"
+                    type="password"
+                    placeholder="Повторите пароль"
+                    logo={images['password.svg']}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                <button type="submit">Создать аккаунт</button>
+            </form>
+            {error && <p className="error">{error}</p>}
+            <p>Уже есть аккаунт? <a href="#">Войти</a></p>
+        </div>
+    );
+};
 
 const InfoItem = ({ logo, text, leftArrow = null, rightArrow = null, isMargin = false }) => (
     <div className={`registration-info-content ${leftArrow ? 'mr-0' : 'ml-0'}`}>

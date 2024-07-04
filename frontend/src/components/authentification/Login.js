@@ -1,24 +1,61 @@
-// src/components/authentification/Login.js
-
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Login.css';
 import InputField from './InputField';
 import ImageUtils from '../imageUtils';
 
 const images = ImageUtils.importAllImages(require.context('../../assets/auth', false, /\.(svg)$/));
 
-const LoginForm = () => (
-    <div className="auth-form">
-        <p className="text-blue-left">Войдите в аккаунт</p>
-        <h2>МЫ РАДЫ ВАС ВИДЕТЬ СНОВА</h2>
-        <form className='mt-4'>
-            <InputField label="Email" type="email" placeholder="Ваша почта" logo={images['login.svg']} />
-            <InputField label="Пароль" type="password" placeholder="Введите пароль" logo={images['password.svg']} />
-            <button type="submit" className='mt-4'>Войти</button>
-        </form>
-        <p>Нет аккаунта? <a href="#">Регистрация</a></p>
-    </div>
-);
+const LoginForm = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://147.45.111.226:8001/api/auth', { email, password });
+            if (response.data.status) {
+                localStorage.setItem('token', response.data.token);
+                console.log('Token saved to localStorage:', response.data.token);
+                // Дополнительные действия после успешного входа, например, редирект
+            } else {
+                setError('Ошибка при авторизации');
+            }
+        } catch (err) {
+            console.error(err);
+            setError('Ошибка при авторизации');
+        }
+    };
+
+    return (
+        <div className="auth-form">
+            <p className="text-blue-left">Войдите в аккаунт</p>
+            <h2>МЫ РАДЫ ВАС ВИДЕТЬ СНОВА</h2>
+            <form className='mt-4' onSubmit={handleSubmit}>
+                <InputField
+                    label="Email"
+                    type="email"
+                    placeholder="Ваша почта"
+                    logo={images['login.svg']}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <InputField
+                    label="Пароль"
+                    type="password"
+                    placeholder="Введите пароль"
+                    logo={images['password.svg']}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <button type="submit" className='mt-4'>Войти</button>
+            </form>
+            {error && <p className="error">{error}</p>}
+            <p>Нет аккаунта? <a href="#">Регистрация</a></p>
+        </div>
+    );
+};
 
 const InfoBlock = () => (
     <div className="login-info-block-wrapper">
@@ -29,12 +66,12 @@ const InfoBlock = () => (
                 <span className="login-info-block-title">Более 5000 пользователей</span>
             </div>
             <div className="login-info-block block2">
-                <img src={images['community.svg']} alt="logo"/>
+                <img src={images['community.svg']} alt="logo" />
                 <span className="login-info-block-title">Охват широкой аудитории</span>
                 <span className="login-info-block-description">Наш сервис охватывает огромное количество тематических</span>
             </div>
             <div className="login-info-block block3">
-                <img src={images['trophy.svg']} alt="logo"/>
+                <img src={images['trophy.svg']} alt="logo" />
                 <span className="login-info-block-title">N1 в сфере накрутки</span>
             </div>
             <div className="login-info-block block4">
