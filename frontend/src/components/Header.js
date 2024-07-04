@@ -1,17 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import '../css/Header.css';
-import { ThemeContext } from '../context/ThemeContext';
 import Registration from './authentification/Registration';
 import Login from './authentification/Login';
 import ImageUtils from './imageUtils';
 
 const images = ImageUtils.importAllImages(require.context('../assets/header', false, /\.(svg)$/));
 
-const Header = () => {
+const Header = ({ toggleTheme }) => {
     const [showRegistration, setShowRegistration] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
-    const { theme, toggleTheme } = useContext(ThemeContext);
 
     const handleRegistrationClick = () => {
         setShowRegistration(true);
@@ -31,10 +29,12 @@ const Header = () => {
     };
 
     return (
-        <header className={`header ${theme}`}>
+        <header className='header'>
             <div className="header-left">
                 <h1 className="header-title">
-                    <img src={images['ToUP.svg']} alt="logo" />
+                    T
+                    <img src={images['telegram.svg']} alt="logo" />
+                    UP
                 </h1>
             </div>
             <div className="header-center">
