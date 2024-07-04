@@ -8,7 +8,7 @@ import axios from 'axios'; // Добавьте импорт axios, если ег
 // Импорт всех изображений
 const images = ImageUtils.importAllImages(require.context('../../assets/auth', false, /\.(svg)$/));
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ onRegistrationSuccess }) => {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [channel, setChannel] = useState('');
@@ -27,13 +27,14 @@ const RegistrationForm = () => {
             return;
         }
         try {
-            const response = await axios.post('http://147.45.111.226:8001/api/reg', { 
-                email: email, 
-                password: password, 
-                name: name, 
-                channels: channel 
+            const response = await axios.post('http://147.45.111.226:8001/api/reg', {
+                email,
+                password,
+                name,
+                channels: channel
             });
             console.log(response.data); // Обработка успешного ответа
+            onRegistrationSuccess(); // Переключение на окно входа
         } catch (err) {
             console.error(err);
             setError('Ошибка при регистрации.'); // Обработка ошибки
@@ -90,7 +91,7 @@ const RegistrationForm = () => {
                 <button type="submit">Создать аккаунт</button>
             </form>
             {error && <p className="error">{error}</p>}
-            <p>Уже есть аккаунт? <a href="#">Войти</a></p>
+            <p>Уже есть аккаунт? <a href="#" onClick={onRegistrationSuccess}>Войти</a></p>
         </div>
     );
 };
@@ -121,7 +122,7 @@ const InfoBlock = () => (
     </div>
 );
 
-const Registration = ({ onClose }) => {
+const Registration = ({ onClose, onRegistrationSuccess }) => {
     useEffect(() => {
         const handleMouseDown = (e) => {
             if (!e.target.closest('.auth-window')) {
@@ -139,7 +140,7 @@ const Registration = ({ onClose }) => {
         <div className="auth-window-overlay">
             <div className="auth-window">
                 <div className="auth-content">
-                    <RegistrationForm />
+                    <RegistrationForm onRegistrationSuccess={onRegistrationSuccess} />
                     <InfoBlock />
                 </div>
             </div>

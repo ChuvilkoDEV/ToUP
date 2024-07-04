@@ -21,10 +21,12 @@ const Header = ({ toggleTheme }) => {
 
     const handleRegistrationClick = () => {
         setShowRegistration(true);
+        setShowLogin(false);
     };
 
     const handleLoginClick = () => {
         setShowLogin(true);
+        setShowRegistration(false);
     };
 
     const handleLogoutClick = () => {
@@ -39,6 +41,15 @@ const Header = ({ toggleTheme }) => {
 
     const handleMenuToggle = () => {
         setMenuOpen(!menuOpen);
+    };
+
+    const handleLoginSuccess = () => {
+        setIsAuthenticated(true);
+    };
+
+    const handleRegistrationSuccess = () => {
+        setShowRegistration(false);
+        setShowLogin(true);
     };
 
     return (
@@ -79,23 +90,12 @@ const Header = ({ toggleTheme }) => {
                     <a href="#" className="mobile-link">О нас</a>
                     <a href="#" className="mobile-link">Поддержка</a>
                     <a href="#" className="mobile-link">Соц. Сети</a>
-                    {isAuthenticated ? (
-                        <>
-                            <p className="mobile-authenticated-text">Пользователь авторизован</p>
-                            <button className="mobile-button" onClick={handleLogoutClick}>Выйти</button>
-                        </>
-                    ) : (
-                        <>
-                            <button className="mobile-button" onClick={handleLoginClick}>Войти</button>
-                            <button className="mobile-button" onClick={handleRegistrationClick}>Регистрация</button>
-                        </>
-                    )}
                 </div>
             )}
-            {showRegistration && <Registration onClose={handleClose} />}
-            {showLogin && <Login onClose={handleClose} />}
+            {showRegistration && <Registration onClose={handleClose} onRegistrationSuccess={handleRegistrationSuccess} />}
+            {showLogin && <Login onClose={handleClose} onLoginSuccess={handleLoginSuccess} onSwitchToRegister={handleRegistrationClick} />}
         </header>
     );
-}
+};
 
 export default Header;

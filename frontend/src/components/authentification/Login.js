@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Login.css';
 import InputField from './InputField';
@@ -6,7 +6,7 @@ import ImageUtils from '../imageUtils';
 
 const images = ImageUtils.importAllImages(require.context('../../assets/auth', false, /\.(svg)$/));
 
-const LoginForm = () => {
+const LoginForm = ({ onClose, onLoginSuccess, onSwitchToRegister }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
@@ -15,16 +15,13 @@ const LoginForm = () => {
         e.preventDefault();
         try {
             const response = await axios.post('http://147.45.111.226:8001/api/auth', { email, password });
-            if (response.data.status) {
-                localStorage.setItem('token', response.data.token);
-                console.log('Token saved to localStorage:', response.data.token);
-                // Дополнительные действия после успешного входа, например, редирект
-            } else {
-                setError('Ошибка при авторизации');
-            }
+            console.log(response.data); // Обработка успешного ответа
+            localStorage.setItem('token', response.data.token); // Сохранение токена в локальном хранилище
+            onLoginSuccess(); // Обновление состояния авторизации
+            onClose(); // Закрытие окна входа
         } catch (err) {
             console.error(err);
-            setError('Ошибка при авторизации');
+            setError('Ошибка при авторизации'); // Обработка ошибки
         }
     };
 
@@ -52,7 +49,7 @@ const LoginForm = () => {
                 <button type="submit" className='mt-4'>Войти</button>
             </form>
             {error && <p className="error">{error}</p>}
-            <p>Нет аккаунта? <a href="#">Регистрация</a></p>
+            <p>Нет аккаунта? <a href="#" onClick={onSwitchToRegister}>Регистрация</a></p>
         </div>
     );
 };
@@ -82,10 +79,12 @@ const InfoBlock = () => (
     </div>
 );
 
-const Login = ({ onClose }) => {
+const Login = ({ onClose, onLoginSuccess, onSwitchToRegister }) => {
+    const loginRef = useRef(null);
+
     useEffect(() => {
         const handleMouseDown = (e) => {
-            if (!e.target.closest('.auth-window')) {
+            if (loginRef.current && !loginRef.current.contains(e.target)) {
                 onClose();
             }
         };
@@ -98,9 +97,9 @@ const Login = ({ onClose }) => {
 
     return (
         <div className="auth-window-overlay">
-            <div className="auth-window">
+            <div className="auth-window" ref={loginRef}>
                 <div className="auth-content">
-                    <LoginForm />
+                    <LoginForm onClose={onClose} onLoginSuccess={onLoginSuccess} onSwitchToRegister={onSwitchToRegister} />
                     <InfoBlock />
                 </div>
             </div>
