@@ -18,7 +18,7 @@
     padding: 10px 8px 10px 20px;
     border-radius: 20px;
     width: 850px;
-    height: 557px;
+    height: 600px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
@@ -121,7 +121,7 @@
     border-radius: 20px;
     padding: 20px;
     width: 382px;
-    height: 537px;
+    height: 580px;
     display: flex;
     flex-direction: column;
     align-items: center;

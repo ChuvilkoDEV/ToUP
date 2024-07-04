@@ -15,10 +15,13 @@ const LoginForm = ({ onClose, onLoginSuccess, onSwitchToRegister }) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://147.45.111.226:8001/api/auth', { email, password });
-            console.log(response.data); // Обработка успешного ответа
-            localStorage.setItem('token', response.data.token); // Сохранение токена в локальном хранилище
-            onLoginSuccess(); // Обновление состояния авторизации
-            onClose(); // Закрытие окна входа
+            if (response.data.status == false) {
+                setError(response.data.msg);
+            } else {
+                localStorage.setItem('token', response.data.token); // Сохранение токена в локальном хранилище
+                onLoginSuccess(); // Обновление состояния авторизации
+                onClose(); // Закрытие окна входа
+            }
         } catch (err) {
             console.error(err);
             setError('Ошибка при авторизации'); // Обработка ошибки
@@ -55,7 +58,7 @@ const LoginForm = ({ onClose, onLoginSuccess, onSwitchToRegister }) => {
 };
 
 const InfoBlock = () => (
-    <div className="login-info-block-wrapper">
+    <div className="blue-rectangle">
         <p className="overlay-text">Поднимите уровень своего канала с нами</p>
         <div className="login-info-block-container">
             <div className="login-info-block block1">
