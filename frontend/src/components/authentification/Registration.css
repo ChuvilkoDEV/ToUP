@@ -60,8 +60,8 @@
     display: flex;
     align-items: center;
     justify-content: left;
-    background-color: white;
-    color: black;
+    background-color: var(--color-info-item);
+    color: var(--text-color);
     border-radius: 10px;
     padding: 10px 10px;
     text-align: left;

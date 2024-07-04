@@ -14,7 +14,7 @@
 }
 
 .auth-window {
-    background: white;
+    background: var(--background-color);
     padding: 10px 8px 10px 20px;
     border-radius: 20px;
     width: 850px;
@@ -60,8 +60,8 @@
 .auth-form button {
     width: 100%;
     padding: 10px;
-    background-color: #2D8EFF;
-    color: white;
+    background-color: var(--color-buttons);
+    color: var(--background-color);
     border: none;
     border-radius: 20px;
     cursor: pointer;
@@ -96,6 +96,7 @@
     border: none;
     flex: 1;
     outline: none;
+    background-color: var(--background-color);
 }
 
 .auth-form p {
@@ -109,13 +110,13 @@
 }
 
 .text-blue-left {
-    color: #2D8EFF;
+    color: var(--color-buttons);
     text-align: left !important;
     margin: 0px !important;
 }
 
 .blue-rectangle {
-    background-color: #2D8EFF;
+    background-color: var(--color-info-block);
     color: white;
     border-radius: 20px;
     padding: 20px;
@@ -129,7 +130,7 @@
 
 .overlay-text {
     font-size: 42px;
-    color: white;
+    color: #ffffff;
     line-height: 1.2;
     z-index: 1000;
     text-align: left;

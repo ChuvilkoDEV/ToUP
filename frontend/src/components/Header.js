@@ -3,7 +3,9 @@ import '../css/Header.css';
 import { ThemeContext } from '../context/ThemeContext';
 import Registration from './authentification/Registration';
 import Login from './authentification/Login';
-import hamburgerIcon from '../assets/header/hamburger.svg';
+import ImageUtils from './imageUtils';
+
+const images = ImageUtils.importAllImages(require.context('../assets/header', false, /\.(svg)$/));
 
 const Header = () => {
     const [showRegistration, setShowRegistration] = useState(false);
@@ -31,13 +33,15 @@ const Header = () => {
     return (
         <header className={`header ${theme}`}>
             <div className="header-left">
-                <h1 className="header-title">ToUP</h1>
+                <h1 className="header-title">
+                    <img src={images['ToUP.svg']} alt="logo" />
+                </h1>
             </div>
             <div className="header-center">
-                <a href="#" className="header-link">Главная</a>
+                {/* <a href="#" className="header-link">Главная</a>
                 <a href="#" className="header-link">О нас</a>
                 <a href="#" className="header-link">Поддержка</a>
-                <a href="#" className="header-link">Соц. Сети</a>
+                <a href="#" className="header-link">Соц. Сети</a> */}
             </div>
             <nav className="header-right">
                 <button className="header-button" onClick={handleLoginClick}>Войти</button>
@@ -45,7 +49,7 @@ const Header = () => {
                 <button className="theme-toggle" onClick={toggleTheme}>Сменить тему</button>
             </nav>
             <button className="hamburger-button" onClick={handleMenuToggle}>
-                <img src={hamburgerIcon} alt="Menu" />
+                <img src={images['hamburger.svg']} alt="Menu" />
             </button>
             {menuOpen && (
                 <div className="mobile-menu">

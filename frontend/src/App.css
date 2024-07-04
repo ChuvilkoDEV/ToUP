@@ -57,11 +57,17 @@ body {
 
 :root {
   --background-color: white;
+  --color-info-block: #2D8EFF;
+  --color-info-item: white; 
+  --color-buttons: #2D8EFF;
   --text-color: black;
 }
 
 [data-theme='dark'] {
-  --background-color: #282c34;
+  --background-color: #1a1f32;
+  --color-info-block: #2a78d6;
+  --color-info-item: #3f86da; 
+  --color-buttons: #2D8EFF;
   --text-color: white;
 }
 

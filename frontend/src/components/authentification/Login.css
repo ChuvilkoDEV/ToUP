@@ -2,8 +2,8 @@
 @import 'AuthWindow.css';
 
 .login-info-block-wrapper {
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--color-info-block);
+    color: var(--background-color);
     padding: 20px;
     border-radius: 10px;
     position: relative;
@@ -25,8 +25,8 @@
 }
 
 .login-info-block {
-    background-color: #fff;
-    color: black;
+    background-color: var(--color-info-item);
+    color: var(--text-color);
     padding: 10px;
     border-radius: 10px;
     position: absolute;
