@@ -97,6 +97,7 @@
     flex: 1;
     outline: none;
     background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .auth-form p {
