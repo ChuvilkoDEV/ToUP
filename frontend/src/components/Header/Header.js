@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Header.css';
-import Desktop from './Desktop';
-import Mobile from './Mobile';
+import Desktop from './Header.Desktop';
+import Mobile from './Header.Mobile';
 import Registration from '../authentification/Registration';
 import Login from '../authentification/Login';
 import ImageUtils from '../imageUtils';
