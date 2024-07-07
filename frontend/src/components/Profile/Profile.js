@@ -39,7 +39,8 @@ const Profile = () => {
                 <ProfileCard
                     title="Настройки профиля"
                     buttonText="Перейти"
-                    icon="settings-icon.svg"
+                    icon1="settings-icon.svg"
+                    icon2="profileSetting.svg"
                 />
                 <ProfileCard
                     title="Управление задачами"
