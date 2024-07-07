@@ -9,8 +9,8 @@ import { AuthContext } from '../../context/AuthContext';
 
 const images = ImageUtils.importAllImages(require.context('../../assets/header', false, /\.(svg)$/));
 
-const Header = ({ toggleTheme }) => {
-    const { isAuthenticated, login, logout } = useContext(AuthContext);
+const Header = () => {
+    const { login, logout } = useContext(AuthContext);
     const [showRegistration, setShowRegistration] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
 
@@ -53,15 +53,12 @@ const Header = ({ toggleTheme }) => {
                 </h1>
             </div>
             <Desktop
-                isAuthenticated={isAuthenticated}
                 handleLogoutClick={handleLogoutClick}
                 handleLoginClick={handleLoginClick}
                 handleRegistrationClick={handleRegistrationClick}
-                toggleTheme={toggleTheme}
             />
 
             <Mobile
-                isAuthenticated={isAuthenticated}
                 handleLogoutClick={handleLogoutClick}
                 handleLoginClick={handleLoginClick}
                 handleRegistrationClick={handleRegistrationClick}

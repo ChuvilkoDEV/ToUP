@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Header from './components/Header/Header';
-import { ThemeContext } from './context/ThemeContext';
 import { AuthContext } from './context/AuthContext';
+import { ThemeContext } from './context/ThemeContext';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './components/Footer/Footer';
@@ -9,12 +9,12 @@ import Profile from './components/Profile/Profile';
 
 
 function App() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
-  const { isAuthenticated, login, logout } = useContext(AuthContext);
+  const { theme } = useContext(ThemeContext);
+  const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <div className={`App ${theme}`}>
-      <Header toggleTheme={toggleTheme} />
+      <Header />
 
       {isAuthenticated ? (
         <Profile />
@@ -23,6 +23,7 @@ function App() {
 
         </>
       )}
+      
       <Footer />
     </div>
   );

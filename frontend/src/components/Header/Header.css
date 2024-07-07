@@ -27,6 +27,7 @@
 }
 
 .header-center {
+    gap: 27px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -39,7 +40,6 @@
 }
 
 .header-link {
-    margin-right: 10%;
     text-decoration: none;
     color: var(--text-color);
     font-size: 18px;

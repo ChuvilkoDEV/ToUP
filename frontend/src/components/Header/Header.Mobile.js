@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ImageUtils from '../imageUtils';
+import { AuthContext } from '../../context/AuthContext';
+import { ThemeContext } from '../../context/ThemeContext';
 import './Mobile.css';
 
 const images = ImageUtils.importAllImages(require.context('../../assets/header', false, /\.(svg)$/));
 
-export default function Mobile({ isAuthenticated, handleLogoutClick, handleLoginClick, handleRegistrationClick, toggleTheme }) {
+export default function Mobile({ handleLogoutClick, handleLoginClick, handleRegistrationClick }) {
+    const { theme, setTheme } = useContext(ThemeContext);
+    const { isAuthenticated } = useContext(AuthContext);
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleMenuToggle = () => {
