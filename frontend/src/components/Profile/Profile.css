@@ -1,48 +1,80 @@
+/* Profile.css */
+
 .profile-container {
-  text-align: center;
-  padding: 20px;
+  text-align: left;
+  padding: 0px 100px;
 }
 
-.profile-header h1 {
+.profile-container h1 {
   font-size: 24px;
   font-weight: bold;
+  margin-top: 10px;
 }
 
 .subscription-section {
   display: flex;
-  background-color: #f0f4ff;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-info-block);
   padding: 20px;
   margin: 20px 0;
   border-radius: 10px;
-  width: calc(100% - 200px);
-  align-content: center;
-  height: 382px;
+  width: 100%;
+  height: 450px;
 }
 
-.subscription-banner img {
-  position: absolute;
+.subscription-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.subscription-text {
+  flex: 1;
+  color: white;
+}
+
+.subscription-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subscription-image img {
+  max-width: 100%;
+  height: auto;
 }
 
 .subscription-banner h2 {
-  font-size: 22px;
+  font-size: 50px;
   font-weight: bold;
-  color: #1a73e8;
+  color: var(--background-color);
+  min-width: 573px;
 }
+
 
 .subscription-details {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   margin: 10px 0;
 }
 
 .detail-item {
-  margin: 0 15px;
+  margin-right: 30px;
   text-align: left;
+  background-color: var(--color-info-item);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .detail-item p {
   font-size: 18px;
   font-weight: bold;
+  color: #000;
 }
 
 .detail-item span {
@@ -51,8 +83,8 @@
 }
 
 .subscription-button {
-  background-color: #1a73e8;
-  color: white;
+  background-color: white;
+  color: var(--color-info-block);
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -61,7 +93,8 @@
 
 .cards-section {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .profile-card {
@@ -70,6 +103,19 @@
   padding: 20px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  margin: 0 10px;
+  /* Добавляем промежуток между карточками */
+}
+
+.profile-card:first-child {
+  margin-left: 0;
+  /* Убираем отступ для первой карточки */
+}
+
+.profile-card:last-child {
+  margin-right: 0;
+  /* Убираем отступ для последней карточки */
 }
 
 .profile-card-icon {

@@ -14,20 +14,25 @@ const Profile = () => {
 
             <section className="subscription-section">
                 <div className="subscription-banner">
-                    <h2>Приобретите подписку по выгодной цене</h2>
-                    <div className="subscription-details">
-                        <div className="detail-item">
-                            <p>5 000 ботов</p>
-                            <span>Для просмотра, реакций и подписчиков</span>
+                    <div className="subscription-text">
+                        <h2>Приобретите подписку по выгодной цене</h2>
+                        <p>Что вы получите:</p>
+                        <div className="subscription-details">
+                            <div className="detail-item">
+                                <p>5 000 ботов</p>
+                                <span>Для просмотра, реакций и подписчиков</span>
+                            </div>
+                            <div className="detail-item">
+                                <p>10 каналов</p>
+                                <span>Подписка действует до 5 каналов телеграм</span>
+                            </div>
                         </div>
-                        <div className="detail-item">
-                            <p>10 каналов</p>
-                            <span>Подписка действует до 5 каналов телеграм</span>
-                        </div>
+                        <button className="subscription-button">Приобрести сейчас</button>
                     </div>
-                    <button className="subscription-button">Приобрести сейчас</button>
+                    <div className="subscription-image">
+                        <img src={images['chuvachki.svg']} alt="logo" />
+                    </div>
                 </div>
-                <img src={images['chuvachki.svg']} alt="logo" />
             </section>
 
             <section className="cards-section">
