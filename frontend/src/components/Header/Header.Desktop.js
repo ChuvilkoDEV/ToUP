@@ -1,6 +1,9 @@
 import React from 'react'
+import ImageUtils from '../imageUtils';
 
-export default function Desktop({isAuthenticated, handleLogoutClick, handleLoginClick, handleRegistrationClick, toggleTheme}) {
+const images = ImageUtils.importAllImages(require.context('../../assets/header', false, /\.(svg)$/));
+
+export default function Desktop({ isAuthenticated, handleLogoutClick, handleLoginClick, handleRegistrationClick, toggleTheme }) {
     return (
         <>
             <div className="header-center">
@@ -12,8 +15,16 @@ export default function Desktop({isAuthenticated, handleLogoutClick, handleLogin
             <nav className="header-right">
                 {isAuthenticated ? (
                     <>
-                        <p className="header-authenticated-text">Пользователь авторизован</p>
-                        <button className="header-button" onClick={handleLogoutClick}>Выйти</button>
+                        <button className="header-button">
+                            <img src={images['wallet.svg']} alt="logo" className='mr-5' />
+                            13.500 ₽
+                        </button>
+                        <button className="header-button circle-button" onClick={handleLogoutClick}>
+                            <img src={images['notification.svg']} alt="logo" />
+                        </button>
+                        <button className="header-button circle-button" onClick={handleLogoutClick}>
+                            ава
+                        </button>
                     </>
                 ) : (
                     <>
@@ -21,7 +32,7 @@ export default function Desktop({isAuthenticated, handleLogoutClick, handleLogin
                         <button className="header-button register-button" onClick={handleRegistrationClick}>Регистрация</button>
                     </>
                 )}
-                <button className="theme-toggle" onClick={toggleTheme}>Сменить тему</button>
+                {/* <button className="theme-toggle" onClick={toggleTheme}>Сменить тему</button> */}
             </nav>
         </>
     )

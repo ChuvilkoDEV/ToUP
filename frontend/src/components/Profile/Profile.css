@@ -1,0 +1,92 @@
+.profile-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.profile-header h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.subscription-section {
+  display: flex;
+  background-color: #f0f4ff;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  width: calc(100% - 200px);
+  align-content: center;
+  height: 382px;
+}
+
+.subscription-banner img {
+  position: absolute;
+}
+
+.subscription-banner h2 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1a73e8;
+}
+
+.subscription-details {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.detail-item {
+  margin: 0 15px;
+  text-align: left;
+}
+
+.detail-item p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.detail-item span {
+  font-size: 14px;
+  color: #555;
+}
+
+.subscription-button {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cards-section {
+  display: flex;
+  justify-content: space-around;
+}
+
+.profile-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.profile-card-content h3 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.profile-card-button {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
