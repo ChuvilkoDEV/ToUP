@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import InputField from './InputField';
-import ImageUtils from '../imageUtils'; // Используем алиас
+import ImageUtils from '../imageUtils';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Registration.css';
-import axios from 'axios'; // Добавьте импорт axios, если его еще нет
+import axios from 'axios';
 
-// Импорт всех изображений
 const images = ImageUtils.importAllImages(require.context('../../assets/auth', false, /\.(svg)$/));
 
 const RegistrationForm = ({ onRegistrationSuccess }) => {
@@ -33,11 +32,11 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
                 name,
                 channels: channel
             });
-            console.log(response.data); // Обработка успешного ответа
-            onRegistrationSuccess(); // Переключение на окно входа
+            console.log(response.data);
+            onRegistrationSuccess();
         } catch (err) {
             console.error(err);
-            setError('Ошибка при регистрации.'); // Обработка ошибки
+            setError('Ошибка при регистрации.');
         }
     };
 

@@ -1,24 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import './Header.css';
 import Desktop from './Header.Desktop';
 import Mobile from './Header.Mobile';
 import Registration from '../authentification/Registration';
 import Login from '../authentification/Login';
 import ImageUtils from '../imageUtils';
+import { AuthContext } from '../../context/AuthContext';
 
 const images = ImageUtils.importAllImages(require.context('../../assets/header', false, /\.(svg)$/));
 
 const Header = ({ toggleTheme }) => {
+    const { isAuthenticated, login, logout } = useContext(AuthContext);
     const [showRegistration, setShowRegistration] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            setIsAuthenticated(true);
-        }
-    }, []);
 
     const handleRegistrationClick = () => {
         setShowRegistration(true);
@@ -31,8 +25,7 @@ const Header = ({ toggleTheme }) => {
     };
 
     const handleLogoutClick = () => {
-        localStorage.removeItem('token');
-        setIsAuthenticated(false);
+        logout();
     };
 
     const handleClose = () => {
@@ -41,7 +34,8 @@ const Header = ({ toggleTheme }) => {
     };
 
     const handleLoginSuccess = () => {
-        setIsAuthenticated(true);
+        login();
+        setShowLogin(false);
     };
 
     const handleRegistrationSuccess = () => {

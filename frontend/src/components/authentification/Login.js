@@ -15,16 +15,16 @@ const LoginForm = ({ onClose, onLoginSuccess, onSwitchToRegister }) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://147.45.111.226:8001/api/auth', { email, password });
-            if (response.data.status == false) {
+            if (response.data.status === false) {
                 setError(response.data.msg);
             } else {
-                localStorage.setItem('token', response.data.token); // Сохранение токена в локальном хранилище
-                onLoginSuccess(); // Обновление состояния авторизации
-                onClose(); // Закрытие окна входа
+                localStorage.setItem('token', response.data.token);
+                onLoginSuccess();
+                onClose();
             }
         } catch (err) {
             console.error(err);
-            setError('Ошибка при авторизации'); // Обработка ошибки
+            setError('Ошибка при авторизации');
         }
     };
 
