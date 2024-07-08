@@ -105,17 +105,14 @@
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   flex: 1;
-  /* transition: background-color 0.3s ease;  */
 }
 
 .profile-card:hover {
   background-color: #1a73e8;
-  /* Цвет фона при наведении */
 }
 
-.profile-card:hover .profile-card-content:hover .profile-card-link {
+.profile-card:hover .profile-card-content {
   color: white;
-  /* Цвет ссылки при наведении */
 }
 
 .profile-card-icon-container {
@@ -132,20 +129,18 @@
   height: 100%;
 }
 
-.profile-card-content {
-  color: #000;
-}
-
 .profile-card-content h3 {
   font-size: 18px;
   margin: 10px 0;
 }
 
+.profile-card-content p {
+  color: inherit;
+}
+
 .profile-card-link {
   color: black;
-  /* Цвет ссылки по умолчанию */
   text-decoration: none;
-  /* transition: color 0.3s ease;  */
 }
 
 .profile-card-button {

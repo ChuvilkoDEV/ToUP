@@ -38,19 +38,18 @@ const Profile = () => {
             <section className="cards-section">
                 <ProfileCard
                     title="Настройки профиля"
-                    buttonText="Перейти"
-                    icon1="settings-icon.svg"
-                    icon2="profileSetting"
+                    text="Перейти"
+                    icon="profileSetting"
                 />
                 <ProfileCard
                     title="Управление задачами"
-                    buttonText="Начать работу"
-                    icon="tasks-icon.svg"
+                    text="Начать работу"
+                    icon="taskManage"
                 />
                 <ProfileCard
                     title="Кошелек"
-                    buttonText="Перейти"
-                    icon="wallet-icon.svg"
+                    text="Перейти"
+                    icon="wallet"
                 />
             </section>
         </div>

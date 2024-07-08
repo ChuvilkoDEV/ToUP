@@ -4,10 +4,12 @@ import ImageUtils from '../imageUtils';
 
 const images = ImageUtils.importAllImages(require.context('../../assets/profile', false, /\.(svg)$/));
 
-const ProfileCard = ({ title, buttonText, icon1, icon2 }) => {
+const ProfileCard = ({ title, text, icon }) => {
   const [hover, setHover] = useState(false);
-  const defaultIcon = `${icon2}Default.svg`;
-  const hoverIcon = `${icon2}Hover.svg`;
+  const defaultIcon1 = `${icon}1Default.svg`;
+  const hoverIcon1 = `${icon}1Hover.svg`;
+  const defaultIcon2 = `${icon}2Default.svg`;
+  const hoverIcon2 = `${icon}2Hover.svg`;
 
   return (
     <div
@@ -16,15 +18,19 @@ const ProfileCard = ({ title, buttonText, icon1, icon2 }) => {
       onMouseLeave={() => setHover(false)}
     >
       <div className="profile-card-icon-container">
-        <img src={images[icon1]} alt={`${title} icon1`} className="profile-card-icon1" />
+        <img
+          src={images[hover ? hoverIcon1 : defaultIcon1]}
+          alt={`${title} ${hover ? 'hover' : 'default'} icon`}
+          className="profile-card-icon1"
+        />
       </div>
       <div className="profile-card-content">
         <h3>{title}</h3>
-        <a href="#" className={`profile-card-link ${hover ? 'hover' : ''}`}>{buttonText}</a>
+        <p>{text}</p>
       </div>
       <div className="profile-card-icon-container">
         <img
-          src={images[hover ? hoverIcon : defaultIcon]}
+          src={images[hover ? hoverIcon2 : defaultIcon2]}
           alt={`${title} ${hover ? 'hover' : 'default'} icon`}
           className="profile-card-icon2"
         />
