@@ -40,7 +40,7 @@ const Profile = () => {
                     title="Настройки профиля"
                     buttonText="Перейти"
                     icon1="settings-icon.svg"
-                    icon2="profileSetting.svg"
+                    icon2="profileSetting"
                 />
                 <ProfileCard
                     title="Управление задачами"

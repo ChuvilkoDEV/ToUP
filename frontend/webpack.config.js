@@ -86,3 +86,15 @@ module.exports = {
         port: 9000,
     },
 };
+
+module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.svg$/,
+          use: ['@svgr/webpack'],
+        },
+      ],
+    },
+  };
+  

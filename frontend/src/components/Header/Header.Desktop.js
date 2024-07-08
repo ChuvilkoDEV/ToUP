@@ -22,17 +22,17 @@ export default function Desktop({ handleLogoutClick, handleLoginClick, handleReg
                             Управление задачами
                         </a>
                         <a href="#" className="header-link">
-                            <img src={images['FaQ.svg']} alt="logo" className='mr-5' />
-                            FAQ
-                        </a>
-                        {/* <a href="#" className="header-link">
-                            <img src={images['star.svg']} alt="logo" className='mr-5' />
-                            Бонусы
-                        </a> */}
-                        <a href="#" className="header-link">
                             <img src={images['support.svg']} alt="logo" className='mr-5' />
                             Поддержка
                         </a>
+                        {/* <a href="#" className="header-link">
+                            <img src={images['FaQ.svg']} alt="logo" className='mr-5' />
+                            FAQ
+                        </a>
+                        <a href="#" className="header-link">
+                            <img src={images['star.svg']} alt="logo" className='mr-5' />
+                            Бонусы
+                        </a> */}
                     </>
                 ) : (
                     <>
