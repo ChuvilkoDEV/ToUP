@@ -17,15 +17,13 @@ const ProfileCard = ({ title, text, icon }) => {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <div className="profile-card-icon-container">
+      <div className="profile-card-content">
         <img
           src={images[hover ? hoverIcon1 : defaultIcon1]}
           alt={`${title} ${hover ? 'hover' : 'default'} icon`}
           className="profile-card-icon1"
         />
-      </div>
-      <div className="profile-card-content">
-        <h3>{title}</h3>
+        <h3 className='mt-2'>{title}</h3>
         <p>{text}</p>
       </div>
       <div className="profile-card-icon-container">
