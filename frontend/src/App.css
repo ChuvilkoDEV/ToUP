@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  /* max-width: 1280px;
+  align-content: center; */
 }
 
 .App-logo {
@@ -68,7 +70,7 @@ body {
 }
 
 [data-theme='dark'] {
-  --background-color: #1a1f32;
+  --background-color: #01061B;
   --color-info-block: #2a78d6;
   --color-info-item: #3f86da; 
   --color-buttons: #2D8EFF;

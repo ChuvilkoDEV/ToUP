@@ -6,7 +6,7 @@
 .profile-container h1 {
   font-size: 24px;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 35px;
 }
 
 .subscription-section {
@@ -19,7 +19,8 @@
   margin: 20px 0;
   border-radius: 10px;
   width: 100%;
-  height: 450px;
+  /* height: 382px;
+  max-width: 1280px; */
 }
 
 .subscription-banner {
@@ -32,7 +33,7 @@
 .subscription-text {
   flex: 1;
   color: white;
-  min-width: 372px;
+  /* min-width: 372px; */
 }
 
 .subscription-image {
@@ -50,7 +51,7 @@
 .subscription-banner h2 {
   font-size: 50px;
   font-weight: bold;
-  color: var(--background-color);
+  color: white;
 }
 
 .subscription-details {
@@ -62,7 +63,7 @@
 
 .detail-item {
   text-align: left;
-  background-color: var(--color-info-item);
+  background-color: white;
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -92,7 +93,7 @@
 
 .cards-section {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   gap: 20px;
 }
@@ -101,14 +102,15 @@
   background-color: #fff;
   color: #000;
   border-radius: 10px;
-  padding: 20px;
+  /* padding: 20px; */
   text-align: left;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   flex: 1;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  /* max-width: 500px; */
   width: 100%;
+  align-items: center;
 }
 
 .profile-card:hover {
@@ -121,6 +123,7 @@
 
 .profile-card-content {
   display: block;
+  margin: 20px;
   /* align-items: flex-start; */
 }
 
@@ -140,6 +143,9 @@
 
 .profile-card-icon2 {
   justify-content: center;
+  margin-right: 20px;
+  width: 100%;
+  /* height: 100%; */
 }
 
 .profile-card-content h3 {
@@ -164,4 +170,51 @@
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+
+@media (max-width: 1100px) {
+  .subscription-banner {
+    display: block;
+  }
+
+  .subscription-section {
+    display: block;
+    height: auto;
+  }
+
+  .subscription-image {
+    margin-top: 20px;
+    flex: 0;
+    align-self: center;
+  }
+
+  .cards-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-card {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+
+}
+
+
+@media (max-width: 800px) {
+
+  .profile-container {
+    padding: 0 20px;
+  }
+
+  .profile-header h2 {
+    font-size: 22px;
+  }
+
+  .subscription-banner h2 {
+    font-size: 40px;
+  }
 }
