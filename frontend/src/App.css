@@ -1,7 +1,8 @@
 .App {
   text-align: center;
-  /* max-width: 1280px;
-  align-content: center; */
+  max-width: 1240px;
+  margin: 0 auto; /* Добавлено для горизонтального выравнивания */
+  /* align-content: center; */
 }
 
 .App-logo {
@@ -80,4 +81,11 @@ body {
 body {
   background-color: var(--background-color);
   color: var(--text-color);
+}
+
+
+@media (max-width: 1280px) {
+  .App {
+    max-width: calc(100% - 40px);
+  }
 }

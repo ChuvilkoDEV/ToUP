@@ -19,11 +19,11 @@ const Profile = () => {
                         <p>Что вы получите:</p>
                         <div className="subscription-details">
                             <div className="detail-item">
-                                <p>5 000 ботов</p>
+                                <p className='mb-0'>5 000 ботов</p>
                                 <span>Для просмотра, реакций и подписчиков</span>
                             </div>
                             <div className="detail-item">
-                                <p>10 каналов</p>
+                                <p className='mb-0'>10 каналов</p>
                                 <span>Подписка действует до 5 каналов телеграм</span>
                             </div>
                         </div>

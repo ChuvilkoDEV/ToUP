@@ -45,9 +45,9 @@ export default function Desktop({ handleLogoutClick, handleLoginClick, handleReg
             </div>
 
             <nav className="header-right">
-                <button className="hiding-button" lassName="theme-toggle" onClick={toggleTheme}>
+                {/* <button className="hiding-button" lassName="theme-toggle" onClick={toggleTheme}>
                     <img src={images['lightTheme.svg']} alt="logo" className='mr-5' />
-                </button>
+                </button> */}
                 {isAuthenticated ? (
                     <>
                         <button className="header-button narrow-button">
