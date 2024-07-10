@@ -65,16 +65,10 @@
     width: 100%;
 }
 
-.profile-icon {
-    width: 35px;
-    height: 35px;
-    margin-right: 10px;
-}
-
-.profile-name {
+/* .profile-name {
     font-size: 16px;
     color: var(--text-color);
-}
+} */
 
 .auth-buttons-background {
     position: absolute;

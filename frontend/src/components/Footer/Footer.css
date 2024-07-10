@@ -34,7 +34,7 @@
 .footer-column {
   text-align: left;
   max-width: 200px;
-  flex: 1 1 50%;
+  flex: 1 1 40%;
   margin-bottom: 20px;
   padding: 10px;
 }

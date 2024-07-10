@@ -99,12 +99,12 @@
 }
 
 .profile-card {
-  background-color: #fff;
-  color: #000;
+  background-color: var(--background-color);
+  color: var(--text-color);
   border-radius: 10px;
   /* padding: 20px; */
   text-align: left;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1.5px solid #F5F5F5;
   flex: 1;
   display: flex;
   justify-content: space-between;
@@ -216,5 +216,6 @@
 
   .subscription-banner h2 {
     font-size: 40px;
+    width: 100%;
   }
 }

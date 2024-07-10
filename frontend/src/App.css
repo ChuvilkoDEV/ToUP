@@ -68,6 +68,7 @@ body {
   --color-info-item: white; 
   --color-buttons: #2D8EFF;
   --text-color: black;
+  --dropdown-menu-color: white;
 }
 
 [data-theme='dark'] {
@@ -76,6 +77,7 @@ body {
   --color-info-item: #3f86da; 
   --color-buttons: #2D8EFF;
   --text-color: white;
+  --dropdown-menu-color: #1A1F32;
 }
 
 body {
