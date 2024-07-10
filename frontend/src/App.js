@@ -6,6 +6,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './components/Footer/Footer';
 import Profile from './components/Profile/Profile';
+import Tasks from './components/Tasks/Tasks';
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
         <Profile />
       ) : (
         <>
-
+        <Tasks/>
         </>
       )}
       

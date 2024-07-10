@@ -1,0 +1,10 @@
+.tasks {
+    padding: 32px 0;
+}
+
+.tasks-grid {
+    display: flex;
+    flex-wrap: wrap;
+    /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+    gap: 15px;
+}

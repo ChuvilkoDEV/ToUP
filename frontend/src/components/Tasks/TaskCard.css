@@ -1,0 +1,89 @@
+/* TaskCard.css */
+.task-card {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid #EFEFEF;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    padding: 10px;
+    /* margin: 8px; */
+    width: 236px;
+    height: 368px;
+}
+
+.task-card-header {
+    position: relative;
+    width: 216px;
+    height: 135px;
+    background-image: url('../../assets/tasks/taskCardBackground.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.task-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.task-due-date {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.task-card-body {
+    margin-top: 16px;
+}
+
+.task-title {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.task-status {
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.task-progress {
+    margin-top: 8px;
+}
+
+.progress-bar {
+    background: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 8px;
+}
+
+.progress {
+    background: #3b82f6;
+    height: 100%;
+}
+
+.progress-info {
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.task-card-footer {
+    margin-top: 16px;
+}
+
+.details-button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.details-button:hover {
+    background: #2563eb;
+}
