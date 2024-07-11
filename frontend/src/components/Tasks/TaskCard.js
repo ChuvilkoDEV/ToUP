@@ -1,4 +1,3 @@
-// TaskCard.jsx
 import React, { useState } from 'react';
 import './TaskCard.css';
 import ImageUtils from '../imageUtils';
@@ -9,13 +8,22 @@ const typeLogo = {
     'subscribers': <img src={images['subscribers.svg']} alt="logo" className='mx-2' />,
     'reactions': <img src={images['reactions.svg']} alt="logo" className='mx-2' />,
     'views': <img src={images['views.svg']} alt="logo" className='mx-2' />,
-}
+};
 
 const TaskCard = ({ task }) => {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
     const handleToggle = () => {
         setIsExpanded(!isExpanded);
+    };
+
+    const handleMouseEnter = () => {
+        setIsTooltipVisible(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsTooltipVisible(false);
     };
 
     return (
@@ -41,7 +49,15 @@ const TaskCard = ({ task }) => {
                         {task.progress === 100 ?
                             <img src={images['success.svg']} alt="logo" />
                             :
-                            <img src={images['info.svg']} alt="logo" />
+                            <div 
+                                className="tooltip-wrapper"
+                                onMouseEnter={handleMouseEnter}
+                                onMouseLeave={handleMouseLeave}
+                            >
+                                <img src={images['info.svg']} alt="logo" />
+                                {isTooltipVisible && <div className="tooltip">На выполнение осталось 3 дня</div>}
+                                <div className="tooltip1">На выполнение осталось 3 дня</div>
+                            </div>
                         }
                     </div>
                 </div>

@@ -47,10 +47,6 @@
     margin-right: 5px;
 }
 
-.task-card-body {
-    /* margin-top: 10px; */
-}
-
 .status-progress-row {
     display: flex;
     justify-content: space-between;
@@ -107,6 +103,42 @@
 
 .progress-info img {
     margin-left: 5px;
+}
+
+.tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip1 {
+    visibility: visible;
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 800;
+    bottom: 125%;
+    /* Позиция над иконкой */
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    width: max-content;
+    max-width: 200px;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    /* Позиция под всплывающим блоком */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
 }
 
 .task-statistics {

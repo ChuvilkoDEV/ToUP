@@ -2,6 +2,9 @@
 import React from 'react';
 import TaskCard from './TaskCard';
 import './Tasks.css'; // импорт стилей
+import ImageUtils from '../imageUtils';
+
+const images = ImageUtils.importAllImages(require.context('../../assets/tasks', false, /\.(svg)$/));
 
 const tasksData = [
   {
@@ -202,11 +205,18 @@ const tasksData = [
   }
 ];
 
-
 const Tasks = () => {
   return (
     <div className="tasks">
-      <h1>Все задачи</h1>
+      <div className='tasks-title'>
+        <h1>Все задачи</h1>
+        <div className='tasks-buttons'>
+          <button className='px-5'>Сортировать</button>
+          <button>
+            <img src={images['add.svg']} alt="logo" />
+          </button>
+        </div>
+      </div>
       <div className="tasks-grid">
         {tasksData.map(task => (
           <TaskCard key={task.id} task={task} />
