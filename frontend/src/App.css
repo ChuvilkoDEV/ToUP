@@ -11,21 +11,23 @@
 }
 
 @font-face {
-  font-family: 'EuclidCircularA-Medium';
-  src: url('./fonts/EuclidCircularA-Medium.ttf') format('truetype');
+  font-family: 'EuclidCircularA';
+  src: url('./fonts/EuclidCircularA-Regular.woff2') format('woff2'),
+       url('./fonts/EuclidCircularA-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'EuclidCircularA-Bold';
-  src: url('./fonts/EuclidCircularA-Bold.ttf') format('truetype');
-  font-weight: normal;
+  font-family: 'EuclidCircularA';
+  src: url('./fonts/EuclidCircularA-Bold.woff2') format('woff2'),
+       url('./fonts/EuclidCircularA-Bold.woff') format('woff');
+  font-weight: bold;
   font-style: normal;
 }
 
 body {
-  font-family: 'EuclidCircularA-Medium', sans-serif;
+  font-family: 'EuclidCircularA', sans-serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {

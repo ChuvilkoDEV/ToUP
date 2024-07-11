@@ -1,12 +1,18 @@
 /* TaskCard.css */
+
 .task-card {
     background: white;
     border-radius: 20px;
     border: 1px solid #EFEFEF;
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
     padding: 10px;
-    /* margin: 8px; */
     width: 236px;
+    height: 245px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-card.expanded {
     height: 368px;
 }
 
@@ -18,6 +24,8 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    border-radius: 20px;
+    margin-bottom: 10px;
 }
 
 .task-icon {
@@ -26,6 +34,8 @@
 }
 
 .task-due-date {
+    display: flex;
+    justify-content: center;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -33,57 +43,120 @@
     color: #666;
 }
 
+.task-due-date img {
+    margin-right: 5px;
+}
+
 .task-card-body {
-    margin-top: 16px;
+    /* margin-top: 10px; */
+}
+
+.status-progress-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
 }
 
 .task-title {
+    display: flex;
     position: absolute;
     bottom: 10px;
     left: 10px;
     font-size: 18px;
-    font-weight: bold;
+    text-align: left;
+}
+
+.task-title img {
+    margin-right: 10px;
 }
 
 .task-status {
-    margin-top: 8px;
     font-size: 14px;
 }
 
 .task-progress {
-    margin-top: 8px;
+    /* margin-top: 8px; */
+    flex: 1;
+    text-align: right;
 }
 
 .progress-bar {
     background: #f0f0f0;
     border-radius: 8px;
     overflow: hidden;
-    height: 8px;
+    height: 3px;
+    width: 100%;
+    margin-bottom: 6px;
 }
 
 .progress {
-    background: #3b82f6;
+    background: #2D8EFF;
     height: 100%;
 }
 
+.progress.success {
+    background: #61C577;
+}
+
 .progress-info {
-    margin-top: 4px;
     font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.progress-info img {
+    margin-left: 5px;
+}
+
+.task-statistics {
+    font-size: 12px;
+    color: #666;
+    text-align: left;
+    margin-bottom: 4px;
+}
+
+.divider {
+    height: 1px;
+    margin: 0 0 5px 0;
+}
+
+.highlight-text {
+    color: #2D8EFF;
+    /* margin-left: 2px; */
+}
+
+.additional-statistics {
+    font-size: 14px;
+    color: #000000;
+    text-align: left;
+    margin-top: 7px;
+    gap: 10px;
+}
+
+.additional-statistics.title {
+    display: flex;
+    /* margin-bottom: 5px; */
+}
+
+.calendar {
+    color: #B3B3B3;
+    justify-content: center;
 }
 
 .task-card-footer {
-    margin-top: 16px;
+    text-align: left;
 }
 
 .details-button {
-    background: #3b82f6;
-    color: white;
+    background: none;
+    color: #3b82f6;
     border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
+    padding: 0;
     cursor: pointer;
+    font-size: 14px;
 }
 
 .details-button:hover {
-    background: #2563eb;
+    text-decoration: underline;
 }
