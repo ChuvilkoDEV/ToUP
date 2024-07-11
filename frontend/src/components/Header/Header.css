@@ -47,6 +47,12 @@
     white-space: nowrap;
 }
 
+.header-link.active {
+    /* стили для активной ссылки */
+    font-weight: bold;
+    color: var(--color-buttons);
+}
+
 .header-button {
     margin-left: 10px;
     padding: 13px 35px;

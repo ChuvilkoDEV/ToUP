@@ -6,6 +6,7 @@ import Registration from '../authentification/Registration';
 import Login from '../authentification/Login';
 import ImageUtils from '../imageUtils';
 import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const images = ImageUtils.importAllImages(require.context('../../assets/header', false, /\.(svg)$/));
 
@@ -13,6 +14,7 @@ const Header = () => {
     const { login, logout } = useContext(AuthContext);
     const [showRegistration, setShowRegistration] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
+    const navigate = useNavigate();
 
     const handleRegistrationClick = () => {
         setShowRegistration(true);
@@ -36,6 +38,7 @@ const Header = () => {
     const handleLoginSuccess = () => {
         login();
         setShowLogin(false);
+        navigate('/profile');
     };
 
     const handleRegistrationSuccess = () => {

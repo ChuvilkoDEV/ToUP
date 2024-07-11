@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import ImageUtils from '../imageUtils';
 import { AuthContext } from '../../context/AuthContext';
 import { ThemeContext } from '../../context/ThemeContext';
@@ -9,9 +10,14 @@ export default function Desktop({ handleLogoutClick, handleLoginClick, handleReg
     const { theme, toggleTheme } = useContext(ThemeContext);
     const { isAuthenticated } = useContext(AuthContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const location = useLocation();
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
+    };
+
+    const getLinkClass = (path) => {
+        return location.pathname === path ? 'header-link active' : 'header-link';
     };
 
     return (
@@ -19,14 +25,14 @@ export default function Desktop({ handleLogoutClick, handleLoginClick, handleReg
             <div className="header-center">
                 {isAuthenticated ? (
                     <>
-                        <a href="#" className="header-link">
+                        <Link to="/profile" className={getLinkClass('/profile')}>
                             <img src={images['profile.svg']} alt="logo" className='mr-5' />
                             Личный кабинет
-                        </a>
-                        <a href="#" className="header-link">
+                        </Link>
+                        <Link to="/tasks" className={getLinkClass('/tasks')}>
                             <img src={images['clock.svg']} alt="logo" className='mr-5' />
                             Управление задачами
-                        </a>
+                        </Link>
                         <a href="#" className="header-link">
                             <img src={images['support.svg']} alt="logo" className='mr-5' />
                             Поддержка
