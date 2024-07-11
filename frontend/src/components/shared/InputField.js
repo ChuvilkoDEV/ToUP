@@ -1,5 +1,5 @@
 import React from 'react';
-import './Registration.css';
+import './InputField.css';
 
 const InputField = ({ label, type, placeholder, logo, value, onChange }) => (
     <div>

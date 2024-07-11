@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import InputField from './InputField';
+import InputField from '../shared/InputField';
 import ImageUtils from '../imageUtils';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Registration.css';

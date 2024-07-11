@@ -69,38 +69,6 @@
     margin-top: 10px;
 }
 
-.input-container {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 10px 10px;
-    width: 100%;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-}
-
-.input-container img {
-    width: 15px;
-    height: 15px;
-    margin-right: 8px;
-}
-
-.input-container .divider {
-    width: 1px;
-    height: 24px;
-    background-color: #ccc;
-    margin-right: 5px;
-}
-
-.input-container input {
-    border: none;
-    flex: 1;
-    outline: none;
-    background-color: var(--background-color);
-    color: var(--text-color);
-}
-
 .auth-form p {
     text-align: left;
     margin-top: 15px;

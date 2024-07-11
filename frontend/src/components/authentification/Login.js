@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Login.css';
-import InputField from './InputField';
+import InputField from '../shared/InputField';
 import ImageUtils from '../imageUtils';
 
 const images = ImageUtils.importAllImages(require.context('../../assets/auth', false, /\.(svg)$/));

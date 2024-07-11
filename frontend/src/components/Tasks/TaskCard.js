@@ -49,14 +49,13 @@ const TaskCard = ({ task }) => {
                         {task.progress === 100 ?
                             <img src={images['success.svg']} alt="logo" />
                             :
-                            <div 
+                            <div
                                 className="tooltip-wrapper"
                                 onMouseEnter={handleMouseEnter}
                                 onMouseLeave={handleMouseLeave}
                             >
                                 <img src={images['info.svg']} alt="logo" />
-                                {isTooltipVisible && <div className="tooltip">На выполнение осталось 3 дня</div>}
-                                <div className="tooltip1">На выполнение осталось 3 дня</div>
+                                {isTooltipVisible && <div className="custom-tooltip">На выполнение осталось 3 дня</div>}
                             </div>
                         }
                     </div>
