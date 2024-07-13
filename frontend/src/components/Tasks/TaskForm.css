@@ -1,0 +1,96 @@
+.task-form {
+    flex: 1;
+    padding-right: 20px;
+    gap: 15px;
+    width: 400px;
+}
+
+.task-form h2 {
+    margin-bottom: 10px;
+    width: 239px;
+    text-align: left;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.type-task-buttons-container {
+    display: flex;
+    justify-content: left;
+    gap: 5px;
+}
+
+.type-task-button {
+    padding: 10px 30px 10px 30px;
+    border-radius: 10px;
+    color: var(--color-buttons);
+    background-color: var(--background-color);
+    border: 1px solid var(--color-buttons);
+}
+
+.type-task-button.active {
+    background-color: var(--color-buttons);
+    color: var(--background-color);
+    border: none;
+}
+
+.task-form-count-bots {
+    display: flex;
+    align-items: center;
+    background-color: #2D8EFF1A;
+    width: 350px;
+    height: 71px;
+    border-radius: 10px;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.left-side-bots {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bot-info-container {
+    display: flex;
+    align-items: center;
+}
+
+.bot-icon {
+    margin-right: 8px;
+}
+
+.bot-count {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.task-form label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.task-form input {
+    width: 100%;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.task-form-submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color-buttons);
+    color: var(--background-color);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.task-form .error {
+    color: red;
+    text-align: left;
+    margin-top: 10px;
+}

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import TaskForm from './TaskForm';
+import BlueRectangle from './BlueRectangle'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './TaskWindow.css';
 
@@ -22,6 +23,7 @@ const TaskWindow = ({ onClose }) => {
             <div className="task-window">
                 <div className="task-content">
                     <TaskForm onClose={onClose} />
+                    <BlueRectangle />
                 </div>
             </div>
         </div>
