@@ -4,7 +4,15 @@ import ImageUtils from '../imageUtils';
 
 const images = ImageUtils.importAllImages(require.context('../../assets/tasks', false, /\.(svg)$/));
 
-export default function Subscribers() {
+const reactionsList = [
+    '👍', '👎', '❤️', '🔥', '🥰', '👏', '😁', '🤔', '🤯', '😱', '🤬', '😢', '🎉', '🤩', '🤮', '💩', '🙏',
+    '👌', '🕊', '🤡', '🥱', '🥴', '😍', '🐳', '❤️🔥', '🌚', '🌭', '💯', '🤣', '⚡️', '🍌', '🏆', '💔', '🤨',
+    '😐', '🍓', '🍾', '💋', '🖕', '😈', '😴', '😭', '🤓', '👻', '👨💻', '👀', '🎃', '🙈', '😇', '😨', '🤝',
+    '✍️', '🤗', '🎅', '🎄', '☃️', '💅', '🤪', '🗿', '🆒', '💘', '🙉', '🦄', '😘', '💊', '🙊', '😎', '👾',
+    '🤷♂️', '🤷', '🤷♀️', '😡'
+];
+
+export default function Reactions() {
     const [spreadValue, setSpreadValue] = useState('');
     const [subscriberCount, setSubscriberCount] = useState('');
     const [channelLink, setChannelLink] = useState('');
@@ -30,14 +38,25 @@ export default function Subscribers() {
                     onChange={(e) => setSubscriberCount(e.target.value)}
                 />
             </div>
-            <InputField
-                label="Ссылка к каналу"
-                type="text"
-                placeholder="Укажите ссылку на канал"
-                logo={images['link.svg']}
-                value={channelLink}
-                onChange={(e) => setChannelLink(e.target.value)}
-            />
+            <div className='task-form-data-row'>
+
+                <div className='input-field'>
+                    <label>Реакции</label>
+                    <div className="input-container">
+                        <img src={images['emoji.svg']} alt="logo" />
+                        <div className="divider"></div>
+
+                    </div>
+                </div>
+                <InputField
+                    label="Ссылка к каналу"
+                    type="text"
+                    placeholder="Укажите ссылку на канал"
+                    logo={images['link.svg']}
+                    value={channelLink}
+                    onChange={(e) => setChannelLink(e.target.value)}
+                />
+            </div>
             <InputField
                 label="Время на выполнение"
                 type="text"

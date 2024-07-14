@@ -32,7 +32,7 @@
     background-color: var(--color-info-block);
     color: white;
     border-radius: 20px;
-    padding: 20px;
+    padding: 14px;
     width: 370px;
     height: 623px;
     display: flex;
@@ -45,4 +45,5 @@
     font-size: 45px;
     font-weight: 600;
     text-align: left;
+    width: 320px;
 }

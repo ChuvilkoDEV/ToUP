@@ -2,7 +2,7 @@ import React from 'react';
 import './InputField.css';
 
 const InputField = ({ label, type, placeholder, logo, value, onChange, options=[] }) => (
-    <div>
+    <div className='input-field'>
         <label>{label}</label>
         <div className="input-container">
             {logo && <img src={logo} alt="logo" />}

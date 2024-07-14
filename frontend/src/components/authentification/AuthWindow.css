@@ -45,13 +45,6 @@
     font-family: 'EuclidCircularA-Bold', sans-serif;
 }
 
-.auth-form label {
-    display: block;
-    margin-bottom: 5px;
-    text-align: left;
-    margin-left: 10px;
-}
-
 .auth-form input {
     width: 100%;
     border-radius: 5px;

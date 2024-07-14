@@ -22,9 +22,9 @@ export default function Subscribers() {
                     onChange={(e) => setSpreadValue(e.target.value)}
                 />
                 <InputField
-                    label="Кол-во подписчиков"
+                    label="Кол-во просмотров"
                     type="text"
-                    placeholder="Кол-во подписчиков"
+                    placeholder="Кол-во просмотров"
                     logo={images['users-alt.svg']}
                     value={subscriberCount}
                     onChange={(e) => setSubscriberCount(e.target.value)}

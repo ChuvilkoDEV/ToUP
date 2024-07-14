@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import InputField from '../shared/InputField';
 import Subscribers from './Subscribers';
+import Reactions from './Reactions';
+import Views from './Views'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './TaskForm.css'
 import ImageUtils from '../imageUtils';
@@ -74,6 +76,7 @@ const TaskForm = ({ onClose }) => {
                 label="Действия"
                 type="select"
                 placeholder="Выберите..."
+                logo={images['todo.svg']}
                 value={selectedType}
                 onChange={handleSelectChange}
                 options={[
@@ -84,11 +87,11 @@ const TaskForm = ({ onClose }) => {
             />
             {selectedType === 'subscribers' ?
                 <Subscribers />
-                : selectedType === 'reactions' ? {
-
-                } : {
-
-                }}
+                : selectedType === 'reactions' ?
+                    <Reactions />
+                    :
+                    <Views />
+            }
             <button type="submit" className='task-form-submit-button'>
                 Запустить задачу
             </button>
