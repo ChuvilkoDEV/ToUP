@@ -71,6 +71,8 @@ body {
   --color-buttons: #2D8EFF;
   --text-color: black;
   --dropdown-menu-color: white;
+  --task-card-background: white;
+  --task-card-border: #EFEFEF;
 }
 
 [data-theme='dark'] {
@@ -80,6 +82,8 @@ body {
   --color-buttons: #2D8EFF;
   --text-color: white;
   --dropdown-menu-color: #1A1F32;
+  --task-card-background: #1A1F32;
+  --task-card-border: #515151;
 }
 
 body {
