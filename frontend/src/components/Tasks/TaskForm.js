@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import InputField from '../shared/InputField';
+import Subscribers from './Subscribers';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './TaskForm.css'
 import ImageUtils from '../imageUtils';
@@ -81,13 +82,13 @@ const TaskForm = ({ onClose }) => {
                     { label: 'Просмотры', value: 'views' },
                 ]}
             />
-            <InputField
-                label="Описание задачи"
-                type="text"
-                placeholder="Опишите задачу"
-                value={taskDescription}
-                onChange={(e) => setTaskDescription(e.target.value)}
-            />
+            {selectedType === 'subscribers' ?
+                <Subscribers />
+                : selectedType === 'reactions' ? {
+
+                } : {
+
+                }}
             <button type="submit" className='task-form-submit-button'>
                 Запустить задачу
             </button>

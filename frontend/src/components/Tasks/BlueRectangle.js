@@ -7,7 +7,7 @@ const images = ImageUtils.importAllImages(require.context('../../assets/tasks', 
 
 export default function BlueRectangle() {
   return (
-    <div className='blue-rectangle'>
+    <div className='task-form-blue-rectangle'>
       <h1>Откройте себе новые возможности</h1>
       <img src={images['chuvachki.svg']} alt="info" />
     </div>

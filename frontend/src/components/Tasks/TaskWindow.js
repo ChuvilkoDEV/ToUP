@@ -3,6 +3,10 @@ import TaskForm from './TaskForm';
 import BlueRectangle from './BlueRectangle'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './TaskWindow.css';
+import ImageUtils from '../imageUtils';
+
+const images = ImageUtils.importAllImages(require.context('../../assets/tasks', false, /\.(svg)$/));
+
 
 const TaskWindow = ({ onClose }) => {
     useEffect(() => {
@@ -23,7 +27,10 @@ const TaskWindow = ({ onClose }) => {
             <div className="task-window">
                 <div className="task-content">
                     <TaskForm onClose={onClose} />
-                    <BlueRectangle />
+                    <div className='task-form-blue-rectangle'>
+                        <h1>Откройте себе новые возможности</h1>
+                        <img src={images['chuvachki.svg']} alt="info" />
+                    </div>
                 </div>
             </div>
         </div>
