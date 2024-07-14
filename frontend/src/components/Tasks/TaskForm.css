@@ -72,7 +72,6 @@
 .task-form-data {
     display: flex;
     flex-direction: column;
-    /* gap: 10px; */
 }
 
 .task-form-data-row {
@@ -108,4 +107,64 @@
     color: red;
     text-align: left;
     margin-top: 10px;
+}
+
+.reactions-popup {
+    position: absolute;
+    top: 234px;
+    width: 198px;
+    height: 178px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    z-index: 1000;
+    border-radius: 8px;
+}
+
+.reaction-item {
+    width: 18px;
+    height: 18px;
+    margin: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.reaction-item.selected {
+    position: relative;
+}
+
+.reaction-item.selected .reaction-selected {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    top: -4px;
+    left: -4px;
+    z-index: -1;
+}
+
+.reactions-popup::-webkit-scrollbar {
+    width: 8px;
+}
+
+.reactions-popup::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+}
+
+.reactions-popup::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 8px;
+}
+
+.reactions-popup::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

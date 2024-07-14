@@ -6,10 +6,10 @@ const images = ImageUtils.importAllImages(require.context('../../assets/tasks', 
 
 const reactionsList = [
     '👍', '👎', '❤️', '🔥', '🥰', '👏', '😁', '🤔', '🤯', '😱', '🤬', '😢', '🎉', '🤩', '🤮', '💩', '🙏',
-    '👌', '🕊', '🤡', '🥱', '🥴', '😍', '🐳', '❤️🔥', '🌚', '🌭', '💯', '🤣', '⚡️', '🍌', '🏆', '💔', '🤨',
-    '😐', '🍓', '🍾', '💋', '🖕', '😈', '😴', '😭', '🤓', '👻', '👨💻', '👀', '🎃', '🙈', '😇', '😨', '🤝',
+    '👌', '🕊', '🤡', '🥱', '🥴', '😍', '🐳', '❤️‍🔥', '🌚', '🌭', '💯', '🤣', '⚡️', '🍌', '🏆', '💔', '🤨',
+    '😐', '🍓', '🍾', '💋', '🖕', '😈', '😴', '😭', '🤓', '👻', '👨‍💻', '👀', '🎃', '🙈', '😇', '😨', '🤝',
     '✍️', '🤗', '🎅', '🎄', '☃️', '💅', '🤪', '🗿', '🆒', '💘', '🙉', '🦄', '😘', '💊', '🙊', '😎', '👾',
-    '🤷♂️', '🤷', '🤷♀️', '😡'
+    '🤷‍♀️', '🤷', '🤷‍♂️', '😡'
 ];
 
 export default function Reactions() {
@@ -17,6 +17,23 @@ export default function Reactions() {
     const [subscriberCount, setSubscriberCount] = useState('');
     const [channelLink, setChannelLink] = useState('');
     const [taskTime, setTaskTime] = useState('');
+
+    const [showReactions, setShowReactions] = useState(false);
+    const [selectedReactions, setSelectedReactions] = useState([]);
+
+    const toggleReaction = (reaction) => {
+        setSelectedReactions(prevState => {
+            if (prevState.includes(reaction)) {
+                return prevState.filter(r => r !== reaction);
+            } else {
+                if (prevState.length < 9) {
+                    return [...prevState, reaction];
+                } else {
+                    return prevState;
+                }
+            }
+        });
+    };
 
     return (
         <div className='task-form-data'>
@@ -39,14 +56,27 @@ export default function Reactions() {
                 />
             </div>
             <div className='task-form-data-row'>
-
                 <div className='input-field'>
                     <label>Реакции</label>
-                    <div className="input-container">
+                    <div className="input-container" onClick={() => setShowReactions(!showReactions)}>
                         <img src={images['emoji.svg']} alt="logo" />
                         <div className="divider"></div>
-
+                        Реакции: {selectedReactions.length}
                     </div>
+                    {showReactions && (
+                        <div className="reactions-popup">
+                            {reactionsList.map((reaction, index) => (
+                                <div
+                                    key={index}
+                                    className={`reaction-item ${selectedReactions.includes(reaction) ? 'selected' : ''}`}
+                                    onClick={() => toggleReaction(reaction)}
+                                >
+                                    {reaction}
+                                    {selectedReactions.includes(reaction) && <div className="reaction-selected"></div>}
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
                 <InputField
                     label="Ссылка к каналу"
