@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     // Точка входа в ваше приложение
     entry: './src/index.js',
-    
+
     // Выходная конфигурация
     output: {
         // Абсолютный путь к выходной директории
@@ -11,7 +11,7 @@ module.exports = {
         // Имя выходного файла
         filename: 'bundle.js',
     },
-    
+
     // Разрешение путей и алиасов
     resolve: {
         alias: {
@@ -25,7 +25,7 @@ module.exports = {
         },
         extensions: ['.js', '.jsx', '.json'], // Разрешение для расширений файлов
     },
-    
+
     // Модули и правила для обработки файлов
     module: {
         rules: [
@@ -71,9 +71,14 @@ module.exports = {
                     },
                 ],
             },
+            {
+                // Правило для обработки SVG файлов с помощью @svgr/webpack
+                test: /\.svg$/,
+                use: ['@svgr/webpack'],
+            },
         ],
     },
-    
+
     // Плагины (если есть)
     plugins: [
         // Ваши плагины
@@ -84,17 +89,6 @@ module.exports = {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         port: 9000,
+        historyApiFallback: true, // Добавляем эту строку для обработки всех маршрутов
     },
 };
-
-module.exports = {
-    module: {
-      rules: [
-        {
-          test: /\.svg$/,
-          use: ['@svgr/webpack'],
-        },
-      ],
-    },
-  };
-  

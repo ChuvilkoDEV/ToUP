@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header/Header';
-import { AuthContext } from './context/AuthContext';
+import { AuthProvider, AuthContext } from './context/AuthContext';
 import { ThemeContext } from './context/ThemeContext';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,6 +9,17 @@ import Footer from './components/Footer/Footer';
 import Profile from './components/Profile/Profile';
 import Tasks from './components/Tasks/Tasks';
 import Home from './components/Home/Home';
+
+const LogCurrentRoute = () => {
+  const location = useLocation();
+  const { isAuthenticated } = useContext(AuthContext);
+
+  useEffect(() => {
+    console.log('Current route:', location.pathname, isAuthenticated);
+  }, [location, isAuthenticated]);
+
+  return null;
+};
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -18,6 +29,7 @@ function App() {
     <Router>
       <div className={`App ${theme}`}>
         <Header />
+        <LogCurrentRoute />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/" />} />
@@ -30,4 +42,10 @@ function App() {
   );
 }
 
-export default App;
+export default function RootApp() {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  );
+}
