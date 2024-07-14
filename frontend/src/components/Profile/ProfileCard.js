@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Profile.css';
 import ImageUtils from '../imageUtils';
 
 const images = ImageUtils.importAllImages(require.context('../../assets/profile', false, /\.(svg)$/));
 
-const ProfileCard = ({ title, text, icon }) => {
+const ProfileCard = ({ title, text, icon, link }) => {
   const [hover, setHover] = useState(false);
+
   const defaultIcon1 = `${icon}1Default.svg`;
   const hoverIcon1 = `${icon}1Hover.svg`;
   const defaultIcon2 = `${icon}2Default.svg`;
   const hoverIcon2 = `${icon}2Hover.svg`;
 
-  return (
+  const cardContent = (
     <div
       className="profile-card"
       onMouseEnter={() => setHover(true)}
@@ -34,6 +36,14 @@ const ProfileCard = ({ title, text, icon }) => {
         />
       </div>
     </div>
+  );
+
+  return link ? (
+    <Link to={link} className="profile-card-link">
+      {cardContent}
+    </Link>
+  ) : (
+    cardContent
   );
 };
 

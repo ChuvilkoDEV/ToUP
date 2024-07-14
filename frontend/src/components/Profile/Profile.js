@@ -45,6 +45,7 @@ const Profile = () => {
                     title="Управление задачами"
                     text="Начать работу"
                     icon="taskManage"
+                    link="/tasks"
                 />
                 <ProfileCard
                     title="Кошелек"
