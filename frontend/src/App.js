@@ -10,17 +10,6 @@ import Profile from './components/Profile/Profile';
 import Tasks from './components/Tasks/Tasks';
 import Home from './components/Home/Home';
 
-const LogCurrentRoute = () => {
-  const location = useLocation();
-  const { isAuthenticated } = useContext(AuthContext);
-
-  useEffect(() => {
-    console.log('Current route:', location.pathname, isAuthenticated);
-  }, [location, isAuthenticated]);
-
-  return null;
-};
-
 function App() {
   const { theme } = useContext(ThemeContext);
   const { isAuthenticated } = useContext(AuthContext);
@@ -29,7 +18,6 @@ function App() {
     <Router>
       <div className={`App ${theme}`}>
         <Header />
-        <LogCurrentRoute />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/" />} />

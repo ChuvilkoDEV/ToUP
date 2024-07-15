@@ -36,4 +36,5 @@
     outline: none;
     background-color: var(--background-color);
     color: var(--text-color);
+    width: 100%;
 }
