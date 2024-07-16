@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Profile.css';
-import ImageUtils from '../imageUtils';
 
-const images = ImageUtils.importAllImages(require.context('../../assets/profile', false, /\.(svg)$/));
+import ImageUtils from '../imageUtils';
+const images = ImageUtils.importAllImages(require.context('@assets/profile', false, /\.(svg)$/));
 
 const ProfileCard = ({ title, text, icon, link }) => {
   const [hover, setHover] = useState(false);

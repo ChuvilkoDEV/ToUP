@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './TaskCard.css';
-import ImageUtils from '../imageUtils';
 
-const images = ImageUtils.importAllImages(require.context('../../assets/tasks', false, /\.(svg)$/));
+import ImageUtils from '../imageUtils';
+const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
 const typeLogo = {
     'subscribers': <img src={images['subscribers.svg']} alt="logo" className='mx-2' />,

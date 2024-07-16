@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import ImageUtils from '../imageUtils';
 import { AuthContext } from '../../context/AuthContext';
 import { ThemeContext } from '../../context/ThemeContext';
 
-const images = ImageUtils.importAllImages(require.context('../../assets/header', false, /\.(svg)$/));
+import ImageUtils from '../imageUtils';
+const images = ImageUtils.importAllImages(require.context('@assets/header', false, /\.(svg)$/));
 
 export default function Desktop({ handleLogoutClick, handleLoginClick, handleRegistrationClick }) {
     const { theme, toggleTheme } = useContext(ThemeContext);

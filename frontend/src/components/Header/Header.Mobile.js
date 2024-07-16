@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import ImageUtils from '../imageUtils';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { ThemeContext } from '../../context/ThemeContext';
 import './Mobile.css';
 
-const images = ImageUtils.importAllImages(require.context('../../assets/header', false, /\.(svg)$/));
+import ImageUtils from '../imageUtils';
+const images = ImageUtils.importAllImages(require.context('@assets/header', false, /\.(svg)$/));
 
 export default function Mobile({ handleLogoutClick, handleLoginClick, handleRegistrationClick }) {
     const { theme, setTheme } = useContext(ThemeContext);

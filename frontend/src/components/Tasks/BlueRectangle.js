@@ -1,8 +1,8 @@
 import React from 'react'
 import './BlueRectangle.css'
-import ImageUtils from '../imageUtils';
 
-const images = ImageUtils.importAllImages(require.context('../../assets/tasks', false, /\.(svg)$/));
+import ImageUtils from '../imageUtils';
+const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
 
 export default function BlueRectangle() {

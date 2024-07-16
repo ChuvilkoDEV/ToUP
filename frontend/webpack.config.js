@@ -8,13 +8,13 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: '/', // добавляем publicPath
+        publicPath: '/',
     },
     resolve: {
         alias: {
             '@components': resolvePath('./src/components'),
             '@assets': resolvePath('./src/assets'),
-            '@services': resolvePath('./src/services'),
+            '@context': resolvePath('./src/context'),
         },
         extensions: ['.js', '.jsx'],
     },

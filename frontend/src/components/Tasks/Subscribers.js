@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import InputField from '../shared/InputField';
-import ImageUtils from '../imageUtils';
 
-const images = ImageUtils.importAllImages(require.context('../../assets/tasks', false, /\.(svg)$/));
+import ImageUtils from '../imageUtils';
+const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
 export default function Subscribers() {
     const [spreadValue, setSpreadValue] = useState('');

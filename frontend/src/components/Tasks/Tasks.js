@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import Header from '@components/Header/Header';
+import Footer from '@components/Footer/Footer';
 import TaskCard from './TaskCard';
-import './Tasks.css';
 import tasksData from './tasksData';
-import ImageUtils from '../imageUtils';
-import TaskWindow from './TaskWindow'; // Import the TaskWindow component
+import TaskWindow from './TaskWindow'; 
+import './Tasks.css';
 
-const images = ImageUtils.importAllImages(require.context('../../assets/tasks', false, /\.(svg)$/));
+import ImageUtils from '../imageUtils';
+const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
 const Tasks = () => {
   const [isTaskWindowOpen, setIsTaskWindowOpen] = useState(false);
@@ -19,23 +21,27 @@ const Tasks = () => {
   };
 
   return (
-    <div className="tasks">
-      <div className='tasks-title'>
-        <h1>Все задачи</h1>
-        <div className='tasks-buttons'>
-          <button className='px-5'>Сортировать</button>
-          <button onClick={handleOpenTaskWindow}>
-            <img src={images['add.svg']} alt="Добавить задачу" />
-          </button>
+    <>
+      <Header />
+      <div className="tasks">
+        <div className='tasks-title'>
+          <h1>Все задачи</h1>
+          <div className='tasks-buttons'>
+            <button className='px-5'>Сортировать</button>
+            <button onClick={handleOpenTaskWindow}>
+              <img src={images['add.svg']} alt="Добавить задачу" />
+            </button>
+          </div>
         </div>
+        <div className="tasks-grid">
+          {tasksData().map(task => (
+            <TaskCard key={task.id} task={task} />
+          ))}
+        </div>
+        {isTaskWindowOpen && <TaskWindow onClose={handleCloseTaskWindow} />}
       </div>
-      <div className="tasks-grid">
-        {tasksData().map(task => (
-          <TaskCard key={task.id} task={task} />
-        ))}
-      </div>
-      {isTaskWindowOpen && <TaskWindow onClose={handleCloseTaskWindow} />}
-    </div>
+      <Footer />
+    </>
   );
 }
 

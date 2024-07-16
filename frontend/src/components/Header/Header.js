@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react';
-import './Header.css';
+import { useNavigate } from 'react-router-dom';
+import Registration from '@components/authentification/Registration';
+import Login from '@components/authentification/Login';
+import { AuthContext } from '../../context/AuthContext';
 import Desktop from './Header.Desktop';
 import Mobile from './Header.Mobile';
-import Registration from '../authentification/Registration';
-import Login from '../authentification/Login';
-import ImageUtils from '../imageUtils';
-import { AuthContext } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import './Header.css';
 
-const images = ImageUtils.importAllImages(require.context('../../assets/header', false, /\.(svg)$/));
+import ImageUtils from '../imageUtils';
+const images = ImageUtils.importAllImages(require.context('@assets/header', false, /\.(svg)$/));
 
 const Header = () => {
     const { login, logout } = useContext(AuthContext);

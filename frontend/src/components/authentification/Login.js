@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Login.css';
-import InputField from '../shared/InputField';
+import InputField from '@components/shared/InputField';
 import ImageUtils from '../imageUtils';
 
-const images = ImageUtils.importAllImages(require.context('../../assets/auth', false, /\.(svg)$/));
+const images = ImageUtils.importAllImages(require.context('@assets/auth', false, /\.(svg)$/));
 
 const LoginForm = ({ onClose, onLoginSuccess, onSwitchToRegister }) => {
     const [email, setEmail] = useState('');

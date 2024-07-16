@@ -4,11 +4,10 @@ import InputField from '../shared/InputField';
 import Subscribers from './Subscribers';
 import Reactions from './Reactions';
 import Views from './Views'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './TaskForm.css'
-import ImageUtils from '../imageUtils';
 
-const images = ImageUtils.importAllImages(require.context('../../assets/tasks', false, /\.(svg)$/));
+import ImageUtils from '../imageUtils';
+const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
 const TaskForm = ({ onClose }) => {
     const [taskDescription, setTaskDescription] = useState('');

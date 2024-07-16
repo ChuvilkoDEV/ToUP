@@ -1,15 +1,13 @@
-import React, { useContext, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
-import Header from '@components/Header/Header';
+import React, { useContext } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { AuthProvider, AuthContext } from './context/AuthContext';
 import { ThemeContext } from './context/ThemeContext';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Footer from '@components/Footer/Footer';
+import AdminPanel from '@components/AdminPanel/AdminPanel'
 import Profile from '@components/Profile/Profile';
 import Tasks from '@components/Tasks/Tasks';
 import Home from '@components/Home/Home';
-import AdminPanel from '@components/AdminPanel/AdminPanel'
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const { theme } = useContext(ThemeContext);

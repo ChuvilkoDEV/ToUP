@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import InputField from '../shared/InputField';
+import InputField from '@components/shared/InputField';
 import ImageUtils from '../imageUtils';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Registration.css';
 import axios from 'axios';
 
-const images = ImageUtils.importAllImages(require.context('../../assets/auth', false, /\.(svg)$/));
+const images = ImageUtils.importAllImages(require.context('@assets/auth', false, /\.(svg)$/));
 
 const RegistrationForm = ({ onRegistrationSuccess }) => {
     const [email, setEmail] = useState('');
