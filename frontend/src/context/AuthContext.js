@@ -4,6 +4,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(true);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -11,7 +12,7 @@ export const AuthProvider = ({ children }) => {
         if (token) {
             setIsAuthenticated(true);
         }
-        setLoading(false); // Устанавливаем загрузку в false после проверки токена
+        setLoading(false); 
     }, []);
 
     const login = () => {
@@ -24,11 +25,11 @@ export const AuthProvider = ({ children }) => {
     };
 
     if (loading) {
-        return <div>Loading...</div>; // Показать индикатор загрузки во время инициализации
+        return <div>Loading...</div>;
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, isAdmin, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
