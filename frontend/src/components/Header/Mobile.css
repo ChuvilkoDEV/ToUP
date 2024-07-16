@@ -134,13 +134,11 @@
 
 @media (max-width: 800px) {
 
-    .header {
+    /* .header {
         padding: 10px 20px;
-    }
+    } */
 
     .header::after {
-        width: calc(100% - 40px);
-        left: 20px;
-        right: 20px;
+        width: 100%;
     }
 }

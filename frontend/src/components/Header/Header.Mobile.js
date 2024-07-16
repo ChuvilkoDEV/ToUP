@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import ImageUtils from '../imageUtils';
 import { AuthContext } from '../../context/AuthContext';
 import { ThemeContext } from '../../context/ThemeContext';
@@ -43,14 +44,14 @@ export default function Mobile({ handleLogoutClick, handleLoginClick, handleRegi
                                     <img src={images['userProfile.svg']} alt="Profile" className="profile-icon" />
                                     <span className="profile-name">Мухин Дмитрий</span>
                                 </div>
-                                <a href="#" className="mobile-link">
+                                <Link to="/profile" className="mobile-link">
                                     <img src={images['profile.svg']} alt="logo" className='mr-5' />
                                     Личный кабинет
-                                </a>
-                                <a href="#" className="mobile-link">
+                                </Link>
+                                <Link to="/tasks" className="mobile-link">
                                     <img src={images['clock.svg']} alt="logo" className='mr-5' />
                                     Управление задачами
-                                </a>
+                                </Link>
                                 <a href="#" className="mobile-link">
                                     <img src={images['support.svg']} alt="logo" className='mr-5' />
                                     Поддержка

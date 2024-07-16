@@ -70,7 +70,6 @@
 }
 
 .task-progress {
-    /* margin-top: 8px; */
     flex: 1;
     text-align: right;
 }
@@ -117,9 +116,7 @@
     padding: 5px;
     position: absolute;
     z-index: 1000;
-    /* Увеличенный z-index */
     bottom: 125%;
-    /* Позиция над иконкой */
     left: 50%;
     transform: translateX(-50%);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -132,7 +129,6 @@
     content: "";
     position: absolute;
     top: 100%;
-    /* Позиция под всплывающим блоком */
     left: 50%;
     margin-left: -5px;
     border-width: 5px;
@@ -154,7 +150,6 @@
 
 .highlight-text {
     color: #2D8EFF;
-    /* margin-left: 2px; */
 }
 
 .additional-statistics {
@@ -162,12 +157,11 @@
     color: var(--text-color);
     text-align: left;
     margin-top: 7px;
-    gap: 10px;
+    gap: 3px;
 }
 
 .additional-statistics.title {
     display: flex;
-    /* margin-bottom: 5px; */
 }
 
 .calendar {
@@ -190,4 +184,20 @@
 
 .details-button:hover {
     text-decoration: underline;
+}
+
+
+@media (max-width: 800px) {
+
+    .task-card {
+        width: 189px;
+    }
+
+    .task-card-header {
+        width: 169px;
+    }
+
+    .task-title {
+        font-size: 14px;
+    }
 }

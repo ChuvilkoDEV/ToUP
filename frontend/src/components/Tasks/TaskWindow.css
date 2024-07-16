@@ -47,3 +47,19 @@
     text-align: left;
     width: 320px;
 }
+
+
+@media (max-width: 800px) {
+    .task-form-blue-rectangle {
+        display: none;
+    }
+
+    .task-window {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .task-form {
+        margin: 0;
+    }
+}
