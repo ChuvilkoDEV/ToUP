@@ -122,15 +122,15 @@
 
     .header-center,
     .header-right {
-        display: none;
+        display: none !important;
     }
 
     .hamburger-button {
-        display: block;
+        display: block !important;
     }
 
     .mobile-menu {
-        display: flex;
+        display: flex !important;
     }
 }
 
@@ -141,6 +141,6 @@
     } */
 
     .header::after {
-        width: 100%;
+        width: 100% !important;
     }
 }
