@@ -6,8 +6,9 @@
 
 .footer-divider {
   height: 1px;
-  background-color: #dcdcdc;
+  background-color: var(--borders-color);
   margin-bottom: 20px;
+  border: none;
 }
 
 .footer-section {
@@ -52,7 +53,7 @@
 .footer-column ul li {
   margin-bottom: 5px;
   font-size: 14px;
-  color: var(--text-color);
+  color: var(--links-color);
 }
 
 @media (min-width: 800px) {

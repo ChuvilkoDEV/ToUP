@@ -29,6 +29,10 @@ body {
   font-family: 'EuclidCircularA', sans-serif;
 }
 
+#root {
+  background-color: var(--background-color);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -54,17 +58,11 @@ body {
   margin-right: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 :root {
   --background-color: white;
+  --borders-color: #e2e2e2;
+  --links-color: #333333;
+  --form-background: white;
   --color-info-block: #2D8EFF;
   --color-info-item: white; 
   --color-buttons: #2D8EFF;
@@ -76,6 +74,9 @@ body {
 
 [data-theme='dark'] {
   --background-color: #01061B;
+  --borders-color: #2D3142;
+  --links-color: #CCCDD1;
+  --form-background: #1C2D42;
   --color-info-block: #2a78d6;
   --color-info-item: #3f86da; 
   --color-buttons: #2D8EFF;

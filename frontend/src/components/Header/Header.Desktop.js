@@ -74,6 +74,7 @@ export default function Desktop({ handleLogoutClick, handleLoginClick, handleReg
                                 <div className="profile-section">
                                     <img src={images['userProfile.svg']} alt="Profile" className="profile-icon" />
                                     <span className="profile-name">Мухин Дмитрий</span>
+                                    <img src={images['lightTheme.svg']} alt="logo" className='menu-theme-toggle' onClick={toggleTheme}/>
                                 </div>
                                 <div className="dropdown-item">
                                     <img src={images['myWallet.svg']} alt="logo" />
