@@ -1,0 +1,13 @@
+.App {
+    margin: 0 !important;
+}
+
+.admin-panel {
+    display: flex;
+}
+
+.main-content-area {
+    padding: 20px;
+    background-color: #f1f3f5;
+    flex: 1;
+}

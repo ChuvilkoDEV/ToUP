@@ -1,0 +1,27 @@
+.statistics {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.statistics-item {
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-align: center;
+    flex: 1;
+    margin-right: 20px;
+}
+
+.statistics-item:last-child {
+    margin-right: 0;
+}
+
+.statistics-item h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.statistics-item span {
+    color: #6c757d;
+}

@@ -1,0 +1,61 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.sidebar {
+    width: 284px;
+    height: 100vh;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ccc;
+}
+
+.sidebar-header {
+    margin-bottom: 20px;
+}
+
+.sidebar-header-container {
+    display: flex;
+    align-items: flex-end;
+}
+
+.sidebar-header-title {
+    display: flex;
+    align-items: baseline;
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.sidebar-header-logo {
+    width: 11px;
+    height: 11px;
+}
+
+.sidebar-header hr {
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-menu li {
+    margin: 10px 0;
+}
+
+.sidebar-menu a {
+    text-decoration: none;
+    color: #000;
+}
+
+.sidebar-footer {
+    width: 100%;
+}
