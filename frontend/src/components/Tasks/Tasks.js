@@ -3,7 +3,7 @@ import Header from '@components/Header/Header';
 import Footer from '@components/Footer/Footer';
 import TaskCard from './TaskCard';
 import tasksData from './tasksData';
-import TaskWindow from './TaskWindow'; 
+import TaskWindow from './TaskWindow';
 import './Tasks.css';
 
 import ImageUtils from '../imageUtils';
@@ -20,24 +20,32 @@ const Tasks = () => {
     setIsTaskWindowOpen(false);
   };
 
+  const TasksTitle = () => (
+    <div className='tasks-title'>
+      <h1>Все задачи</h1>
+      <div className='tasks-buttons'>
+        <button className='px-5'>Сортировать</button>
+        <button onClick={handleOpenTaskWindow}>
+          <img src={images['add.svg']} alt="Добавить задачу" />
+        </button>
+      </div>
+    </div>
+  );
+
+  const TasksCards = () => (
+    <div className="tasks-grid">
+      {tasksData().map(task => (
+        <TaskCard key={task.id} task={task} />
+      ))}
+    </div>
+  );
+
   return (
     <>
       <Header />
       <div className="tasks">
-        <div className='tasks-title'>
-          <h1>Все задачи</h1>
-          <div className='tasks-buttons'>
-            <button className='px-5'>Сортировать</button>
-            <button onClick={handleOpenTaskWindow}>
-              <img src={images['add.svg']} alt="Добавить задачу" />
-            </button>
-          </div>
-        </div>
-        <div className="tasks-grid">
-          {tasksData().map(task => (
-            <TaskCard key={task.id} task={task} />
-          ))}
-        </div>
+        <TasksTitle />
+        <TasksCards />
         {isTaskWindowOpen && <TaskWindow onClose={handleCloseTaskWindow} />}
       </div>
       <Footer />
