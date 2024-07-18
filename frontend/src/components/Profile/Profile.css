@@ -1,5 +1,7 @@
 .profile-container {
   text-align: left;
+  max-width: 1240px;
+  margin: 0 auto;
   /* padding: 0px 100px; */
 }
 
@@ -176,6 +178,12 @@
 }
 
 
+@media (max-width: 1280px) {
+  .profile-container {
+    max-width: calc(100% - 40px);
+  }
+}
+
 @media (max-width: 1000px) {
   .subscription-banner {
     display: block;
@@ -202,10 +210,7 @@
     margin-bottom: 10px;
     width: 100%;
   }
-
-
 }
-
 
 @media (max-width: 800px) {
 

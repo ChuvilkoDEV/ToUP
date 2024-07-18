@@ -1,5 +1,8 @@
 .tasks {
     padding: 28px 0;
+    text-align: center;
+    max-width: 1240px;
+    margin: 0 auto;
 }
 
 .tasks-title {
@@ -41,6 +44,12 @@
     margin-left: 15px;
 }
 
+
+@media (max-width: 1280px) {
+  .tasks {
+    max-width: calc(100% - 40px);
+  }
+}
 
 @media (max-width: 800px) {
 

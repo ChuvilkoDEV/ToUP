@@ -1,4 +1,5 @@
-.header {
+.admin-header {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -7,15 +8,61 @@
     border-bottom: 1px solid #dee2e6;
 }
 
-.search-input {
-    width: 300px;
+.admin-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-search-input {
+    width: 225px;
+    height: 37px;
     padding: 5px 10px;
     border: 1px solid #ced4da;
     border-radius: 4px;
+    background-color: #F9F9FA;
 }
 
-.user-info {
+.admin-divider {
+    width: 1px;
+    height: 29px;
+    background-color: #ced4da;
+}
+
+.admin-user-info {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
+}
+
+.admin-theme-toggle {
+    width: 15px;
+    height: 15px;
+}
+
+.admin-profile-logo {
+    width: 30px;
+    height: 30px;
+}
+
+.admin-header-user-name,
+.admin-header-role {
+    line-height: 1.2; 
+    color: #000000;
+    font-weight: 400;
+}
+
+.admin-header-user-name {
+    font-size: 16px;
+}
+
+.admin-header-role {
+    font-size: 12px;
+    opacity: 0.5;
 }

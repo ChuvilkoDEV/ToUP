@@ -61,9 +61,11 @@ body {
     gap: 10px;
 }
 
+.sidebar-menu a.active,
 .sidebar-menu a:hover {
     background-color: #e0e0e0;
 }
+
 
 .sidebar-footer {
     width: 100%;

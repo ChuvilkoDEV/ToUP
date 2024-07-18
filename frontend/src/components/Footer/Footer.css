@@ -2,6 +2,9 @@
   background-color: var(--background-color);
   padding: 50px 0px;
   margin-top: 20px;
+  text-align: center;
+  max-width: 1240px;
+  margin: 0 auto;
 }
 
 .footer-divider {
@@ -54,6 +57,13 @@
   margin-bottom: 5px;
   font-size: 14px;
   color: var(--links-color);
+}
+
+
+@media (max-width: 1280px) {
+  .footer {
+    max-width: calc(100% - 40px);
+  }
 }
 
 @media (min-width: 800px) {

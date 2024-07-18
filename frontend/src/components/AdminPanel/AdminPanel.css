@@ -11,3 +11,7 @@
     background-color: #f1f3f5;
     flex: 1;
 }
+
+.right-sidebar {
+    width: 100%;
+}
