@@ -1,6 +1,6 @@
 .session {
     margin: 20px;
-    background: white;
+    background: var(--dropdown-menu-color);
     padding: 20px;
     border-radius: 20px;
 }
@@ -8,6 +8,14 @@
 .session h1 {
     font-size: 28px;
     font-weight: 600;
+    background: initial; /* Оставляем заголовок без фона */
+}
+
+.stats-container,
+.data-table,
+.table-container,
+.show-more {
+    background: var(--dropdown-menu-color); /* Задаем фон всем необходимым элементам */
 }
 
 .stats-container {
@@ -25,7 +33,7 @@
     height: 45px;
     padding: 5px;
     border-radius: 10px;
-    background-color: #F7F7F9;
+    background-color: var(--search-field);
     align-items: center;
 }
 
@@ -39,7 +47,7 @@
 
 .stat-item.active {
     background-color: white;
-    font-weight: bold;
+    color: #2D8EFF;
 }
 
 .refresh-btn {
@@ -48,19 +56,16 @@
     cursor: pointer;
     font-size: 18px;
     margin-left: 20px;
-    /* Чтобы кнопка refresh была ближе к блоку stats */
 }
 
 .button-group {
     display: flex;
     gap: 10px;
     margin-left: auto;
-    /* Чтобы кнопки search и sort были по правой границе */
 }
 
 .table-container {
     border-radius: 10px;
-    border: 1px solid #ddd;
     overflow: hidden;
 }
 
@@ -75,21 +80,26 @@
 .table td {
     padding: 8px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--task-card-border);
+    color: var(--text-color) !important;
+}
+
+.table td {
+    background-color: var(--dropdown-menu-color) !important;
 }
 
 .table td:first-child,
 .table th:first-child {
-    border-left: none;
+    border-left: 1px solid var(--task-card-border);
 }
 
 .table td:last-child,
 .table th:last-child {
-    border-right: none;
+    border-right: 1px solid var(--task-card-border);
 }
 
 .table thead th {
-    background-color: #F9F9F9;
+    background-color: var(--search-field);
     font-weight: 400;
 }
 
@@ -112,21 +122,21 @@
     fill: #F25959;
     color: #F25959;
     border-color: #F25959;
-    background-color: #FAF0F0;
+    background-color: var(--status-ban);
 }
 
 .status-active {
     fill: #0EB857;
     color: #0EB857;
     border-color: #0EB857;
-    background-color: #EFFBF2;
+    background-color: var(--status-active);
 }
 
 .status-proxy {
     fill: #C259F2;
     color: #C259F2;
     border-color: #C259F2;
-    background-color: #f9effe;
+    background-color: var(--status-proxy);
 }
 
 .show-more {
@@ -134,6 +144,5 @@
     padding: 0;
     cursor: pointer;
     color: #2D8EFF;
-    background: none;
     border: none;
 }

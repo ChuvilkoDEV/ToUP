@@ -53,6 +53,11 @@ body {
   --dropdown-menu-color: white;
   --task-card-background: white;
   --task-card-border: #EFEFEF;
+  --overlay-back: #F5F5F5;
+  --search-field: #F9F9FA;
+  --status-ban: #FAF0F0;
+  --status-active: #EFFBF2;
+  --status-proxy: #f9effe;
 }
 
 [data-theme='dark'] {
@@ -67,6 +72,11 @@ body {
   --dropdown-menu-color: #1A1F32;
   --task-card-background: #1A1F32;
   --task-card-border: #515151;
+  --overlay-back: #01061B;
+  --search-field: #F7F7F91A;
+  --status-ban: #1A1F32;
+  --status-active: #1A1F32;
+  --status-proxy: #1A1F32;
 }
 
 body {

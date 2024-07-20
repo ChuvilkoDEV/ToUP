@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTable } from 'react-table';
-
 import ImageUtils from '../imageUtils';
+
 const images = ImageUtils.importAllImages(require.context('@assets/admin', false, /\.(svg)$/));
 
 function SessionsTable({ columns, data, title }) {
@@ -55,20 +55,27 @@ function SessionsTable({ columns, data, title }) {
             <thead>
               {headerGroups.map(headerGroup => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map(column => (
-                    <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                  ))}
+                  {headerGroup.headers.map(column => {
+                    const { key, ...rest } = column.getHeaderProps();
+                    return (
+                      <th key={key} {...rest}>{column.render('Header')}</th>
+                    );
+                  })}
                 </tr>
               ))}
             </thead>
             <tbody {...getTableBodyProps()}>
               {rows.map(row => {
                 prepareRow(row);
+                const { key, ...rest } = row.getRowProps();
                 return (
-                  <tr {...row.getRowProps()}>
-                    {row.cells.map(cell => (
-                      <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                    ))}
+                  <tr key={key} {...rest}>
+                    {row.cells.map(cell => {
+                      const { key, ...rest } = cell.getCellProps();
+                      return (
+                        <td key={key} {...rest}>{cell.render('Cell')}</td>
+                      );
+                    })}
                   </tr>
                 );
               })}

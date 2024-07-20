@@ -7,11 +7,11 @@ body {
 .sidebar {
     width: 284px;
     height: 100vh;
-    background-color: white;
+    background-color: var(--dropdown-menu-color);
     padding: 20px;
     display: flex;
     flex-direction: column;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid var(--task-card-border);
 }
 
 .sidebar-header-container {
@@ -24,7 +24,7 @@ body {
     align-items: baseline;
     margin: 0;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .sidebar-header-logo {
@@ -52,7 +52,7 @@ body {
 
 .sidebar-menu a {
     text-decoration: none;
-    color: #7A7A7A;
+    color: var(--text-color);
     font-weight: 400;
     display: block;
     padding: 10px 15px;
@@ -63,7 +63,9 @@ body {
 
 .sidebar-menu a.active,
 .sidebar-menu a:hover {
-    background-color: #e0e0e0;
+    background-color: rgba(45, 142, 255, 0.1);
+    color: #2D8EFF;
+    opacity: 1;
 }
 
 
@@ -78,9 +80,9 @@ body {
 .sidebar-footer button {
     width: 100%;
     height: 45px;
-    background-color: white;
+    background-color: var(--dropdown-menu-color);
     color: #2D8EFF;
     font-weight: 500;
-    border: 1px solid #E7EAEE;
+    border: 1px solid var(--task-card-border);
     border-radius: 10px;
 }
