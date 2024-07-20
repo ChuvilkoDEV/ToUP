@@ -5,7 +5,6 @@ import { ThemeContext } from '../../context/ThemeContext';
 import ImageUtils from '../imageUtils';
 const images = ImageUtils.importAllImages(require.context('@assets/admin', false, /\.(svg)$/));
 
-
 function AdminHeader({ activeMenu }) {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
@@ -15,11 +14,11 @@ function AdminHeader({ activeMenu }) {
       {activeMenu.title}
     </div>
   );
-  
+
   const HeaderRight = () => (
     <div className="admin-header-content">
       <input type="text" placeholder="Поиск..." className="admin-search-input" />
-      <img src={images['lightTheme.svg']} alt="logo" className="admin-theme-toggle" onClick={toggleTheme}/>
+      <img src={images['lightTheme.svg']} alt="logo" className="admin-theme-toggle" onClick={toggleTheme} />
       <div className="admin-divider"></div>
       <img src={images['profilelogo.svg']} alt="logo" className="admin-profile-logo" />
       <div className="admin-user-info">

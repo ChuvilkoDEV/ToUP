@@ -12,6 +12,11 @@ body {
     display: flex;
     flex-direction: column;
     border-right: 1px solid var(--task-card-border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    overflow-y: auto; /* Добавлено для прокрутки, если содержимое Sidebar превышает высоту экрана */
 }
 
 .sidebar-header-container {

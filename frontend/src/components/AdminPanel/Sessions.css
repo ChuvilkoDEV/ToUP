@@ -3,19 +3,21 @@
     background: var(--dropdown-menu-color);
     padding: 20px;
     border-radius: 20px;
+    margin-left: 284px;
+    margin-top: 60px;
 }
 
 .session h1 {
     font-size: 28px;
     font-weight: 600;
-    background: initial; /* Оставляем заголовок без фона */
+    background: initial;
 }
 
 .stats-container,
 .data-table,
 .table-container,
 .show-more {
-    background: var(--dropdown-menu-color); /* Задаем фон всем необходимым элементам */
+    background: var(--dropdown-menu-color);
 }
 
 .stats-container {

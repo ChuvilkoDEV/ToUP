@@ -1,11 +1,15 @@
 .admin-header {
-    width: 100%;
+    width: calc(100% - 284px); /* Учитываем ширину Sidebar */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     background-color: var(--dropdown-menu-color);
     border-bottom: 1px solid var(--task-card-border);
+    position: fixed;
+    top: 0;
+    left: 284px; /* Смещаем Header вправо на ширину Sidebar */
+    z-index: 1000;
 }
 
 .admin-header-left {
