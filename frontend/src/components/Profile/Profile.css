@@ -34,7 +34,6 @@
 .subscription-text {
   flex: 1;
   color: white;
-  /* min-width: 372px; */
 }
 
 .subscription-image {
@@ -224,6 +223,14 @@
 
   .subscription-banner h2 {
     font-size: 40px;
+    width: 100%;
+  }
+
+  .detail-item {
+    width: 100%;
+  }
+
+  .subscription-button {
     width: 100%;
   }
 }

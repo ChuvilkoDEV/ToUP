@@ -190,7 +190,8 @@
 @media (max-width: 800px) {
 
     .task-card {
-        width: 189px;
+        width: 100%;
+        max-width: 189px;
     }
 
     .task-card-header {
@@ -199,5 +200,21 @@
 
     .task-title {
         font-size: 14px;
+    }
+}
+
+
+@media (max-width: 429px) {
+
+    .task-card {
+        width: 161px;
+    }
+
+    .task-card-header {
+        width: 139px;
+    }
+
+    .task-title img {
+        margin-right: 0;
     }
 }

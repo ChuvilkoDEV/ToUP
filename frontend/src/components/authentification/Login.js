@@ -18,13 +18,14 @@ const LoginForm = ({ onClose, onLoginSuccess, onSwitchToRegister }) => {
             if (response.data.status === false) {
                 setError(response.data.msg);
             } else {
+                console.log(response)
                 localStorage.setItem('token', response.data.token);
                 onLoginSuccess();
                 onClose();
             }
         } catch (err) {
             console.error(err);
-            setError('Ошибка при авторизации');
+            setError(`Ошибка при авторизации: ${err}`);
         }
     };
 

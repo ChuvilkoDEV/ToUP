@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Statistics from './Statistics';
 import AccountTable from './AccountTable';
+import Sessions from './Sessions';
 import Sidebar from './Sidebar';
 import AdminHeader from './Admin.Header';
 import './AdminPanel.css';
@@ -24,6 +25,7 @@ function AdminPanel() {
       <div className='right-sidebar'>
         <AdminHeader activeMenu={activeMenu} />
         <div className="main-content-area">
+          <Sessions />
           {/* <Statistics />
           <AccountTable /> */}
         </div>
