@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
-import { useTable } from 'react-table';
+import React from 'react';
+import SessionsTable from './SessionsTable';
 import './Sessions.css';
 
-const data = [
+const data1 = [
   { id: 1, status: 'Бан', filename: '123856793', group: 'Test', category: 'Default', date: '2024-06-22 00:21:00' },
   { id: 2, status: 'Работает', filename: '123856793', group: 'Test', category: 'Default', date: '2024-06-22 00:21:00' },
   { id: 3, status: 'Прокси', filename: '123856793', group: 'Test', category: 'Default', date: '2024-06-22 00:21:00' },
   { id: 4, status: 'Бан', filename: '123856793', group: 'Test', category: 'Default', date: '2024-06-22 00:21:00' },
   { id: 5, status: 'Работает', filename: '123856793', group: 'Test', category: 'Default', date: '2024-06-22 00:21:00' },
+];
+
+const data2 = [
+  { id: 6, status: 'Бан', filename: '123856793', group: 'Test', category: 'Default', date: '2024-06-22 00:21:00' },
+  { id: 7, status: 'Работает', filename: '123856793', group: 'Test', category: 'Default', date: '2024-06-22 00:21:00' },
+  { id: 8, status: 'Прокси', filename: '123856793', group: 'Test', category: 'Default', date: '2024-06-22 00:21:00' },
+  { id: 9, status: 'Бан', filename: '123856793', group: 'Test', category: 'Default', date: '2024-06-22 00:21:00' },
+  { id: 10, status: 'Работает', filename: '123856793', group: 'Test', category: 'Default', date: '2024-06-22 00:21:00' },
 ];
 
 const columns = [
@@ -57,70 +65,12 @@ const columns = [
 ];
 
 function Sessions() {
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({ columns, data });
-
-  const [activeStat, setActiveStat] = useState('total');
-
-  const stats = [
-    { label: 'Всего 8461', key: 'total' },
-    { label: 'Работают 4764', key: 'active' },
-    { label: 'Восстановлено 1052', key: 'restored' },
-    { label: 'Забанено 2644', key: 'banned' },
-    { label: 'Прокси 1', key: 'proxy' },
-  ];
-
-  const handleStatClick = (key) => {
-    setActiveStat(key);
-  };
 
   return (
-    <div className="session">
-      <h1>Список моего аккаунта</h1>
-      <div className="stats">
-        {stats.map(stat => (
-          <span
-            key={stat.key}
-            className={`stat-item ${activeStat === stat.key ? 'active' : ''}`}
-            onClick={() => handleStatClick(stat.key)}
-          >
-            {stat.label}
-          </span>
-        ))}
-      </div>
-      <button className="refresh-btn">🔄</button>
-      <div className="table-container">
-        <table {...getTableProps()} className="table">
-          <thead>
-            {headerGroups.map(headerGroup => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map(column => (
-                  <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map(row => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map(cell => (
-                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <button className="show-more">Показать еще 8456</button>
-    </div>
+    <>
+      <SessionsTable columns={columns} data={data1} title="Список моего аккаунта" />
+      <SessionsTable columns={columns} data={data2} title="Список всех аккаунтов" />
+    </>
   );
 }
 
