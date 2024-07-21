@@ -35,20 +35,25 @@
     height: 45px;
     padding: 5px;
     border-radius: 10px;
-    background-color: var(--search-field);
+    /* background-color: var(--search-field); */
     align-items: center;
+}
+
+.sessions-checkbox {
+    background: none;
 }
 
 .stat-item {
     cursor: pointer;
-    padding: 8.5px 15px;
+    padding: 5px 15px;
     border-radius: 5px;
     font-size: 14px;
     font-weight: 400;
 }
 
 .stat-item.active {
-    background-color: white;
+    background-color: var(--search-field);
+    border: 1px solid #2D8EFF;
     color: #2D8EFF;
 }
 
@@ -103,14 +108,6 @@
 .table thead th {
     background-color: var(--search-field);
     font-weight: 400;
-}
-
-.table tbody tr:nth-child(odd) {
-    background-color: white;
-}
-
-.table tbody tr:nth-child(even) {
-    background-color: #f7f7f9;
 }
 
 .status {

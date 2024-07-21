@@ -91,3 +91,9 @@ body {
     border: 1px solid var(--task-card-border);
     border-radius: 10px;
 }
+
+@media (max-width: 800px) { 
+    .sidebar {
+        display: none;
+    }
+}

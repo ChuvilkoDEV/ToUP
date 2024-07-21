@@ -8,15 +8,25 @@ const images = ImageUtils.importAllImages(require.context('@assets/admin', false
 function AdminHeader({ activeMenu }) {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
-  const HeaderLeft = ({ activeMenu }) => (
-    <div className="admin-header-left">
+  const HeaderLeftDesktop = ({ activeMenu }) => (
+    <div className="admin-header-desktop-left">
       <img src={images[`${activeMenu.logo}.svg`]} alt="logo" />
       {activeMenu.title}
     </div>
   );
 
-  const HeaderRight = () => (
-    <div className="admin-header-content">
+  const HeaderLeftMobile = () => (
+    <div className="admin-header-mobile-left">
+      <h1 className="admin-header-mobile-title">
+        T
+        <img src={images['telegram.svg']} alt="logo" />
+        UP
+      </h1>
+    </div>
+  );
+
+  const HeaderRightDesktop = () => (
+    <div className="admin-header-desktop-content">
       <input type="text" placeholder="Поиск..." className="admin-search-input" />
       <img src={images['lightTheme.svg']} alt="logo" className="admin-theme-toggle" onClick={toggleTheme} />
       <div className="admin-divider"></div>
@@ -25,13 +35,17 @@ function AdminHeader({ activeMenu }) {
         <span className="admin-header-user-name">Евгений</span>
         <span className="admin-header-role">Админ</span>
       </div>
+      <div className='admin-header-hamburger-menu'>
+        <img src={images['hamburger.svg']} alt="logo" />
+      </div>
     </div>
   );
 
   return (
     <div className="admin-header">
-      <HeaderLeft activeMenu={activeMenu} />
-      <HeaderRight />
+      <HeaderLeftDesktop activeMenu={activeMenu} />
+      <HeaderLeftMobile />
+      <HeaderRightDesktop />
     </div>
   );
 }

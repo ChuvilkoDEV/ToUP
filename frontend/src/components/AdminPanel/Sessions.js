@@ -23,7 +23,7 @@ const columns = [
     Header: '',
     accessor: 'select',
     Cell: ({ row }) => (
-      <input type="checkbox" />
+      <input type="checkbox" className='sessions-checkbox'/>
     ),
   },
   {
