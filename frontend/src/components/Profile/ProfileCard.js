@@ -14,7 +14,7 @@ const ProfileCard = ({ title, text, icon, link }) => {
   const hoverIcon2 = `${icon}2Hover.svg`;
 
   const cardContent = (
-    <div
+    <Link
       className="profile-card"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
@@ -35,16 +35,15 @@ const ProfileCard = ({ title, text, icon, link }) => {
           className="profile-card-icon2"
         />
       </div>
-    </div>
+    </Link>
   );
 
-  return link ? (
-    <Link to={link} className="profile-card-link">
-      {cardContent}
-    </Link>
-  ) : (
-    cardContent
-  );
+  return cardContent;
+  // (
+  //   <Link to={link ? link : '#'} className="profile-card-link">
+  //     {cardContent}
+  //   </Link>
+  // )
 };
 
 export default ProfileCard;
