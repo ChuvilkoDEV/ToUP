@@ -25,7 +25,7 @@ function AdminPanel() {
       <div className='right-sidebar'>
         <AdminHeader activeMenu={activeMenu} />
         <div className="main-content-area">
-          {/* <Sessions /> */}
+          <Sessions />
           {/* <Statistics />
           <AccountTable /> */}
         </div>

@@ -20,6 +20,10 @@
     gap: 10px;
 }
 
+.admin-header-mobile-left {
+    display: none
+}
+
 .admin-header-desktop-content {
     display: flex;
     align-items: center;
@@ -87,6 +91,10 @@
 
     .admin-header-desktop-left {
         display: none;
+    }
+
+    .admin-header-mobile-left {
+        display: block;
     }
 
     .admin-header-mobile-title {

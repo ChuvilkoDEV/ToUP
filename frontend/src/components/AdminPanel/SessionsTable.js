@@ -32,21 +32,24 @@ function SessionsTable({ columns, data, title }) {
       <div className='stats-container'>
         <div className="stats">
           {stats.map(stat => (
-            <span
+            <div
               key={stat.key}
               className={`stat-item ${activeStat === stat.key ? 'active' : ''}`}
               onClick={() => handleStatClick(stat.key)}
             >
               {stat.label}
-            </span>
+            </div>
           ))}
         </div>
-        <button className="refresh-btn">
-          <img src={images['refresh.svg']} alt="logo" />
-        </button>
         <div className='button-group'>
-          <img src={images['search.svg']} alt="search" />
-          <img src={images['sort.svg']} alt="sort" />
+          <img src={images['refresh.svg']} alt="logo" className="refresh-btn" />
+          <input type="text" placeholder="Поиск пользователей" className="admin-session-search" />
+          <div className='admin-session-button'>
+            <img src={images['search.svg']} alt="search" />
+          </div>
+          <div className='admin-session-button'>
+            <img src={images['sort.svg']} alt="sort" />
+          </div>
         </div>
       </div>
       <div className="data-table">
