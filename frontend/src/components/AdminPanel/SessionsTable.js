@@ -53,7 +53,7 @@ function SessionsTable({ columns, data, title }) {
         </div>
       </div>
       <div className="data-table">
-        <div className="table-container">
+        <div className="table-wrapper">
           <table {...getTableProps()} className="table">
             <thead>
               {headerGroups.map(headerGroup => (

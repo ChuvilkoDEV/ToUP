@@ -74,7 +74,7 @@
   background-color: var(--search-field);
   border-radius: 10px;
   border: 1px solid var(--task-card-border);
-  display: flex;    
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -89,8 +89,14 @@
   overflow: hidden;
 }
 
+.table-wrapper {
+  overflow-x: auto;
+}
+
 .table {
   width: 100%;
+  min-width: 600px;
+  /* Minimum width for the table */
   border-collapse: collapse;
   border-radius: 10px;
   margin-bottom: 0 !important;
@@ -160,10 +166,11 @@
   padding: 0;
   cursor: pointer;
   color: #2D8EFF;
+  background-color: var(--overlay-back);
   border: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .session {
     margin-left: 0px;
     margin-top: 75px;
@@ -175,5 +182,9 @@
 
   .stat-item {
     padding: 5px 10px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
   }
 }
