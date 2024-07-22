@@ -9,20 +9,21 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
+import dragDataPlugin from 'chartjs-plugin-dragdata';
 import InputField from '../shared/InputField';
 import { Line } from 'react-chartjs-2';
 
 import ImageUtils from '../imageUtils';
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
-// Регистрация необходимых компонентов Chart.js
 ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
   Tooltip,
-  Legend
+  Legend,
+  dragDataPlugin // Регистрация плагина
 );
 
 const TaskSettings = ({ handleTaskSettingMenu }) => {
@@ -39,6 +40,7 @@ const TaskSettings = ({ handleTaskSettingMenu }) => {
         borderColor: '#007bff',
         backgroundColor: '#007bff',
         tension: 0.1,
+        draggable: true,
       },
     ],
   };
@@ -51,6 +53,20 @@ const TaskSettings = ({ handleTaskSettingMenu }) => {
           title: () => 'Интервал 22',
           label: (context) => 'Интервал 22',
         },
+      },
+      dragData: {
+        round: 1,
+        showTooltip: true,
+        onDragStart: function (e, datasetIndex, index, value) {
+          console.log(`Start dragging point ${index}`);
+        },
+        onDrag: function (e, datasetIndex, index, value) {
+          console.log(`Dragging point ${index}`);
+        },
+        onDragEnd: function (e, datasetIndex, index, value) {
+          console.log(`End dragging point ${index}`);
+        },
+        dragX: true,
       },
     },
     scales: {

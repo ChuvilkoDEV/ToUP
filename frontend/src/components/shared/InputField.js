@@ -45,8 +45,10 @@ const InputField = ({ label, type, placeholder, logo, value, onChange, options =
     )
 
     const types = {
-        'select': <SelectTypeField />,
         'text': <TextTypeField />,
+        'email': <TextTypeField />,
+        'password': <TextTypeField />,
+        'select': <SelectTypeField />,
         'select-input': <SelectInputTypeField />,
     };
 
