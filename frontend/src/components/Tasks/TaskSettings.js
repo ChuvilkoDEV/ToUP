@@ -1,81 +1,19 @@
-import React, { useState } from 'react';
-import './TaskSettings.css';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Legend
-} from 'chart.js';
+import React, { useRef, useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
+import Chart from 'chart.js/auto';
 import dragDataPlugin from 'chartjs-plugin-dragdata';
 import InputField from '../shared/InputField';
-import { Line } from 'react-chartjs-2';
+import './TaskSettings.css'
 
 import ImageUtils from '../imageUtils';
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Legend,
-  dragDataPlugin // Регистрация плагина
-);
+Chart.register(dragDataPlugin);
 
 const TaskSettings = ({ handleTaskSettingMenu }) => {
+  const chartRef = useRef(null);
   const [timeUnit, setTimeUnit] = useState('Дни');
   const [interval, setInterval] = useState('');
-
-  const data = {
-    labels: ['14:23', '14:35', '15:00', '15:56', '17:23', '17:47', '20:58'],
-    datasets: [
-      {
-        label: 'Интервал',
-        data: [100, 200, 300, 400, 500, 600, 700, 800],
-        fill: false,
-        borderColor: '#007bff',
-        backgroundColor: '#007bff',
-        tension: 0.1,
-        draggable: true,
-      },
-    ],
-  };
-
-  const options = {
-    responsive: true,
-    plugins: {
-      tooltip: {
-        callbacks: {
-          title: () => 'Интервал 22',
-          label: (context) => 'Интервал 22',
-        },
-      },
-      dragData: {
-        round: 1,
-        showTooltip: true,
-        onDragStart: function (e, datasetIndex, index, value) {
-          console.log(`Start dragging point ${index}`);
-        },
-        onDrag: function (e, datasetIndex, index, value) {
-          console.log(`Dragging point ${index}`);
-        },
-        onDragEnd: function (e, datasetIndex, index, value) {
-          console.log(`End dragging point ${index}`);
-        },
-        dragX: true,
-      },
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        max: 1000,
-      },
-    },
-  };
 
   const handleTimeUnitChange = (e) => {
     setTimeUnit(e.target.value);
@@ -84,6 +22,44 @@ const TaskSettings = ({ handleTaskSettingMenu }) => {
   const handleIntervalChange = (e) => {
     setInterval(e.target.value);
   };
+
+  const [data, setData] = useState({
+    labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
+    datasets: [
+      {
+        label: 'Dataset 1',
+        data: [300, 400, 450, 500, 300, 200, 400, 600, 700, 800, 600, 500, 700, 800, 600, 400, 500, 600, 700, 800, 700, 600, 500, 400],
+        borderColor: 'blue',
+        fill: true,
+        backgroundColor: 'rgba(0, 123, 255, 0.2)',
+        round: 1,
+      },
+    ],
+  });
+
+  useEffect(() => {
+    const chart = chartRef.current?.chartInstance;
+    if (chart) {
+      chart.options.plugins.dragData = {
+        onDragEnd: (e, datasetIndex, index, value) => {
+          const newData = [...data.datasets[0].data];
+          newData[index] = value;
+          setData((prevData) => ({
+            ...prevData,
+            datasets: [
+              {
+                ...prevData.datasets[0],
+                data: newData,
+              },
+            ],
+          }));
+        },
+        round: 1,
+        showTooltip: true,
+      };
+      chart.update();
+    }
+  }, []);
 
   return (
     <div className="task-settings">
@@ -123,7 +99,35 @@ const TaskSettings = ({ handleTaskSettingMenu }) => {
           ]}
         />
       </div>
-      <Line data={data} options={options} />
+      <Line
+        ref={chartRef}
+        data={data}
+        options={{
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              callbacks: {
+                label: (context) => ` ${context.raw}`,
+              },
+            },
+            dragData: {
+              round: 1,
+              showTooltip: true,
+            },
+          },
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+        }}
+      />
       <div className="task-settings-footer">
         <button className="reset-button">Сбросить настройки</button>
         <button className="save-button">Сохранить изменения</button>
