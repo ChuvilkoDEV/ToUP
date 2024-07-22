@@ -1,10 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import BlueRectangle from './BlueRectangle'
 import TaskForm from './TaskForm';
 import './TaskWindow.css';
+import TaskSettings from './TaskSettings'
 
 
 const TaskWindow = ({ onClose }) => {
+    const [isTaskSettingOpen, setIsTaskSettingOpen] = useState(false);
+
+    const handleTaskSettingMenu = () => {
+        setIsTaskSettingOpen(!isTaskSettingOpen);
+    };
+
     useEffect(() => {
         const handleMouseDown = (e) => {
             if (!e.target.closest('.task-window')) {
@@ -22,8 +29,13 @@ const TaskWindow = ({ onClose }) => {
         <div className="task-window-overlay">
             <div className="task-window">
                 <div className="task-content">
-                    <TaskForm onClose={onClose} />
-                    <BlueRectangle />
+                    {isTaskSettingOpen ?
+                        <TaskSettings handleTaskSettingMenu={handleTaskSettingMenu} /> :
+                        <>
+                            <TaskForm onClose={onClose} handleTaskSettingMenu={handleTaskSettingMenu} />
+                            <BlueRectangle />
+                        </>
+                    }
                 </div>
             </div>
         </div>

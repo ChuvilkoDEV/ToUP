@@ -96,7 +96,6 @@
 .table {
   width: 100%;
   min-width: 600px;
-  /* Minimum width for the table */
   border-collapse: collapse;
   border-radius: 10px;
   margin-bottom: 0 !important;

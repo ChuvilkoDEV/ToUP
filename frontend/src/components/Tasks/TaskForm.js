@@ -5,34 +5,13 @@ import Subscribers from './Subscribers';
 import Reactions from './Reactions';
 import Views from './Views'
 import './TaskForm.css'
-
 import ImageUtils from '../imageUtils';
+
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
-const TaskForm = ({ onClose }) => {
-    const [taskDescription, setTaskDescription] = useState('');
-    const [error, setError] = useState(null);
+const TaskForm = ({ onClose, handleTaskSettingMenu }) => {
     const [isAutoTask, setIsAutoTask] = useState(false);
     const [selectedType, setSelectedType] = useState('subscribers');
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (false) {
-            setError('Пожалуйста, заполните все поля.');
-            return;
-        }
-        try {
-            const response = await axios.post('http://api-url.com/api/task', {
-                taskDescription,
-                isAutoTask
-            });
-            console.log(response.data);
-            onClose();
-        } catch (err) {
-            console.error(err);
-            setError('Ошибка при создании задачи.');
-        }
-    };
 
     const handleTaskTypeClick = (type) => {
         setIsAutoTask(type === 'auto');
@@ -42,8 +21,8 @@ const TaskForm = ({ onClose }) => {
         setSelectedType(e.target.value);
     };
 
-    return (
-        <div className="task-form">
+    const TaskCreationSection = () => (
+        <>
             <h2>Создайте задачу за пару кликов</h2>
             <div className='type-task-buttons-container'>
                 <button
@@ -84,17 +63,19 @@ const TaskForm = ({ onClose }) => {
                     { label: 'Просмотры', value: 'views' },
                 ]}
             />
+        </>
+    );
+
+    return (
+        <div className="task-form">
+            <TaskCreationSection />
             {selectedType === 'subscribers' ?
                 <Subscribers />
                 : selectedType === 'reactions' ?
-                    <Reactions />
+                    <Reactions handleTaskSettingMenu={handleTaskSettingMenu} />
                     :
-                    <Views />
+                    <Views handleTaskSettingMenu={handleTaskSettingMenu} />
             }
-            <button type="submit" className='task-form-submit-button'>
-                Запустить задачу
-            </button>
-            {error && <p className="error">{error}</p>}
         </div>
     );
 };

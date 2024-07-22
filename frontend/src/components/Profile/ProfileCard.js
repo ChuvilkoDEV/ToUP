@@ -15,6 +15,7 @@ const ProfileCard = ({ title, text, icon, link }) => {
 
   const cardContent = (
     <Link
+      to={link ? link : '#'}
       className="profile-card"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
@@ -39,11 +40,6 @@ const ProfileCard = ({ title, text, icon, link }) => {
   );
 
   return cardContent;
-  // (
-  //   <Link to={link ? link : '#'} className="profile-card-link">
-  //     {cardContent}
-  //   </Link>
-  // )
 };
 
 export default ProfileCard;
