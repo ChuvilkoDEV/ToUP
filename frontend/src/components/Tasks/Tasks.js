@@ -3,7 +3,7 @@ import Header from '@components/Header/Header';
 import Footer from '@components/Footer/Footer';
 import TaskCard from './TaskCard';
 import tasksData from './tasksData';
-import TaskWindow from './TaskWindow';
+import TaskWindow from './AddTask/TaskWindow';
 import './Tasks.css';
 
 import ImageUtils from '../imageUtils';

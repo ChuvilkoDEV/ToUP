@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import InputField from '../shared/InputField';
-import ImageUtils from '../imageUtils';
+import InputField from '../../../shared/InputField';
+import ImageUtils from '../../../imageUtils';
 
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 

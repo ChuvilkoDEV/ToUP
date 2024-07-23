@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import InputField from '../shared/InputField';
+import InputField from '../../../shared/InputField';
 
-import ImageUtils from '../imageUtils';
+import ImageUtils from '../../../imageUtils';
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
-export default function Subscribers({ setIsTaskSettingOpen }) {
+export default function Subscribers() {
   const [error, setError] = useState(null);
   const [spreadValue, setSpreadValue] = useState('');
   const [subscriberCount, setSubscriberCount] = useState('');
@@ -24,9 +24,9 @@ export default function Subscribers({ setIsTaskSettingOpen }) {
             onChange={(e) => setSpreadValue(e.target.value)}
           />
           <InputField
-            label="Кол-во просмотров"
+            label="Кол-во подписчиков"
             type="text"
-            placeholder="Кол-во просмотров"
+            placeholder="Кол-во подписчиков"
             logo={images['users-alt.svg']}
             value={subscriberCount}
             onChange={(e) => setSubscriberCount(e.target.value)}
@@ -49,14 +49,9 @@ export default function Subscribers({ setIsTaskSettingOpen }) {
           onChange={(e) => setTaskTime(e.target.value)}
         />
       </div>
-      <div className='task-form-btn-box'>
-        <button type="submit" className='task-form-submit-button'>
-          Запустить задачу
-        </button>
-        <div className='advanced-setting-btn'>
-          <img src={images['settings.svg']} alt="logo" />
-        </div>
-      </div>
+      <button type="submit" className='task-form-submit-button'>
+        Запустить задачу
+      </button>
       {error && <p className="error">{error}</p>}
     </>
   );

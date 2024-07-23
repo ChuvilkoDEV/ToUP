@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import BlueRectangle from './BlueRectangle'
 import TaskForm from './TaskForm';
 import './TaskWindow.css';
-import TaskSettings from './TaskSettings'
+import TaskSettings from './AdvancedSettings/TaskSettings'
 
 
 const TaskWindow = ({ onClose }) => {

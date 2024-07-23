@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import InputField from '../shared/InputField';
-import Subscribers from './Subscribers';
-import Reactions from './Reactions';
-import Views from './Views'
+import InputField from '../../shared/InputField';
+import Subscribers from './TaskTypes/Subscribers';
+import Reactions from './TaskTypes/Reactions';
+import Views from './TaskTypes/Views'
 import './TaskForm.css'
-import ImageUtils from '../imageUtils';
+import ImageUtils from '../../imageUtils';
 
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 

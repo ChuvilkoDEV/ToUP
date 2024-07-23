@@ -1,0 +1,41 @@
+.vertical-slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50px;
+  height: 300px;
+}
+
+.vertical-slider {
+  -webkit-appearance: none;
+  background: transparent;
+  /* Прозрачный фон, чтобы рельсы были невидимыми */
+  transform: rotate(-90deg);
+  /* Поворачиваем слайдер горизонтально */
+  margin: 20px 0;
+  width: 100%;
+  height: 300px;
+}
+
+.vertical-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.vertical-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.value-display {
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: bold;
+}

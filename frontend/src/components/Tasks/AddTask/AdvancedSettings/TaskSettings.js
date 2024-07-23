@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import InputField from '../shared/InputField';
+import InputField from '../../../shared/InputField';
 import './TaskSettings.css';
-import ImageUtils from '../imageUtils';
+import ImageUtils from '../../../imageUtils';
 import ChartComponent from './ChartComponent'; // Импортируйте новый компонент
 
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));

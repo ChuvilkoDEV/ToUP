@@ -9,6 +9,9 @@ import Home from '@components/Home/Home';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+import ChartComponent from './components/Tasks/AddTask/AdvancedSettings/ChartComponent';
+
 function App() {
   const { theme } = useContext(ThemeContext);
   const { isAuthenticated, isAdmin } = useContext(AuthContext);
@@ -23,6 +26,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/" />} />
           <Route path="/tasks" element={isAuthenticated ? <Tasks /> : <Navigate to="/" />} />
+          <Route path="/test" element={
+            <ChartComponent />
+          } />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
@@ -37,3 +43,11 @@ export default function RootApp() {
     </AuthProvider>
   );
 }
+
+
+// display: flex;
+// gap: auto;
+// width: 100%;
+// flex-wrap: nowrap;
+// flex-direction: row;
+// justify-content: space-between;

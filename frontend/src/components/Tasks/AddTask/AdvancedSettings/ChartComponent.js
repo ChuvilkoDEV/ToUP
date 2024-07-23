@@ -12,7 +12,7 @@ const ChartComponent = ({ bots }) => {
     datasets: [
       {
         label: 'Bots',
-        data: Array(24).fill(bots / 24), // Создает массив из 24 равных частей
+        data: Array.from({ length: 24 }, (_, i) => i * i),
         borderColor: 'rgba(75,192,192,1)',
         borderWidth: 2,
         pointBackgroundColor: 'white',
@@ -22,14 +22,23 @@ const ChartComponent = ({ bots }) => {
     ],
   });
 
+  const updateYAxisMax = (chart, newData) => {
+    const maxValue = Math.max(...newData);
+    const yAxisMax = maxValue * 1.2;
+    console.log(yAxisMax);
+    chart.options.scales.y.max = yAxisMax;
+    chart.update();
+  };
+
   useEffect(() => {
     const chart = chartRef.current?.chartInstance;
     if (chart) {
       chart.options.plugins.dragData = {
         onDragEnd: (e, datasetIndex, index, value) => {
-          const roundedValue = Math.round(value);
+          const boundedValue = Math.max(0, Math.min(100, Math.round(value)));
           const newData = [...data.datasets[0].data];
-          newData[index] = roundedValue;
+          newData[index] = boundedValue;
+          console.log(1);
           setDataState((prevData) => ({
             ...prevData,
             datasets: [
@@ -39,11 +48,19 @@ const ChartComponent = ({ bots }) => {
               },
             ],
           }));
+          updateYAxisMax(chart, newData);
         },
         round: 1,
         showTooltip: true,
       };
       chart.update();
+    }
+  }, [data]);
+
+  useEffect(() => {
+    const chart = chartRef.current?.chartInstance;
+    if (chart) {
+      updateYAxisMax(chart, data.datasets[0].data);
     }
   }, [data]);
 
