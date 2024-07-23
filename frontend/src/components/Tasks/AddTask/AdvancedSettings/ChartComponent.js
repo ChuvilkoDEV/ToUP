@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import dragDataPlugin from 'chartjs-plugin-dragdata';
@@ -12,7 +12,7 @@ const ChartComponent = ({ bots }) => {
     datasets: [
       {
         label: 'Bots',
-        data: Array.from({ length: 24 }, (_, i) => i * i),
+        data: Array.from({ length: 24 }, (_, i) => i),
         borderColor: 'rgba(75,192,192,1)',
         borderWidth: 2,
         pointBackgroundColor: 'white',
@@ -22,47 +22,23 @@ const ChartComponent = ({ bots }) => {
     ],
   });
 
-  const updateYAxisMax = (chart, newData) => {
-    const maxValue = Math.max(...newData);
-    const yAxisMax = maxValue * 1.2;
-    console.log(yAxisMax);
-    chart.options.scales.y.max = yAxisMax;
-    chart.update();
+  const handleDragEnd = (e, datasetIndex, index, value) => {
+    console.log(`Точка перемещена: datasetIndex=${datasetIndex}, index=${index}, value=${value}`);
+
+    // Обновление данных в состоянии
+    const newData = { ...data };
+    newData.datasets[datasetIndex].data[index] = value;
+    setDataState(newData);
+
+    // Обновление максимального значения оси y
+    const chartInstance = chartRef.current;
+    console.log(chartInstance)
+    if (chartInstance) {
+      chartInstance.options.scales.y.max = 100; // Пример фиксированного максимального значения
+      chartInstance.options.scales.y.min = 0;   // Пример фиксированного минимального значения
+      chartInstance.update();
+    }
   };
-
-  useEffect(() => {
-    const chart = chartRef.current?.chartInstance;
-    if (chart) {
-      chart.options.plugins.dragData = {
-        onDragEnd: (e, datasetIndex, index, value) => {
-          const boundedValue = Math.max(0, Math.min(100, Math.round(value)));
-          const newData = [...data.datasets[0].data];
-          newData[index] = boundedValue;
-          console.log(1);
-          setDataState((prevData) => ({
-            ...prevData,
-            datasets: [
-              {
-                ...prevData.datasets[0],
-                data: newData,
-              },
-            ],
-          }));
-          updateYAxisMax(chart, newData);
-        },
-        round: 1,
-        showTooltip: true,
-      };
-      chart.update();
-    }
-  }, [data]);
-
-  useEffect(() => {
-    const chart = chartRef.current?.chartInstance;
-    if (chart) {
-      updateYAxisMax(chart, data.datasets[0].data);
-    }
-  }, [data]);
 
   return (
     <Line
@@ -72,6 +48,8 @@ const ChartComponent = ({ bots }) => {
         scales: {
           y: {
             beginAtZero: true,
+            min: 0,  // Задайте минимальное значение
+            max: 100 // Задайте максимальное значение
           },
         },
         plugins: {
@@ -86,6 +64,7 @@ const ChartComponent = ({ bots }) => {
           dragData: {
             round: 1,
             showTooltip: true,
+            onDragEnd: handleDragEnd,
           },
         },
         interaction: {

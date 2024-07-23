@@ -7,8 +7,9 @@ import ChartComponent from './ChartComponent'; // Импортируйте но�
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
 const TaskSettings = ({ handleTaskSettingMenu }) => {
-  const [timeUnit, setTimeUnit] = useState('Дни');
-  const [interval, setInterval] = useState('');
+  const [time, setTime] = useState('1');
+  const [timeUnit, setTimeUnit] = useState('days');
+  const [interval, setInterval] = useState(1);
 
   const HeaderTitle = () => {
     return (
@@ -23,6 +24,10 @@ const TaskSettings = ({ handleTaskSettingMenu }) => {
         </div>
       </>
     )
+  };
+
+  const handleTimeChange = (e) => {
+    setTime(e.target.value);
   };
 
   const handleTimeUnitChange = (e) => {
@@ -40,8 +45,12 @@ const TaskSettings = ({ handleTaskSettingMenu }) => {
         type="select-input"
         placeholder="Выберите..."
         logo={images['todo.svg']}
-        value={timeUnit}
-        onChange={handleTimeUnitChange}
+        value={time}
+        onChange={handleTimeChange}
+        includeField={{
+          value: timeUnit,
+          onChange: handleTimeUnitChange,
+        }}
         options={[
           { label: 'Часы', value: 'hours' },
           { label: 'Дни', value: 'days' },
@@ -53,8 +62,8 @@ const TaskSettings = ({ handleTaskSettingMenu }) => {
         type="select"
         placeholder="Выберите..."
         logo={images['todo.svg']}
-        value={timeUnit}
-        onChange={handleTimeUnitChange}
+        value={interval}
+        onChange={handleIntervalChange}
         options={[
           { label: '1', value: '1' },
           { label: '2', value: '2' },
@@ -69,7 +78,9 @@ const TaskSettings = ({ handleTaskSettingMenu }) => {
     <div className="task-settings">
       <HeaderTitle />
       <InputFields />
-      <ChartComponent bots={1000} />
+      <div className='chart-content'>
+        <ChartComponent bots={1000} />
+      </div>
       <div className="task-settings-footer">
         <button className="reset-button">Сбросить настройки</button>
         <button className="save-button">Сохранить изменения</button>
