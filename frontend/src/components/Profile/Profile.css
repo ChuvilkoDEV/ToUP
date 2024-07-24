@@ -16,7 +16,7 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-info-block);
+  background-color: var(--profile-info-block);
   padding: 20px;
   margin: 20px 0;
   border-radius: 10px;
@@ -89,7 +89,7 @@
 
 .subscription-button {
   background-color: white;
-  color: var(--color-info-block);
+  color: var(--profile-info-block);
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -151,7 +151,6 @@
   justify-content: center;
   margin-right: 20px;
   width: 100%;
-  /* height: 100%; */
 }
 
 .profile-card-content h3 {
@@ -209,11 +208,6 @@
 }
 
 @media (max-width: 800px) {
-
-  /* .profile-container {
-    padding: 0 20px;
-  } */
-
   .profile-header h2 {
     font-size: 22px;
   }
@@ -234,4 +228,12 @@
   .profile-card-icon2 {
     margin-right: 8px;
   }
+}
+
+:root {
+  --profile-info-block: #2D8EFF;
+}
+
+[data-theme='dark'] {
+  --profile-info-block: #2a78d6;
 }

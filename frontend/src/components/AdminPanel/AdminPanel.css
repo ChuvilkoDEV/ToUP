@@ -8,7 +8,7 @@
 
 .main-content-area {
     padding: 20px;
-    background-color: var(--overlay-back);
+    background-color: var(--admin-panel-background);
     flex: 1;
 }
 
@@ -20,5 +20,12 @@
     .main-content-area {
         padding: 0;
     }
+}
 
+:root {
+    --admin-panel-background: #F5F5F5;
+}
+
+[data-theme='dark'] {
+    --admin-panel-background: #01061B;
 }

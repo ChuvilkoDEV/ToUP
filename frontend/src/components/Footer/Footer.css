@@ -20,9 +20,11 @@
 }
 
 .footer-button {
-  background-color: #1a73e8;
-  color: white;
-  border: none;
+  width: 199px;
+  height: 46px;
+  background-color: var(--background-color);
+  color: #2D8EFF;
+  border: 1px solid #2D8EFF;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
@@ -37,14 +39,14 @@
 
 .footer-column {
   text-align: left;
+  width: auto;
   max-width: 200px;
-  flex: 1 1 40%;
   margin-bottom: 20px;
-  padding: 10px;
 }
 
 .footer-column h4 {
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 500;
   margin-bottom: 10px;
 }
 
@@ -66,7 +68,7 @@
   }
 }
 
-@media (min-width: 800px) {
+@media (max-width: 800px) {
   .footer-column {
     flex: 1 1 25%;
   }

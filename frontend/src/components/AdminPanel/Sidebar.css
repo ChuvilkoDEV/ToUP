@@ -1,99 +1,111 @@
 html,
 body {
-    height: 100%;
-    margin: 0;
+  height: 100%;
+  margin: 0;
 }
 
 .sidebar {
-    width: 284px;
-    height: 100vh;
-    background-color: var(--dropdown-menu-color);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid var(--task-card-border);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    overflow-y: auto; /* Добавлено для прокрутки, если содержимое Sidebar превышает высоту экрана */
+  width: 284px;
+  height: 100vh;
+  background-color: var(--sidebar-background);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--sidebar-border);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  overflow-y: auto;
 }
 
 .sidebar-header-container {
-    display: flex;
-    align-items: flex-end;
+  display: flex;
+  align-items: flex-end;
 }
 
 .sidebar-header-title {
-    display: flex;
-    align-items: baseline;
-    margin: 0;
-    font-size: 20px;
-    font-weight: 600;
+  display: flex;
+  align-items: baseline;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .sidebar-header-logo {
-    width: 11px;
-    height: 11px;
+  width: 11px;
+  height: 11px;
 }
 
 .sidebar-header hr {
-    margin: 10px 0;
-    border: none;
-    border-top: 1px solid #ccc;
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #ccc;
 }
 
 .sidebar-menu {
-    list-style: none;
-    padding: 0;
-    border-radius: 5px;
-    flex-grow: 1;
+  list-style: none;
+  padding: 0;
+  border-radius: 5px;
+  flex-grow: 1;
 }
 
 .sidebar-menu li {
-    margin-bottom: 10px;
-    text-align: left;
+  margin-bottom: 10px;
+  text-align: left;
 }
 
 .sidebar-menu a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 400;
-    display: block;
-    padding: 10px 15px;
-    border-radius: 3px;
-    display: flex;
-    gap: 10px;
+  text-decoration: none;
+  color: var(--sidebar-link);
+  font-weight: 400;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 3px;
+  display: flex;
+  gap: 10px;
 }
 
 .sidebar-menu a.active,
 .sidebar-menu a:hover {
-    background-color: rgba(45, 142, 255, 0.1);
-    color: #2D8EFF;
-    opacity: 1;
+  background-color: rgba(45, 142, 255, 0.1);
+  color: #2D8EFF;
+  opacity: 1;
 }
 
 
 .sidebar-footer {
-    width: 100%;
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  width: 100%;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .sidebar-footer button {
-    width: 100%;
-    height: 45px;
-    background-color: var(--dropdown-menu-color);
-    color: #2D8EFF;
-    font-weight: 500;
-    border: 1px solid var(--task-card-border);
-    border-radius: 10px;
+  width: 100%;
+  height: 45px;
+  background-color: var(--sidebar-background);
+  color: #2D8EFF;
+  font-weight: 500;
+  border: 1px solid var(--sidebar-border);
+  border-radius: 10px;
 }
 
-@media (max-width: 800px) { 
-    .sidebar {
-        display: none;
-    }
+@media (max-width: 800px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+:root {
+  --sidebar-background: white;
+  --sidebar-border: #EFEFEF;
+  --sidebar-link: #7A7A7A;
+}
+
+[data-theme='dark'] {
+  --sidebar-background: #1A1F32;
+  --sidebar-border: #515151;
+  --sidebar-link: #A3A5AD;
 }

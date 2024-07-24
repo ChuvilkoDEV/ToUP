@@ -1,50 +1,65 @@
 .input-field {
-    width: 100%;
+  width: 100%;
 }
 
 .input-field label {
-    display: block;
-    margin-bottom: 2px;
-    text-align: left;
-    font-size: 14px;
-    font-weight: 400;
+  display: block;
+  margin-bottom: 2px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.8;
 }
+
 .input-container {
-    display: flex;
-    align-items: center;
-    border: 1px solid var(--borders-color);
-    border-radius: 10px;
-    padding: 10px 10px;
-    width: 100%;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    height: 45px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--borders-color);
+  border-radius: 10px;
+  padding: 10px 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  height: 45px;
 }
 
 .input-container img {
-    width: 15px;
-    height: 15px;
-    margin-right: 8px;
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
 }
 
 .input-container .divider {
-    width: 1px;
-    height: 24px;
-    background-color: var(--borders-color);
-    margin-right: 5px;
+  width: 1px;
+  height: 24px;
+  background-color: var(--input-field-borders);
+  margin-right: 5px;
 }
 
-.input-container input, select {
-    border: none;
-    flex: 1;
-    outline: none;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    /* width: 100%; */
+.input-container input,
+select {
+  border: none;
+  border-radius: 10px;
+  flex: 1;
+  outline: none;
+  background-color: var(--input-field-background);
+  color: var(--text-color);
 }
 
 .little-select-field {
-    width: 90px !important;
-    height: 35px;
-    background-color: #F5F5F5;
+  width: 90px !important;
+  height: 35px;
+  background-color: var(--little-input-field);
+}
+
+:root {
+  --little-input-field: #F5F5F5;
+  --input-field-background: white;
+  --input-field-borders: #e2e2e2;
+}
+
+[data-theme='dark'] {
+  --little-input-field: #F5F5F51A;
+  --input-field-background: #1A1F32;
+  --input-field-borders: #2D3142;
 }

@@ -2,132 +2,142 @@
 
 /* Стили для общих элементов окон входа и регистрации */
 .auth-window-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 .auth-window {
-    background: var(--background-color);
-    padding: 10px 8px 10px 20px;
-    border-radius: 20px;
-    width: 850px;
-    height: 600px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
+  background: var(--background-color);
+  padding: 10px 8px 10px 20px;
+  border-radius: 20px;
+  width: 850px;
+  height: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 .auth-content {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 .auth-form {
-    flex: 1;
-    padding-right: 20px;
+  flex: 1;
+  padding-right: 20px;
 }
 
 .auth-form h2 {
-    margin-bottom: 10px;
-    width: 320px;
-    text-align: left;
-    font-size: 28px;
-    font-family: 'EuclidCircularA-Bold', sans-serif;
+  margin-bottom: 10px;
+  width: 320px;
+  text-align: left;
+  font-size: 28px;
+  font-family: 'EuclidCircularA-Bold', sans-serif;
 }
 
 .auth-form input {
-    width: 100%;
-    border-radius: 5px;
-    font-size: 14px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
 .auth-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: var(--color-buttons);
-    color: var(--background-color);
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background-color: #2D8EFF;
+  color: var(--background-color);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 .auth-form p {
-    text-align: left;
-    margin-top: 15px;
+  text-align: left;
+  margin-top: 15px;
 }
 
 .auth-form form {
-    text-align: center;
-    margin-top: 10px;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .text-blue-left {
-    color: var(--color-buttons);
-    text-align: left !important;
-    margin: 0px !important;
+  color: #2D8EFF;
+  text-align: left !important;
+  margin: 0px !important;
 }
 
 .blue-rectangle {
-    background-color: var(--color-info-block);
-    color: white;
-    border-radius: 20px;
-    padding: 20px;
-    width: 382px;
-    height: 580px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
+  background-color: var(--auth-window-info-block);
+  color: white;
+  border-radius: 20px;
+  padding: 20px;
+  width: 382px;
+  height: 580px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 .overlay-text {
-    font-size: 42px;
-    color: #ffffff;
-    line-height: 1.2;
-    z-index: 1000;
-    text-align: left;
-    margin-bottom: 0;
+  font-size: 42px;
+  color: #ffffff;
+  line-height: 1.2;
+  z-index: 1000;
+  text-align: left;
+  margin-bottom: 0;
 }
 
 /* Медиазапрос для мобильных устройств */
 @media (max-width: 768px) {
-    .blue-rectangle {
-        display: none;
-    }
+  .blue-rectangle {
+    display: none;
+  }
 
-    .auth-window {
-        width: 90%;
-        padding: 10px;
-        border-radius: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  .auth-window {
+    width: 90%;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .auth-form {
-        padding-right: 0;
-    }
+  .auth-form {
+    padding-right: 0;
+  }
 
-    .auth-content {
-        flex-direction: column;
-        align-items: stretch;
-    }
+  .auth-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-    .auth-form h2 {
-        margin-bottom: 10px;
-        width: 290px;
-        text-align: left;
-        font-size: 25px;
-    }
+  .auth-form h2 {
+    margin-bottom: 10px;
+    width: 290px;
+    text-align: left;
+    font-size: 25px;
+  }
+}
+
+:root {
+  --auth-window-info-block: #2D8EFF;
+  --auth-info-item: white; 
+}
+
+[data-theme='dark'] {
+  --auth-window-info-block: #2A78D6;
+  --auth-info-item: #3f86da; 
 }

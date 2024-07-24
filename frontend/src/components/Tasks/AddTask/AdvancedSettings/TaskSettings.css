@@ -76,12 +76,12 @@
 }
 
 .reset-button {
-  background-color: var(--background-color);
+  background-color: var(--task-card-background);
   color: var(--color-buttons);
   border: 1px solid var(--color-buttons)
 }
 
 .save-button {
   background-color: var(--color-buttons);
-  color: var(--background-color);
+  color: white;
 }

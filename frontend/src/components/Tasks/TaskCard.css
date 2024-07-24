@@ -18,7 +18,7 @@
     position: relative;
     width: 216px;
     height: 135px;
-    background-image: url('../../assets/tasks/taskCardBackground.svg');
+    background-image: var(--task-card-header-background);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -217,4 +217,12 @@
     .task-title img {
         margin-right: 0;
     }
+}
+
+:root {
+    --task-card-header-background: url('@assets/tasks/taskCardBackground.svg');
+}
+
+[data-theme='dark'] {
+    --task-card-header-background: url('@assets/tasks/taskCardBackgroundDark.svg');
 }

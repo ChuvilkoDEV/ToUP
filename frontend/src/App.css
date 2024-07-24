@@ -42,7 +42,7 @@ body {
 }
 
 :root {
-  --background-color: white;
+  --background-color: white; 
   --borders-color: #e2e2e2;
   --links-color: #333333;
   --form-background: white;
@@ -55,9 +55,6 @@ body {
   --task-card-border: #EFEFEF;
   --overlay-back: #F5F5F5;
   --search-field: #F9F9FA;
-  --status-ban: #FAF0F0;
-  --status-active: #EFFBF2;
-  --status-proxy: #f9effe;
 }
 
 [data-theme='dark'] {
