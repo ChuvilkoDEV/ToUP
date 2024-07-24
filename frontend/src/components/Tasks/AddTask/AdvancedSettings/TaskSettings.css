@@ -8,7 +8,7 @@
   height: 45px;
   padding: 12.5px;
   border-radius: 10px;
-  border: 1px solid #E7EAEE;
+  border: 1px solid var(--task-settings-border);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +38,7 @@
 }
 
 .task-settings-field {
-  margin-bottom: 20px;
+  flex: 1;
 }
 
 .task-settings-field label {
@@ -47,8 +47,9 @@
   font-weight: bold;
 }
 
-.task-settings-field select {
-  width: 200px;
+.task-settings-field select,
+.task-settings-field input {
+  width: 100%;
   padding: 5px;
   border-radius: 4px;
   border: 1px solid #ccc;
@@ -84,4 +85,46 @@
 .save-button {
   background-color: var(--color-buttons);
   color: white;
+}
+
+@media (max-width: 700px) {
+  .task-settings-fields {
+    display: block;
+  }
+
+  .chart-content {
+    height: 275px;
+  }
+}
+
+@media (max-width: 580px) {
+  .task-settings-footer {
+    display: block;
+  }
+
+  .reset-button {
+    margin-bottom: 10px;
+  }
+
+  .chart-content {
+    height: 228px;
+  }
+
+  .task-window {
+    height: 666px;
+  }
+}
+
+@media (max-width: 572px) {
+  .task-window {
+    height: 700px;
+  }
+}
+
+:root {
+  --task-settings-border: #E7EAEE;
+}
+
+[data-theme='dark'] {
+  --task-settings-border: #E7EAEE33;
 }

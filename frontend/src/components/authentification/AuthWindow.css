@@ -1,6 +1,4 @@
 /* AuthWindow.css */
-
-/* Стили для общих элементов окон входа и регистрации */
 .auth-window-overlay {
   position: fixed;
   top: 0;
@@ -15,7 +13,7 @@
 }
 
 .auth-window {
-  background: var(--background-color);
+  background: var(--auth-window-background);
   padding: 10px 8px 10px 20px;
   border-radius: 20px;
   width: 850px;
@@ -55,7 +53,7 @@
   width: 100%;
   padding: 10px;
   background-color: #2D8EFF;
-  color: var(--background-color);
+  color: var(--auth-window-background);
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -134,10 +132,12 @@
 
 :root {
   --auth-window-info-block: #2D8EFF;
+  --auth-window-background: white;
   --auth-info-item: white; 
 }
 
 [data-theme='dark'] {
   --auth-window-info-block: #2A78D6;
+  --auth-window-background: #1A1F32;
   --auth-info-item: #3f86da; 
 }

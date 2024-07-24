@@ -29,11 +29,11 @@
     width: 100%;
 }
 
-
 @media (max-width: 800px) {
     .task-window {
         margin: 20px;
         padding: 20px;
+        width: 90%
     }
 
     .task-form {

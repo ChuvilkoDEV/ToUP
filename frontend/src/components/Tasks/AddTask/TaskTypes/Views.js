@@ -26,7 +26,7 @@ export default function Subscribers({ setIsTaskSettingOpen }) {
           <InputField
             label="Кол-во просмотров"
             type="text"
-            placeholder="Кол-во просмотров"
+            placeholder="Просмотры"
             logo={images['users-alt.svg']}
             value={subscriberCount}
             onChange={(e) => setSubscriberCount(e.target.value)}

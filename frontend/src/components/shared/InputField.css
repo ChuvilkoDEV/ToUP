@@ -50,6 +50,14 @@ select {
   width: 90px !important;
   height: 35px;
   background-color: var(--little-input-field);
+  padding-left: 10px;
+  border: none;
+}
+
+.little-select-field option {
+  color: black;
+  background-color: #303546;
+  /* var(--little-input-field); */
 }
 
 :root {

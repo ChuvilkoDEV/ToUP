@@ -26,7 +26,7 @@ export default function Subscribers() {
           <InputField
             label="Кол-во подписчиков"
             type="text"
-            placeholder="Кол-во подписчиков"
+            placeholder="Подписчики"
             logo={images['users-alt.svg']}
             value={subscriberCount}
             onChange={(e) => setSubscriberCount(e.target.value)}

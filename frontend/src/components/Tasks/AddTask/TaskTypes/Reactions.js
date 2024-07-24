@@ -49,9 +49,9 @@ export default function Reactions({ handleTaskSettingMenu }) {
             onChange={(e) => setSpreadValue(e.target.value)}
           />
           <InputField
-            label="Кол-во подписчиков"
+            label="Кол-во реакций"
             type="text"
-            placeholder="Кол-во подписчиков"
+            placeholder="Реакции"
             logo={images['users-alt.svg']}
             value={subscriberCount}
             onChange={(e) => setSubscriberCount(e.target.value)}
@@ -81,9 +81,9 @@ export default function Reactions({ handleTaskSettingMenu }) {
             )}
           </div>
           <InputField
-            label="Ссылка к каналу"
+            label="Ссылка на канал"
             type="text"
-            placeholder="Укажите ссылку на канал"
+            placeholder="Ссылка"
             logo={images['link.svg']}
             value={channelLink}
             onChange={(e) => setChannelLink(e.target.value)}
