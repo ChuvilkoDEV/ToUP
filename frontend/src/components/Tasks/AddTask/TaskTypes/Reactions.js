@@ -16,10 +16,14 @@ export default function Reactions({ taskData, handleTaskDataChange }) {
   const [showReactions, setShowReactions] = useState(false);
 
   const toggleReaction = (reaction) => {
-    const newReactions = taskData.task_obj.includes(reaction)
-      ? taskData.task_obj.filter(r => r !== reaction)
-      : [...taskData.task_obj, reaction];
-
+    let newReactions;
+    if (taskData.task_obj.includes(reaction)) {
+      newReactions = taskData.task_obj.filter(r => r !== reaction);
+    } else if (taskData.task_obj.length < 9) {
+      newReactions = [...taskData.task_obj, reaction];
+    } else {
+      return;
+    }
     handleTaskDataChange({ task_obj: newReactions });
   };
 
