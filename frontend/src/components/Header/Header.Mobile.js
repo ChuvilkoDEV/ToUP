@@ -51,8 +51,6 @@ export default function Mobile({ handleLogoutClick, handleLoginClick, handleRegi
               <img src={images['close.svg']} alt="Close" />
             </button>
           </div>
-
-
           <div className="menu-refs">
             {isAuthenticated ? (
               <>

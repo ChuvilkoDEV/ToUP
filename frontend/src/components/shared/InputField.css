@@ -1,5 +1,6 @@
 .input-field {
   width: 100%;
+  box-sizing: border-box; /* Важно добавить это свойство */
 }
 
 .input-field label {
@@ -17,7 +18,7 @@
   border: 1px solid var(--borders-color);
   border-radius: 10px;
   padding: 10px 10px;
-  width: 100%;
+  width: 100%; /* Замените фиксированную ширину на 100% */
   margin-bottom: 10px;
   box-sizing: border-box;
   height: 45px;
@@ -44,6 +45,8 @@ select {
   outline: none;
   background-color: var(--input-field-background);
   color: var(--text-color);
+  width: 100%; /* Замените фиксированную ширину на 100% */
+  box-sizing: border-box; /* Важно добавить это свойство */
 }
 
 .little-select-field {
