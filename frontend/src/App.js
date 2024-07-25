@@ -43,11 +43,3 @@ export default function RootApp() {
     </AuthProvider>
   );
 }
-
-
-// display: flex;
-// gap: auto;
-// width: 100%;
-// flex-wrap: nowrap;
-// flex-direction: row;
-// justify-content: space-between;

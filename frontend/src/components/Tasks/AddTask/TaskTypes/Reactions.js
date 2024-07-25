@@ -12,28 +12,19 @@ const reactionsList = [
   '🤷‍♀️', '🤷', '🤷‍♂️', '😡'
 ];
 
-export default function Reactions({ handleTaskSettingMenu }) {
-  const [error, setError] = useState(null);
-  const [spreadValue, setSpreadValue] = useState('');
-  const [subscriberCount, setSubscriberCount] = useState('');
-  const [channelLink, setChannelLink] = useState('');
-  const [taskTime, setTaskTime] = useState('');
-
+export default function Reactions({ taskData, handleTaskDataChange }) {
   const [showReactions, setShowReactions] = useState(false);
-  const [selectedReactions, setSelectedReactions] = useState([]);
 
   const toggleReaction = (reaction) => {
-    setSelectedReactions(prevState => {
-      if (prevState.includes(reaction)) {
-        return prevState.filter(r => r !== reaction);
-      } else {
-        if (prevState.length < 9) {
-          return [...prevState, reaction];
-        } else {
-          return prevState;
-        }
-      }
-    });
+    const newReactions = taskData.task_obj.includes(reaction)
+      ? taskData.task_obj.filter(r => r !== reaction)
+      : [...taskData.task_obj, reaction];
+
+    handleTaskDataChange({ task_obj: newReactions });
+  };
+
+  const handleChange = (field, value) => {
+    handleTaskDataChange({ [field]: value });
   };
 
   return (
@@ -45,16 +36,16 @@ export default function Reactions({ handleTaskSettingMenu }) {
             type="text"
             placeholder="%"
             logo={images['percentage.svg']}
-            value={spreadValue}
-            onChange={(e) => setSpreadValue(e.target.value)}
+            value={taskData.spreadValue || ''}
+            onChange={(e) => handleChange('spreadValue', e.target.value)}
           />
           <InputField
             label="Кол-во реакций"
             type="text"
             placeholder="Реакции"
             logo={images['users-alt.svg']}
-            value={subscriberCount}
-            onChange={(e) => setSubscriberCount(e.target.value)}
+            value={taskData.count_actions || ''}
+            onChange={(e) => handleChange('count_actions', e.target.value)}
           />
         </div>
         <div className='task-form-data-row'>
@@ -63,18 +54,18 @@ export default function Reactions({ handleTaskSettingMenu }) {
             <div className="input-container" onClick={() => setShowReactions(!showReactions)}>
               <img src={images['emoji.svg']} alt="logo" />
               <div className="divider"></div>
-              Реакции: {selectedReactions.length}
+              Реакции: {taskData.task_obj.length}
             </div>
             {showReactions && (
               <div className="reactions-popup">
                 {reactionsList.map((reaction, index) => (
                   <div
                     key={index}
-                    className={`reaction-item ${selectedReactions.includes(reaction) ? 'selected' : ''}`}
+                    className={`reaction-item ${taskData.task_obj.includes(reaction) ? 'selected' : ''}`}
                     onClick={() => toggleReaction(reaction)}
                   >
                     {reaction}
-                    {selectedReactions.includes(reaction) && <div className="reaction-selected"></div>}
+                    {taskData.task_obj.includes(reaction) && <div className="reaction-selected"></div>}
                   </div>
                 ))}
               </div>
@@ -85,8 +76,8 @@ export default function Reactions({ handleTaskSettingMenu }) {
             type="text"
             placeholder="Ссылка"
             logo={images['link.svg']}
-            value={channelLink}
-            onChange={(e) => setChannelLink(e.target.value)}
+            value={taskData.target_url || ''}
+            onChange={(e) => handleChange('target_url', e.target.value)}
           />
         </div>
         <InputField
@@ -94,19 +85,10 @@ export default function Reactions({ handleTaskSettingMenu }) {
           type="text"
           placeholder="Время на задачу"
           logo={images['calendarClock.svg']}
-          value={taskTime}
-          onChange={(e) => setTaskTime(e.target.value)}
+          value={taskData.task_time || ''}
+          onChange={(e) => handleChange('task_time', e.target.value)}
         />
       </div>
-      <div className='task-form-btn-box'>
-        <button type="submit" className='task-form-submit-button'>
-          Запустить задачу
-        </button>
-        <div className='advanced-setting-btn' onClick={handleTaskSettingMenu}>
-          <img src={images['settings.svg']} alt="logo" />
-        </div>
-      </div>
-      {error && <p className="error">{error}</p>}
     </>
   );
 }

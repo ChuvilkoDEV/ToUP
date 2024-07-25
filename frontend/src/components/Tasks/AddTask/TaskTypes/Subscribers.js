@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import InputField from '../../../shared/InputField';
-
 import ImageUtils from '../../../imageUtils';
+
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
-export default function Subscribers() {
-  const [error, setError] = useState(null);
-  const [spreadValue, setSpreadValue] = useState('');
-  const [subscriberCount, setSubscriberCount] = useState('');
-  const [channelLink, setChannelLink] = useState('');
-  const [taskTime, setTaskTime] = useState('');
+export default function Subscribers({ taskData, handleTaskDataChange }) {
+  const handleChange = (field, value) => {
+    handleTaskDataChange({ [field]: value });
+  };
 
   return (
     <>
@@ -20,39 +18,35 @@ export default function Subscribers() {
             type="text"
             placeholder="%"
             logo={images['percentage.svg']}
-            value={spreadValue}
-            onChange={(e) => setSpreadValue(e.target.value)}
+            value={taskData.spreadValue || ''}
+            onChange={(e) => handleChange('spreadValue', e.target.value)}
           />
           <InputField
             label="Кол-во подписчиков"
             type="text"
             placeholder="Подписчики"
             logo={images['users-alt.svg']}
-            value={subscriberCount}
-            onChange={(e) => setSubscriberCount(e.target.value)}
+            value={taskData.count_actions || ''}
+            onChange={(e) => handleChange('count_actions', e.target.value)}
           />
         </div>
         <InputField
-          label="Ссылка к каналу"
+          label="Ссылка на канал"
           type="text"
           placeholder="Укажите ссылку на канал"
           logo={images['link.svg']}
-          value={channelLink}
-          onChange={(e) => setChannelLink(e.target.value)}
+          value={taskData.target_url || ''}
+          onChange={(e) => handleChange('target_url', e.target.value)}
         />
         <InputField
           label="Время на выполнение"
           type="text"
           placeholder="Время на задачу"
           logo={images['calendarClock.svg']}
-          value={taskTime}
-          onChange={(e) => setTaskTime(e.target.value)}
+          value={taskData.task_time || ''}
+          onChange={(e) => handleChange('task_time', e.target.value)}
         />
       </div>
-      <button type="submit" className='task-form-submit-button'>
-        Запустить задачу
-      </button>
-      {error && <p className="error">{error}</p>}
     </>
   );
 }
