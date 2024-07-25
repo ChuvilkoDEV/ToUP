@@ -38,14 +38,6 @@ export default function Subscribers({ taskData, handleTaskDataChange }) {
           value={taskData.target_url || ''}
           onChange={(e) => handleChange('target_url', e.target.value)}
         />
-        <InputField
-          label="Время на выполнение"
-          type="text"
-          placeholder="Время на задачу"
-          logo={images['calendarClock.svg']}
-          value={taskData.task_time || ''}
-          onChange={(e) => handleChange('task_time', e.target.value)}
-        />
       </div>
     </>
   );

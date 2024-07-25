@@ -84,14 +84,6 @@ export default function Reactions({ taskData, handleTaskDataChange }) {
             onChange={(e) => handleChange('target_url', e.target.value)}
           />
         </div>
-        <InputField
-          label="Время на выполнение"
-          type="text"
-          placeholder="Время на задачу"
-          logo={images['calendarClock.svg']}
-          value={taskData.task_time || ''}
-          onChange={(e) => handleChange('task_time', e.target.value)}
-        />
       </div>
     </>
   );

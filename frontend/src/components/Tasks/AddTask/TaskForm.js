@@ -3,6 +3,7 @@ import InputField from '../../shared/InputField';
 import Subscribers from './TaskTypes/Subscribers';
 import Reactions from './TaskTypes/Reactions';
 import Views from './TaskTypes/Views';
+import TimeField from './TimeField';
 import './TaskForm.css';
 import ImageUtils from '../../imageUtils';
 
@@ -18,6 +19,10 @@ const TaskForm = ({ handleTaskSettingMenu, taskData, handleTaskDataChange, sendT
 
   const handleSelectChange = (e) => {
     handleTaskDataChange({ task_type: e.target.value });
+  };
+
+  const handleChange = (field, value) => {
+    handleTaskDataChange({ [field]: value });
   };
 
   const TaskCreationSection = () => (
@@ -75,14 +80,15 @@ const TaskForm = ({ handleTaskSettingMenu, taskData, handleTaskDataChange, sendT
           :
           <Views taskData={taskData} handleTaskDataChange={handleTaskDataChange} />
       }
+      <TimeField taskData={taskData} handleTaskDataChange={handleTaskDataChange} />
       <div className='task-form-btn-box'>
-        <button type="submit" className='task-form-submit-button' onClick={sendTasksToServer}> 
+        <button type="submit" className='task-form-submit-button' onClick={sendTasksToServer}>
           Запустить задачу
         </button>
-        {taskData.task_type !== 'subs' && 
-        <div className='advanced-setting-btn' onClick={handleTaskSettingMenu}>
-          <img src={images['settings.svg']} alt="logo" />
-        </div>}
+        {taskData.task_type !== 'subs' &&
+          <div className='advanced-setting-btn' onClick={handleTaskSettingMenu}>
+            <img src={images['settings.svg']} alt="logo" />
+          </div>}
       </div>
       {error && <p className="error">{error}</p>}
     </div>

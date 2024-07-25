@@ -15,6 +15,8 @@ const TaskWindow = ({ onClose }) => {
     task_obj: [],
     task_time: 1,
     behavior: [],
+    time: 1,
+    timeUnit: 'days',
   });
 
   const handleTaskDataChange = (newData) => {
@@ -25,10 +27,18 @@ const TaskWindow = ({ onClose }) => {
     setIsTaskSettingOpen(!isTaskSettingOpen);
   };
 
+  const handleBehaviour = () => {
+    const behavior = taskData.behavior;
+    if (behavior.length === 0) {
+      for (let i = 0; i < 24; i++) {
+        behavior.push([]); 
+      }
+    }
+  };
+
   const sendTasksToServer = async () => {
     try {
       await axios.post('http://147.45.111.226:8001/api/addtask', { task: taskData });
-      alert('Задачи успешно отправлены на сервер');
       setTaskData({
         task_type: 'subs',
         target_url: '',
@@ -62,9 +72,9 @@ const TaskWindow = ({ onClose }) => {
         <div className="task-content">
           {isTaskSettingOpen ?
             <TaskSettings
-              handleTaskSettingMenu={handleTaskSettingMenu}
               taskData={taskData}
               handleTaskDataChange={handleTaskDataChange}
+              handleTaskSettingMenu={handleTaskSettingMenu}
             /> : <>
               <TaskForm
                 handleTaskSettingMenu={handleTaskSettingMenu}

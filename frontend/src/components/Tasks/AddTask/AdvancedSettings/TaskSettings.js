@@ -3,12 +3,11 @@ import InputField from '../../../shared/InputField';
 import './TaskSettings.css';
 import ImageUtils from '../../../imageUtils';
 import ChartComponent from './ChartComponent'; // Импортируйте новый компонент
+import TimeField from '../TimeField';
 
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
-const TaskSettings = ({ handleTaskSettingMenu }) => {
-  const [time, setTime] = useState('1');
-  const [timeUnit, setTimeUnit] = useState('days');
+const TaskSettings = ({ taskData, handleTaskDataChange, handleTaskSettingMenu }) => {
   const [interval, setInterval] = useState(1);
 
   const HeaderTitle = () => {
@@ -26,37 +25,13 @@ const TaskSettings = ({ handleTaskSettingMenu }) => {
     )
   };
 
-  const handleTimeChange = (e) => {
-    setTime(e.target.value);
-  };
-
-  const handleTimeUnitChange = (e) => {
-    setTimeUnit(e.target.value);
-  };
-
   const handleIntervalChange = (e) => {
     setInterval(e.target.value);
   };
 
   const InputFields = (e) => {
     return (<div className="task-settings-fields">
-      <InputField
-        label="Время на выполнение"
-        type="select-input"
-        placeholder="Выберите..."
-        logo={images['todo.svg']}
-        value={time}
-        onChange={handleTimeChange}
-        includeField={{
-          value: timeUnit,
-          onChange: handleTimeUnitChange,
-        }}
-        options={[
-          { label: 'Часы', value: 'hours' },
-          { label: 'Дни', value: 'days' },
-          { label: 'Недели', value: 'weeks' },
-        ]}
-      />
+      <TimeField taskData={taskData} handleTaskDataChange={handleTaskDataChange} />
       <InputField
         label="Интервал"
         type="select"
