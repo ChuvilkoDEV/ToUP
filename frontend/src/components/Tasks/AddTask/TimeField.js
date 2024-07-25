@@ -15,11 +15,17 @@ export default function TimeField({ taskData, handleTaskDataChange }) {
       'days': 24 * 60 * 60,
       'weeks': 7 * 24 * 60 * 60,
     };
-    handleChange('task_time', taskData.time * timeUnit[taskData.timeUnit]);
-  }, [taskData.time, taskData.timeUnit]); // Обновляем task_time при изменении time или timeUnit
+    const newTaskTime = taskData.time * timeUnit[taskData.timeUnit];
+    if (taskData.task_time !== newTaskTime) {
+      handleChange('task_time', newTaskTime);
+    }
+  }, [taskData.time, taskData.timeUnit]);
 
   const handleTimeChange = (e) => {
-    handleChange('time', e.target.value);
+    const value = e.target.value;
+    if (value <= 180) {
+      handleChange('time', value);
+    }
   };
 
   const handleTimeUnitChange = (e) => {
@@ -29,7 +35,7 @@ export default function TimeField({ taskData, handleTaskDataChange }) {
   return (
     <InputField
       label="Время на выполнение"
-      type="select-input"
+      type="number-select-input"
       placeholder="Выберите..."
       logo={images['todo.svg']}
       value={taskData.time}

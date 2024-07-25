@@ -15,7 +15,7 @@ export default function Subscribers({ taskData, handleTaskDataChange }) {
         <div className='task-form-data-row'>
           <InputField
             label="Разброс кол-ва"
-            type="text"
+            type="number"
             placeholder="%"
             logo={images['percentage.svg']}
             value={taskData.spreadValue || ''}
@@ -23,7 +23,7 @@ export default function Subscribers({ taskData, handleTaskDataChange }) {
           />
           <InputField
             label="Кол-во подписчиков"
-            type="text"
+            type="number"
             placeholder="Подписчики"
             logo={images['users-alt.svg']}
             value={taskData.count_actions || ''}

@@ -2,6 +2,12 @@ import React from 'react';
 import './InputField.css';
 
 const InputField = ({ label, type, placeholder, logo, value, onChange, includeField = {}, options = [] }) => {
+  const handleKeyDown = (e) => {
+    if (!/[0-9]/.test(e.key) && e.key !== 'Backspace') {
+      e.preventDefault();
+    }
+  };
+
   const renderInput = () => {
     switch (type) {
       case 'select':
@@ -28,7 +34,7 @@ const InputField = ({ label, type, placeholder, logo, value, onChange, includeFi
               value={includeField.value}
               onChange={includeField.onChange}
               className='little-select-field'
-              >
+            >
               <option value="" disabled>{placeholder}</option>
               {options.map((option, index) => (
                 <option key={index} value={option.value}>
@@ -38,6 +44,40 @@ const InputField = ({ label, type, placeholder, logo, value, onChange, includeFi
             </select>
           </>
         );
+      case 'number-select-input':
+        return (
+          <>
+            <input
+              type="text"
+              placeholder={placeholder}
+              value={value}
+              onChange={onChange}
+              onKeyDown={handleKeyDown}
+            />
+            <select
+              value={includeField.value}
+              onChange={includeField.onChange}
+              className='little-select-field'
+            >
+              <option value="" disabled>{placeholder}</option>
+              {options.map((option, index) => (
+                <option key={index} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </>
+        );
+      case 'number':
+        return (
+          <input
+            type='text'
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+            onKeyDown={handleKeyDown}
+          />
+        )
       default:
         return (
           <input

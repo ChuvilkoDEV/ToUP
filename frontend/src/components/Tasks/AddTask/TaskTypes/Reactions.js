@@ -37,7 +37,7 @@ export default function Reactions({ taskData, handleTaskDataChange }) {
         <div className='task-form-data-row'>
           <InputField
             label="Разброс кол-ва"
-            type="text"
+            type="number"
             placeholder="%"
             logo={images['percentage.svg']}
             value={taskData.spreadValue || ''}
@@ -45,7 +45,7 @@ export default function Reactions({ taskData, handleTaskDataChange }) {
           />
           <InputField
             label="Кол-во реакций"
-            type="text"
+            type="number"
             placeholder="Реакции"
             logo={images['users-alt.svg']}
             value={taskData.count_actions || ''}
