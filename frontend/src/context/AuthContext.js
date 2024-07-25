@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
         if (token) {
             setIsAuthenticated(true);
         }
-        setLoading(false); 
+        setLoading(false);
     }, []);
 
     const login = () => {
