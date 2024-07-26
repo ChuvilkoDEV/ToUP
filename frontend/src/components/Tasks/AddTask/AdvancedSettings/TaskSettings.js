@@ -13,7 +13,7 @@ const TaskSettings = ({ taskData, handleTaskDataChange, handleTaskSettingMenu })
   };
 
   const handleIntervalChange = (e) => {
-    handleChange('countIntervals', e.target.value);
+    handleChange('countIntervals', parseInt(e.target.value, 10));
   };
 
   const HeaderTitle = () => {
@@ -32,17 +32,18 @@ const TaskSettings = ({ taskData, handleTaskDataChange, handleTaskSettingMenu })
   };
 
   const InputFields = () => {
-    return (<div className="task-settings-fields">
-      <TimeField taskData={taskData} handleTaskDataChange={handleTaskDataChange} />
-      <InputField
-        label="Интервал"
-        type="number"
-        placeholder="Выберите..."
-        logo={images['todo.svg']}
-        value={taskData.countIntervals}
-        onChange={handleIntervalChange}
-      />
-    </div>
+    return (
+      <div className="task-settings-fields">
+        <TimeField taskData={taskData} handleTaskDataChange={handleTaskDataChange} />
+        <InputField
+          label="Интервал"
+          type="number"
+          placeholder="Выберите..."
+          logo={images['todo.svg']}
+          value={taskData.countIntervals}
+          onChange={handleIntervalChange}
+        />
+      </div>
     )
   };
 
@@ -51,7 +52,7 @@ const TaskSettings = ({ taskData, handleTaskDataChange, handleTaskSettingMenu })
       <HeaderTitle />
       <InputFields />
       <div className='chart-content'>
-        <ChartComponent countIntervals={taskData.countIntervals} />
+        <ChartComponent taskData={taskData} handleTaskDataChange={handleTaskDataChange} />
       </div>
       <div className="task-settings-footer">
         <button className="reset-button">Сбросить настройки</button>

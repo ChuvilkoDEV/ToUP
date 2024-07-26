@@ -1,18 +1,19 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import dragDataPlugin from 'chartjs-plugin-dragdata';
 
 Chart.register(dragDataPlugin);
 
-const ChartComponent = ({ countIntervals }) => {
+const ChartComponent = ({ taskData, handleTaskDataChange }) => {
   const chartRef = useRef(null);
-  const [data, setDataState] = useState({
-    labels: Array.from({ length: countIntervals }, (_, i) => i.toString()),
+
+  const createChartData = () => ({
+    labels: Array.from({ length: taskData.countIntervals }, (_, i) => i.toString()),
     datasets: [
       {
         label: 'Bots',
-        data: Array.from({ length: countIntervals }, (_, i) => 50),
+        data: taskData.behavior,
         borderColor: 'rgba(45,142,255,1)',
         borderWidth: 3,
         pointBackgroundColor: 'white',
@@ -24,24 +25,6 @@ const ChartComponent = ({ countIntervals }) => {
   });
 
   useEffect(() => {
-    setDataState({
-      labels: Array.from({ length: countIntervals }, (_, i) => i.toString()),
-      datasets: [
-        {
-          label: 'Bots',
-          data: Array.from({ length: countIntervals }, (_, i) => 50),
-          borderColor: 'rgba(45,142,255,1)',
-          borderWidth: 3,
-          pointBackgroundColor: 'white',
-          pointRadius: 10,
-          pointHoverRadius: 10,
-          fill: true,
-        },
-      ],
-    });
-  }, [countIntervals]);
-
-  useEffect(() => {
     const chart = chartRef.current;
     if (chart) {
       const ctx = chart.ctx;
@@ -49,14 +32,14 @@ const ChartComponent = ({ countIntervals }) => {
       gradient.addColorStop(0, 'rgba(45,142,255,1)');
       gradient.addColorStop(1, 'rgba(45,142,255,0)');
       chart.data.datasets[0].backgroundColor = gradient;
+      chart.data.datasets[0].data = taskData.behavior;
       chart.update();
     }
-  }, [data]);
+  }, [taskData.behavior]);
 
   const handleDragEnd = (e, datasetIndex, index, value) => {
-    const newData = { ...data };
-    newData.datasets[datasetIndex].data[index] = value;
-    setDataState(newData);
+    const newBehavior = [...chartRef.current.data.datasets[0].data];
+    handleTaskDataChange({ behavior: newBehavior });
 
     const chartInstance = chartRef.current;
     if (chartInstance) {
@@ -69,7 +52,7 @@ const ChartComponent = ({ countIntervals }) => {
   return (
     <Line
       ref={chartRef}
-      data={data}
+      data={createChartData()}
       options={{
         scales: {
           y: {

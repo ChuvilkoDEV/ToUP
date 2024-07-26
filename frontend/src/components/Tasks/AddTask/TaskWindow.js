@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import BlueRectangle from './BlueRectangle'
+import BlueRectangle from './BlueRectangle';
 import TaskForm from './TaskForm';
 import './TaskWindow.css';
-import TaskSettings from './AdvancedSettings/TaskSettings'
-
+import TaskSettings from './AdvancedSettings/TaskSettings';
 
 const TaskWindow = ({ onClose }) => {
   const [isTaskSettingOpen, setIsTaskSettingOpen] = useState(false);
@@ -14,27 +13,21 @@ const TaskWindow = ({ onClose }) => {
     count_actions: 0,
     task_obj: [],
     task_time: 1,
-    behavior: [],
     time: 1,
     timeUnit: 'days',
     countIntervals: 24,
+    behavior: Array.from({ length: 24 }, () => 50), // Начальная инициализация
   });
 
   const handleTaskDataChange = (newData) => {
-    setTaskData({ ...taskData, ...newData });
+    setTaskData((prevState) => ({
+      ...prevState,
+      ...newData,
+    }));
   };
 
   const handleTaskSettingMenu = () => {
     setIsTaskSettingOpen(!isTaskSettingOpen);
-  };
-
-  const handleBehaviour = () => {
-    const behavior = taskData.behavior;
-    if (behavior.length === 0) {
-      for (let i = 0; i < 24; i++) {
-        behavior.push([]); 
-      }
-    }
   };
 
   const sendTasksToServer = async () => {
@@ -46,7 +39,10 @@ const TaskWindow = ({ onClose }) => {
         count_actions: 0,
         task_obj: [],
         task_time: 1,
-        behavior: [],
+        time: 1,
+        timeUnit: 'days',
+        countIntervals: 24,
+        behavior: Array.from({ length: 24 }, () => 50), // Сброс начального состояния
       });
     } catch (error) {
       console.error('Ошибка при отправке задач:', error);
@@ -67,16 +63,26 @@ const TaskWindow = ({ onClose }) => {
     };
   }, [onClose]);
 
+  useEffect(() => {
+    setTaskData((prevTaskData) => ({
+      ...prevTaskData,
+      behavior: Array.from({ length: prevTaskData.countIntervals }, () => 50),
+    }));
+  }, [taskData.countIntervals]);
+
+
   return (
     <div className="task-window-overlay">
       <div className="task-window">
         <div className="task-content">
-          {isTaskSettingOpen ?
+          {isTaskSettingOpen ? (
             <TaskSettings
               taskData={taskData}
               handleTaskDataChange={handleTaskDataChange}
               handleTaskSettingMenu={handleTaskSettingMenu}
-            /> : <>
+            />
+          ) : (
+            <>
               <TaskForm
                 handleTaskSettingMenu={handleTaskSettingMenu}
                 taskData={taskData}
@@ -85,7 +91,7 @@ const TaskWindow = ({ onClose }) => {
               />
               <BlueRectangle />
             </>
-          }
+          )}
         </div>
       </div>
     </div>
