@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import InputField from '../../../shared/InputField';
 import './TaskSettings.css';
 import ImageUtils from '../../../imageUtils';
-import ChartComponent from './ChartComponent'; // Импортируйте новый компонент
+import ChartComponent from './ChartComponent';
 import TimeField from '../TimeField';
 
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
 const TaskSettings = ({ taskData, handleTaskDataChange, handleTaskSettingMenu }) => {
-  const [interval, setInterval] = useState(1);
+  const handleChange = (field, value) => {
+    handleTaskDataChange({ [field]: value });
+  };
+
+  const handleIntervalChange = (e) => {
+    handleChange('countIntervals', e.target.value);
+  };
 
   const HeaderTitle = () => {
     return (
@@ -25,25 +31,16 @@ const TaskSettings = ({ taskData, handleTaskDataChange, handleTaskSettingMenu })
     )
   };
 
-  const handleIntervalChange = (e) => {
-    setInterval(e.target.value);
-  };
-
-  const InputFields = (e) => {
+  const InputFields = () => {
     return (<div className="task-settings-fields">
       <TimeField taskData={taskData} handleTaskDataChange={handleTaskDataChange} />
       <InputField
         label="Интервал"
-        type="select"
+        type="number"
         placeholder="Выберите..."
         logo={images['todo.svg']}
-        value={interval}
+        value={taskData.countIntervals}
         onChange={handleIntervalChange}
-        options={[
-          { label: '1', value: '1' },
-          { label: '2', value: '2' },
-          { label: '3', value: '3' },
-        ]}
       />
     </div>
     )
@@ -54,7 +51,7 @@ const TaskSettings = ({ taskData, handleTaskDataChange, handleTaskSettingMenu })
       <HeaderTitle />
       <InputFields />
       <div className='chart-content'>
-        <ChartComponent bots={1000} />
+        <ChartComponent countIntervals={taskData.countIntervals} />
       </div>
       <div className="task-settings-footer">
         <button className="reset-button">Сбросить настройки</button>

@@ -17,6 +17,7 @@ const TaskWindow = ({ onClose }) => {
     behavior: [],
     time: 1,
     timeUnit: 'days',
+    countIntervals: 24,
   });
 
   const handleTaskDataChange = (newData) => {

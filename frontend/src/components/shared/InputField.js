@@ -1,7 +1,10 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './InputField.css';
 
 const InputField = ({ label, type, placeholder, logo, value, onChange, includeField = {}, options = [] }) => {
+  const uniqueId = React.useMemo(() => uuidv4(), []);
+
   const handleKeyDown = (e) => {
     if (!/[0-9]/.test(e.key) && e.key !== 'Backspace') {
       e.preventDefault();
@@ -12,7 +15,7 @@ const InputField = ({ label, type, placeholder, logo, value, onChange, includeFi
     switch (type) {
       case 'select':
         return (
-          <select value={value} onChange={onChange}>
+          <select id={uniqueId} name={uniqueId} value={value} onChange={onChange}>
             <option value="" disabled>{placeholder}</option>
             {options.map((option, index) => (
               <option key={index} value={option.value}>
@@ -26,11 +29,15 @@ const InputField = ({ label, type, placeholder, logo, value, onChange, includeFi
           <>
             <input
               type="text"
+              id={uniqueId}
+              name={uniqueId}
               placeholder={placeholder}
               value={value}
               onChange={onChange}
             />
             <select
+              id={`${uniqueId}-select`}
+              name={`${uniqueId}-select`}
               value={includeField.value}
               onChange={includeField.onChange}
               className='little-select-field'
@@ -49,12 +56,16 @@ const InputField = ({ label, type, placeholder, logo, value, onChange, includeFi
           <>
             <input
               type="text"
+              id={uniqueId}
+              name={uniqueId}
               placeholder={placeholder}
               value={value}
               onChange={onChange}
               onKeyDown={handleKeyDown}
             />
             <select
+              id={`${uniqueId}-select`}
+              name={`${uniqueId}-select`}
               value={includeField.value}
               onChange={includeField.onChange}
               className='little-select-field'
@@ -72,6 +83,8 @@ const InputField = ({ label, type, placeholder, logo, value, onChange, includeFi
         return (
           <input
             type='text'
+            id={uniqueId}
+            name={uniqueId}
             placeholder={placeholder}
             value={value}
             onChange={onChange}
@@ -82,6 +95,8 @@ const InputField = ({ label, type, placeholder, logo, value, onChange, includeFi
         return (
           <input
             type={type}
+            id={uniqueId}
+            name={uniqueId}
             placeholder={placeholder}
             value={value}
             onChange={onChange}
@@ -92,7 +107,7 @@ const InputField = ({ label, type, placeholder, logo, value, onChange, includeFi
 
   return (
     <div className='input-field'>
-      <label>{label}</label>
+      <label htmlFor={uniqueId}>{label}</label>
       <div className="input-container">
         {logo && <img src={logo} alt="logo" />}
         <div className="divider"></div>

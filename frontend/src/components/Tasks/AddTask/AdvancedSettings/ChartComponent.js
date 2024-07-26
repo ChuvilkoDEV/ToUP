@@ -5,23 +5,41 @@ import dragDataPlugin from 'chartjs-plugin-dragdata';
 
 Chart.register(dragDataPlugin);
 
-const ChartComponent = ({ bots }) => {
+const ChartComponent = ({ countIntervals }) => {
   const chartRef = useRef(null);
   const [data, setDataState] = useState({
-    labels: Array.from({ length: 24 }, (_, i) => i.toString()),
+    labels: Array.from({ length: countIntervals }, (_, i) => i.toString()),
     datasets: [
       {
         label: 'Bots',
-        data: Array.from({ length: 24 }, (_, i) => i),
+        data: Array.from({ length: countIntervals }, (_, i) => 50),
         borderColor: 'rgba(45,142,255,1)',
         borderWidth: 3,
         pointBackgroundColor: 'white',
         pointRadius: 10,
         pointHoverRadius: 10,
-        fill: true, // Включение заполнения под линией
+        fill: true,
       },
     ],
   });
+
+  useEffect(() => {
+    setDataState({
+      labels: Array.from({ length: countIntervals }, (_, i) => i.toString()),
+      datasets: [
+        {
+          label: 'Bots',
+          data: Array.from({ length: countIntervals }, (_, i) => 50),
+          borderColor: 'rgba(45,142,255,1)',
+          borderWidth: 3,
+          pointBackgroundColor: 'white',
+          pointRadius: 10,
+          pointHoverRadius: 10,
+          fill: true,
+        },
+      ],
+    });
+  }, [countIntervals]);
 
   useEffect(() => {
     const chart = chartRef.current;
@@ -36,18 +54,14 @@ const ChartComponent = ({ bots }) => {
   }, [data]);
 
   const handleDragEnd = (e, datasetIndex, index, value) => {
-    console.log(`Точка перемещена: datasetIndex=${datasetIndex}, index=${index}, value=${value}`);
-
-    // Обновление данных в состоянии
     const newData = { ...data };
     newData.datasets[datasetIndex].data[index] = value;
     setDataState(newData);
 
-    // Обновление максимального значения оси y
     const chartInstance = chartRef.current;
     if (chartInstance) {
-      chartInstance.options.scales.y.max = 100; // Пример фиксированного максимального значения
-      chartInstance.options.scales.y.min = 0;   // Пример фиксированного минимального значения
+      chartInstance.options.scales.y.max = 100;
+      chartInstance.options.scales.y.min = 0;
       chartInstance.update();
     }
   };
@@ -60,8 +74,8 @@ const ChartComponent = ({ bots }) => {
         scales: {
           y: {
             beginAtZero: true,
-            min: 0,  // Задайте минимальное значение
-            max: 100 // Задайте максимальное значение
+            min: 0,
+            max: 100,
           },
         },
         plugins: {
