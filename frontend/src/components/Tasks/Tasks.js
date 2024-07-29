@@ -54,9 +54,9 @@ const Tasks = () => {
 
   const TasksCards = () => (
     <div className="tasks-grid">
-      {tasks.map(task => (
+      {/* {tasks.map(task => (
         <TaskCard key={task.id} task={task} />
-      ))}
+      ))} */}
     </div>
   );
 

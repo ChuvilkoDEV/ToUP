@@ -17,6 +17,7 @@ const TaskWindow = ({ onClose }) => {
     timeUnit: 'days',
     countIntervals: 24,
     behavior: Array.from({ length: 24 }, () => 50), // Начальная инициализация
+    bot_group: '', // Опционально только для админов
   });
 
   const handleTaskDataChange = (newData) => {
@@ -30,9 +31,39 @@ const TaskWindow = ({ onClose }) => {
     setIsTaskSettingOpen(!isTaskSettingOpen);
   };
 
+  const handleBehaviour = () => {
+    const timeToInterval = Math.round(taskData.task_time / taskData.countIntervals);
+    const botsToInterval = Math.floor(taskData.count_actions / taskData.countIntervals);
+    const now = Date.now(); 
+    const ans = [[now, botsToInterval]];
+    for (let i = 1; i < taskData.countIntervals; i++) {
+      ans.push([ans[i - 1][0] + timeToInterval * 1000, botsToInterval]); // Увеличиваем временную метку на интервал
+    }
+    ans[ans.length - 1][1] += taskData.count_actions % taskData.countIntervals; // Исправление ошибки: индекс последнего элемента массива
+    return ans;
+  };
+  
+
   const sendTasksToServer = async () => {
     try {
-      await axios.post('http://147.45.111.226:8001/api/addtask', { task: taskData });
+      // Формирование данных в требуемом формате
+      const formattedData = {
+        token: localStorage.getItem('token'),
+        data: [
+          {
+            task_type: taskData.task_type,
+            target_url: taskData.target_url,
+            count_actions: taskData.count_actions,
+            task_obj: taskData.task_obj,
+            task_time: taskData.task_time,
+            behavior: handleBehaviour(),
+          },
+        ],
+      };
+
+      await axios.post('http://147.45.111.226:8001/api/addtask', formattedData, {
+        mode: 'no-cors'
+      });
       setTaskData({
         task_type: 'subs',
         target_url: '',
@@ -43,6 +74,7 @@ const TaskWindow = ({ onClose }) => {
         timeUnit: 'days',
         countIntervals: 24,
         behavior: Array.from({ length: 24 }, () => 50), // Сброс начального состояния
+        bot_group: '', // Сброс bot_group
       });
     } catch (error) {
       console.error('Ошибка при отправке задач:', error);
@@ -69,7 +101,6 @@ const TaskWindow = ({ onClose }) => {
       behavior: Array.from({ length: prevTaskData.countIntervals }, () => 50),
     }));
   }, [taskData.countIntervals]);
-
 
   return (
     <div className="task-window-overlay">
