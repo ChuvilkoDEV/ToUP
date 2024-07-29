@@ -61,11 +61,13 @@ const TaskForm = ({ handleTaskSettingMenu, taskData, handleTaskDataChange, sendT
         logo={images['todo.svg']}
         value={taskData.task_type}
         onChange={handleSelectChange}
-        options={[
-          { label: 'Подписка', value: 'subs' },
-          { label: 'Реакции', value: 'react' },
-          { label: 'Просмотры', value: 'views' },
-        ]}
+        options={{
+          options: [
+            { label: 'Подписка', value: 'subs' },
+            { label: 'Реакции', value: 'react' },
+            { label: 'Просмотры', value: 'views' },
+          ]
+        }}
       />
     </>
   );

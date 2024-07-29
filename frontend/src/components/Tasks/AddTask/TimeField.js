@@ -40,15 +40,18 @@ export default function TimeField({ taskData, handleTaskDataChange }) {
       logo={images['todo.svg']}
       value={taskData.time}
       onChange={handleTimeChange}
-      includeField={{
-        value: taskData.timeUnit,
-        onChange: handleTimeUnitChange,
+      options={{
+        includeField: {
+          value: taskData.timeUnit,
+          onChange: handleTimeUnitChange,
+        },
+        options: [
+          { label: 'Часы', value: 'hours' },
+          { label: 'Дни', value: 'days' },
+          { label: 'Недели', value: 'weeks' },
+        ],
+        
       }}
-      options={[
-        { label: 'Часы', value: 'hours' },
-        { label: 'Дни', value: 'days' },
-        { label: 'Недели', value: 'weeks' },
-      ]}
     />
   );
 }

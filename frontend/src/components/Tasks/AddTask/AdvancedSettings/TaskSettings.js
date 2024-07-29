@@ -49,8 +49,8 @@ const TaskSettings = ({ taskData, handleTaskDataChange, handleTaskSettingMenu })
 
   return (
     <div className="task-settings">
-      <HeaderTitle />
-      <InputFields />
+      {HeaderTitle()}
+      {InputFields()}
       <div className='chart-content'>
         <ChartComponent taskData={taskData} handleTaskDataChange={handleTaskDataChange} />
       </div>

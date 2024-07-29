@@ -61,9 +61,7 @@ const TaskWindow = ({ onClose }) => {
         ],
       };
 
-      await axios.post('http://147.45.111.226:8001/api/addtask', formattedData, {
-        mode: 'no-cors'
-      });
+      await axios.post('http://147.45.111.226:8001/api/addtask', formattedData);
       setTaskData({
         task_type: 'subs',
         target_url: '',
