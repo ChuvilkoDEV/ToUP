@@ -27,7 +27,7 @@ export default function Reactions({ taskData, handleTaskDataChange }) {
     handleTaskDataChange({ task_obj: newReactions });
   };
 
-  const handleChange = (field, value) => {
+  const handleDataChange = (field, value) => {
     handleTaskDataChange({ [field]: value });
   };
 
@@ -41,7 +41,7 @@ export default function Reactions({ taskData, handleTaskDataChange }) {
             placeholder="%"
             logo={images['percentage.svg']}
             value={taskData.spreadValue || ''}
-            onChange={(e) => handleChange('spreadValue', e.target.value)}
+            handleChange={(e) => handleDataChange('spreadValue', e.target.value)}
           />
           <InputField
             label="Кол-во реакций"
@@ -49,7 +49,7 @@ export default function Reactions({ taskData, handleTaskDataChange }) {
             placeholder="Реакции"
             logo={images['users-alt.svg']}
             value={taskData.count_actions || ''}
-            onChange={(e) => handleChange('count_actions', e.target.value)}
+            handleChange={(e) => handleDataChange('count_actions', e.target.value)}
           />
         </div>
         <div className='task-form-data-row'>
@@ -81,7 +81,7 @@ export default function Reactions({ taskData, handleTaskDataChange }) {
             placeholder="Ссылка"
             logo={images['link.svg']}
             value={taskData.target_url || ''}
-            onChange={(e) => handleChange('target_url', e.target.value)}
+            handleChange={(e) => handleDataChange('target_url', e.target.value)}
           />
         </div>
       </div>

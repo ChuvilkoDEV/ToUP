@@ -41,7 +41,8 @@ const TaskSettings = ({ taskData, handleTaskDataChange, handleTaskSettingMenu })
           placeholder="Выберите..."
           logo={images['todo.svg']}
           value={taskData.countIntervals}
-          onChange={handleIntervalChange}
+          handleChange={handleIntervalChange}
+          options={{ maxValue: 24, minValue: 1 }}
         />
       </div>
     )

@@ -40,7 +40,7 @@ const LoginForm = ({ onClose, onLoginSuccess, onSwitchToRegister }) => {
                     placeholder="Ваша почта"
                     logo={images['login.svg']}
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    handleChange={(e) => setEmail(e.target.value)}
                 />
                 <InputField
                     label="Пароль"
@@ -48,7 +48,7 @@ const LoginForm = ({ onClose, onLoginSuccess, onSwitchToRegister }) => {
                     placeholder="Введите пароль"
                     logo={images['password.svg']}
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    handleChange={(e) => setPassword(e.target.value)}
                 />
                 <button type="submit" className='mt-4'>Войти</button>
             </form>

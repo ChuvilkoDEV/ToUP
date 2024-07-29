@@ -51,7 +51,7 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
                     placeholder="Ваша почта"
                     logo={images['mail.svg']}
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    handleChange={(e) => setEmail(e.target.value)}
                 />
                 <div className="registration-email-channel-container">
                     <InputField
@@ -60,7 +60,7 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
                         placeholder="Напишите имя"
                         logo={images['login.svg']}
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        handleChange={(e) => setName(e.target.value)}
                     />
                     <InputField
                         label="Канал"
@@ -68,7 +68,7 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
                         placeholder="Ссылка на канал"
                         logo={images['telegram.svg']}
                         value={channel}
-                        onChange={(e) => setChannel(e.target.value)}
+                        handleChange={(e) => setChannel(e.target.value)}
                     />
                 </div>
                 <InputField
@@ -77,7 +77,7 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
                     placeholder="Придумайте пароль"
                     logo={images['password.svg']}
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    handleChange={(e) => setPassword(e.target.value)}
                 />
                 <InputField
                     label="Повторите пароль"
@@ -85,7 +85,7 @@ const RegistrationForm = ({ onRegistrationSuccess }) => {
                     placeholder="Повторите пароль"
                     logo={images['password.svg']}
                     value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    handleChange={(e) => setConfirmPassword(e.target.value)}
                 />
                 <button type="submit">Создать аккаунт</button>
             </form>
