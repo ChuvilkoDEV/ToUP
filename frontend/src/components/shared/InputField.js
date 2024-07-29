@@ -12,7 +12,6 @@ const InputField = ({ label, type, placeholder, logo, value, handleChange, optio
       e.target.value = options.maxValue;
     else if (options.minValue && e.target.value <= options.minValue)
       e.target.value = options.minValue;
-    // e.target.value = inputedNumber;
     handleChange(e);
   };
 
