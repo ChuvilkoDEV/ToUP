@@ -12,6 +12,13 @@ const images = ImageUtils.importAllImages(require.context('@assets/tasks', false
 const TaskForm = ({ handleTaskSettingMenu, taskData, handleTaskDataChange, sendTasksToServer }) => {
   const [isAutoTask, setIsAutoTask] = useState(false);
   const [error, setError] = useState(null);
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+
+  const botInfoBlock = [
+    { emoji: 'subscribers', text: '1 подписчик' },
+    { emoji: 'views', text: '1 просмотр' },
+    { emoji: 'reactions', text: '1 реакция' },
+  ]
 
   const handleTaskTypeClick = (type) => {
     setIsAutoTask(type === 'auto');
@@ -50,8 +57,23 @@ const TaskForm = ({ handleTaskSettingMenu, taskData, handleTaskDataChange, sendT
             <p className="bot-count">4000 ботов</p>
           </div>
         </div>
-        <div className='right-side-bots'>
+        <div
+          className='right-side-bots'
+          onMouseEnter={() => setIsTooltipVisible(true)}
+          onMouseLeave={() => setIsTooltipVisible(false)}
+        >
           <img src={images['info.svg']} alt="info" />
+          {isTooltipVisible && (
+          <div className='tooltip-bots-info'>
+            {botInfoBlock.map((item, index) => (
+              <div key={index} className="tooltip-item">
+                <img src={images[`${item.emoji}.svg`]} alt={item.emoji} className="tooltip-icon" />
+                <span>{`1 бот = ${item.text}`}</span>
+              </div>
+            ))}
+            <a href="#" className="tooltip-link">Приобрести</a>
+          </div>
+          )}
         </div>
       </div>
       <InputField
@@ -63,7 +85,7 @@ const TaskForm = ({ handleTaskSettingMenu, taskData, handleTaskDataChange, sendT
         handleChange={handleSelectChange}
         options={{
           options: [
-            { label: 'Подписка', value: 'subs' },
+            { label: 'Подписки', value: 'subs' },
             { label: 'Реакции', value: 'react' },
             { label: 'Просмотры', value: 'views' },
           ]

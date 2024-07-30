@@ -1,186 +1,225 @@
 .task-form {
-    flex: 1;
-    margin-right: 30px;
-    gap: 15px;
-    width: 350px;
-    text-align: left;
+  flex: 1;
+  margin-right: 30px;
+  gap: 15px;
+  width: 350px;
+  text-align: left;
 }
 
 .task-form h2 {
-    margin-bottom: 10px;
-    width: 239px;
-    font-size: 28px;
-    font-weight: bold;
+  margin-bottom: 10px;
+  width: 239px;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .type-task-buttons-container {
-    display: flex;
-    justify-content: left;
-    gap: 5px;
+  display: flex;
+  justify-content: left;
+  gap: 5px;
 }
 
 .type-task-button {
-    text-align: center;
-    padding: 0px 30px;
-    border-radius: 10px;
-    color: var(--color-buttons);
-    background-color: var(--task-card-background);
-    border: 1px solid var(--color-buttons);
-    height: 38px;
-    margin-bottom: 15px;
+  text-align: center;
+  padding: 0px 30px;
+  border-radius: 10px;
+  color: var(--color-buttons);
+  background-color: var(--task-card-background);
+  border: 1px solid var(--color-buttons);
+  height: 38px;
+  margin-bottom: 15px;
 }
 
 .type-task-button.active {
-    background-color: var(--color-buttons);
-    color: white;
-    border: none;
+  background-color: var(--color-buttons);
+  color: white;
+  border: none;
 }
 
 .task-form-count-bots {
-    display: flex;
-    align-items: center;
-    background-color: #2D8EFF1A;
-    width: 350px;
-    height: 71px;
-    border-radius: 10px;
-    padding: 10px;
-    justify-content: space-between;
-    margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  background-color: #2D8EFF1A;
+  width: 350px;
+  height: 71px;
+  border-radius: 10px;
+  padding: 10px;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
 
 .left-side-bots {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .bot-info-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .bot-icon {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
 .bot-count {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
 }
 
 .task-form-data {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .task-form-data-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 10px;
-    width: 100%;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .task-form-data-row>* {
-    flex: 1;
-    min-width: 0;
+  flex: 1;
+  min-width: 0;
 }
 
 .task-form .input-container {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .task-form-btn-box {
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .task-form-submit-button {
-    width: 100%;
-    padding: 10px;
-    background-color: var(--color-buttons);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--color-buttons);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .advanced-setting-btn {
-    width: 45px;
-    /* height: 45px; */
-    padding: 12.5px;
-    border-radius: 10px;
-    border: 1px solid #2D8EFF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 45px;
+  /* height: 45px; */
+  padding: 12.5px;
+  border-radius: 10px;
+  border: 1px solid #2D8EFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .task-form .error {
-    color: red;
-    text-align: left;
-    margin-top: 10px;
+  color: red;
+  text-align: left;
+  margin-top: 10px;
 }
 
 .reactions-popup {
-    position: absolute;
-    top: 234px;
-    width: 198px;
-    height: 178px;
-    background-color: var(--background-color);
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-wrap: wrap;
-    overflow-y: auto;
-    z-index: 1000;
-    border-radius: 8px;
+  position: absolute;
+  top: 234px;
+  width: 198px;
+  height: 178px;
+  background-color: var(--background-color);
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  z-index: 1000;
+  border-radius: 8px;
 }
 
 .reaction-item {
-    width: 18px;
-    height: 18px;
-    margin: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    cursor: pointer;
+  width: 18px;
+  height: 18px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
 }
 
 .reaction-item.selected {
-    position: relative;
+  position: relative;
 }
 
 .reaction-item.selected .reaction-selected {
-    position: absolute;
-    width: 26px;
-    height: 26px;
-    background-color: #e0e0e0;
-    border-radius: 50%;
-    top: -4px;
-    left: -4px;
-    z-index: -1;
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  top: -4px;
+  left: -4px;
+  z-index: -1;
 }
 
 .reactions-popup::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 .reactions-popup::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 8px;
+  background: #f1f1f1;
+  border-radius: 8px;
 }
 
 .reactions-popup::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 8px;
+  background: #888;
+  border-radius: 8px;
 }
 
 .reactions-popup::-webkit-scrollbar-thumb:hover {
-    background: #555;
+  background: #555;
+}
+
+.tooltip-bots-info {
+  position: fixed;
+  bottom: 67%;
+  left: 54.3%;
+  width: 192px;
+  height: 118px;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 10px;
+  border-bottom-left-radius: 0; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2000;
+  white-space: nowrap;
+}
+
+.tooltip-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.tooltip-icon {
+  margin-right: 8px;
+  width: 24px;
+  height: 24px;
+}
+
+.tooltip-link {
+  color: #2D8EFF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.right-side-bots {
+  position: relative; /* Нужно для абсолютного позиционирования tooltip */
 }
