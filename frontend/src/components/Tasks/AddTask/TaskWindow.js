@@ -15,8 +15,8 @@ const TaskWindow = ({ onClose }) => {
     task_time: 1,
     time: 1,
     timeUnit: 'days',
-    countIntervals: 24,
-    behavior: Array.from({ length: 24 }, () => 50), // Начальная инициализация
+    countIntervals: 5,
+    behavior: Array.from({ length: 5 }, () => 50), // Начальная инициализация
     bot_group: '', // Опционально только для админов
   });
 
@@ -34,9 +34,7 @@ const TaskWindow = ({ onClose }) => {
   const handleBehaviour = () => {
     let overflow = 0;
     const countBotsPerInterval = (sumPercentage, index) => {
-      // debugger;
       let botsToInterval = parseInt(taskData.count_actions, 10) * (taskData.behavior[index] / sumPercentage);
-      // console.log(botsToInterval)
       overflow += botsToInterval % 1;
       botsToInterval = Math.floor(botsToInterval)
       if (overflow >= 1) {
@@ -46,21 +44,20 @@ const TaskWindow = ({ onClose }) => {
       return botsToInterval;
     }
 
-    const timeToInterval = Math.round(taskData.task_time / taskData.countIntervals);
+    const timeToInterval = Math.round(taskData.task_time / taskData.countIntervals * 1000);
     const sumPercentage = taskData.behavior.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     const now = Date.now(); 
     const ans = [[now, countBotsPerInterval(sumPercentage, 0)]];
     for (let i = 1; i < taskData.countIntervals; i++) {
-      ans.push([ans[i - 1][0] + timeToInterval * 1000, countBotsPerInterval(sumPercentage, i)]); // Увеличиваем временную метку на интервал
+      ans.push([ans[i - 1][0] + timeToInterval, countBotsPerInterval(sumPercentage, i)]); 
     }
-    ans[ans.length - 1][1] += taskData.count_actions % taskData.countIntervals; // Исправление ошибки: индекс последнего элемента массива
+    ans[ans.length - 1][1] += taskData.count_actions % taskData.countIntervals; 
     return ans;
   };
   
 
   const sendTasksToServer = async () => {
     try {
-      // Формирование данных в требуемом формате
       const formattedData = {
         token: localStorage.getItem('token'),
         data: [
@@ -71,26 +68,26 @@ const TaskWindow = ({ onClose }) => {
             task_obj: taskData.task_obj,
             task_time: taskData.task_time,
             behavior: handleBehaviour(),
+            channel_id: 7777777777,
           },
         ],
       };
 
       await axios.post('http://147.45.111.226:8001/api/addtask', formattedData);
-      // setTaskData({
-      //   task_type: 'subs',
-      //   target_url: '',
-      //   count_actions: 0,
-      //   task_obj: [],
-      //   task_time: 1,
-      //   time: 1,
-      //   timeUnit: 'days',
-      //   countIntervals: 24,
-      //   behavior: Array.from({ length: 24 }, () => 50), // Сброс начального состояния
-      //   bot_group: '', // Сброс bot_group
-      // });
+      setTaskData({
+        task_type: 'subs',
+        target_url: '',
+        count_actions: 0,
+        task_obj: [],
+        task_time: 1,
+        time: 1,
+        timeUnit: 'days',
+        countIntervals: 5,
+        behavior: Array.from({ length: 5 }, () => 50),
+        bot_group: '', 
+      });
     } catch (error) {
       console.error('Ошибка при отправке задач:', error);
-      alert('Ошибка при отправке задач');
     }
   };
 

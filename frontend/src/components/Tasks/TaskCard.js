@@ -7,6 +7,29 @@ const images = ImageUtils.importAllImages(require.context('@assets/tasks', false
 const TaskCard = ({ task }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [status, setStatus] = useState('В прогрессе');
+  const [date, setDate] = useState('');
+
+  React.useEffect(() => {
+    setProgress(Math.floor(task.complite_actions / task.count_actions * 100));
+    setStatus(progress === 100 ? 'Завершено' : 'В прогрессе');
+    const date = new Date(task.date_add * 1000);
+    
+    // Массив с названиями месяцев на русском языке
+    const months = [
+      'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+    ];
+    
+    // Получаем различные компоненты даты
+    const year = date.getFullYear();
+    const month = months[date.getMonth()]; 
+    const day = date.getDate();
+    
+    // Форматируем дату в строку
+    setDate(`${day} ${month}, ${year}`);
+  });
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
@@ -20,30 +43,34 @@ const TaskCard = ({ task }) => {
     setIsTooltipVisible(false);
   };
 
-
+  const typeLabel = {
+    'subs': 'Подписчиков',
+    'react': 'Реакций',
+    'views': 'Просмотров',
+  }
   
   const CardHeader = () => (
     <div className="task-card-header">
       <div className="task-due-date">
         <img src={images[`calendarClock.svg`]} alt="logo" />
-        {task.dueDate}
+        Время
       </div>
       <div className="task-title">
-        <img src={images[`${task.type}.svg`]} alt="logo" />
-        {task.total}<br />
-        Просмотров
+        <img src={images[`${task.task_type}.svg`]} alt="logo" />
+        {task.count_actions}<br />
+        {typeLabel[task.task_type]}
       </div>
     </div>
   );
-
+ 
   const StatusProgress = () => (
     <div className="status-progress-row">
       <div className="task-status">
-        {task.status}
+        {status}
       </div>
       <div className="progress-info">
-        {task.progress}%
-        {task.progress === 100 ?
+        {progress}%
+        {progress === 100 ?
           <img src={images['success.svg']} alt="logo" />
           :
           <div
@@ -63,8 +90,8 @@ const TaskCard = ({ task }) => {
     <div className="task-progress">
       <div className="progress-bar">
         <div
-          className={`progress ${task.progress === 100 ? 'success' : ''}`}
-          style={{ width: `${task.progress}%` }}>
+          className={`progress ${progress === 100 ? 'success' : ''}`}
+          style={{ width: `${progress}%` }}>
         </div>
       </div>
     </div>
@@ -72,7 +99,7 @@ const TaskCard = ({ task }) => {
 
   const TaskStatistic = () => (
     <div className="task-statistics">
-      {task.completed} из {task.total}
+      {task.complite_actions} из {task.count_actions}
     </div>
   );
 
@@ -91,20 +118,20 @@ const TaskCard = ({ task }) => {
         <hr className="divider" />
         <div className='additional-statistics title'>
           Волна:
-          <div className="highlight-text"> {task.wave}%</div>
+          <div className="highlight-text"> {0}%</div>
         </div>
         <div className='additional-statistics title'>
           Процент разброса:
-          <div className="highlight-text"> {task.percent}%</div>
+          <div className="highlight-text"> {0}%</div>
         </div>
         <div className='additional-statistics title'>
           Группа:
-          <div className="highlight-text"> {task.group}</div>
+          <div className="highlight-text"> {0}</div>
         </div>
         <div className='additional-statistics title'>
           <div className='calendar'>
             <img src={images['calendar.svg']} alt="logo" className='mr-5' />
-            {task.date}
+            {date}
           </div>
         </div>
       </div>

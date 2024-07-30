@@ -12,6 +12,7 @@ const images = ImageUtils.importAllImages(require.context('@assets/tasks', false
 const Tasks = () => {
   const [isTaskWindowOpen, setIsTaskWindowOpen] = useState(false);
   const [tasks, setTasks] = useState([]);
+  console.log(Date.now())
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -54,9 +55,9 @@ const Tasks = () => {
 
   const TasksCards = () => (
     <div className="tasks-grid">
-      {/* {tasks.map(task => (
+      {tasks.map(task => (
         <TaskCard key={task.id} task={task} />
-      ))} */}
+      ))}
     </div>
   );
 

@@ -31,9 +31,9 @@ export default function Views({ taskData, handleTaskDataChange }) {
           />
         </div>
         <InputField
-          label="Ссылка к каналу"
+          label="Ссылка на пост"
           type="text"
-          placeholder="Укажите ссылку на канал"
+          placeholder="Укажите ссылку на пост"
           logo={images['link.svg']}
           value={taskData.target_url || ''}
           handleChange={(e) => handleDataChange('target_url', e.target.value)}
