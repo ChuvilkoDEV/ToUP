@@ -16,8 +16,8 @@ const TaskWindow = ({ onClose }) => {
     time: 1,
     timeUnit: 'days',
     countIntervals: 5,
-    behavior: Array.from({ length: 5 }, () => 50), // Начальная инициализация
-    bot_group: '', // Опционально только для админов
+    behavior: Array.from({ length: 5 }, () => 50),
+    bot_group: '',
   });
 
   const handleTaskDataChange = (newData) => {
