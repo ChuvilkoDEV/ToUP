@@ -36,7 +36,7 @@ const Tasks = () => {
     };
 
     fetchTasks();
-  }, [logout]);
+  }, [logout, isTaskWindowOpen]);
 
   const handleOpenTaskWindow = () => {
     setIsTaskWindowOpen(true);
@@ -72,7 +72,7 @@ const Tasks = () => {
       <div className="tasks">
         <TasksTitle />
         <TasksCards />
-        {isTaskWindowOpen && <TaskWindow onClose={handleCloseTaskWindow} />}
+        {isTaskWindowOpen && <TaskWindow handleClose={handleCloseTaskWindow} />}
       </div>
       <Footer />
     </>

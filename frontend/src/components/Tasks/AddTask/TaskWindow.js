@@ -9,7 +9,7 @@ import ImageUtils from '@components/imageUtils';
 
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
-const TaskWindow = ({ onClose }) => {
+const TaskWindow = ({ handleClose }) => {
   const [isTaskSettingOpen, setIsTaskSettingOpen] = useState(false);
   const [isError, setIsError] = useState(true);
   const [errorMessage, serErrorMessage] = useState('Проверка');
@@ -109,6 +109,7 @@ const TaskWindow = ({ onClose }) => {
       const response = await axios.post('http://147.45.111.226:8001/api/addtask', formattedData);
       if (response.status) {
         setTaskData(TaskDataConstructor());
+        handleClose()
       } else {
         errorHandler(response.msg);
       }
@@ -120,7 +121,7 @@ const TaskWindow = ({ onClose }) => {
   useEffect(() => {
     const handleMouseDown = (e) => {
       if (!e.target.closest('.task-window')) {
-        onClose();
+        handleClose();
       }
     };
 
@@ -128,7 +129,7 @@ const TaskWindow = ({ onClose }) => {
     return () => {
       document.removeEventListener('mousedown', handleMouseDown);
     };
-  }, [onClose]);
+  }, [handleClose]);
 
   useEffect(() => {
     setTaskData((prevTaskData) => ({
