@@ -20,13 +20,15 @@ const TaskWindow = ({ onClose }) => {
     'link': 'Введена неверная ссылка',
     'count': 'Количество действий не может быть меньше 1',
     'behavior': 'Введен неверный график',
-  }
+  };
+
+  const handleCloseError = () => {
+    setIsError(false);
+  };
 
   const errorHandler = (msg) => {
     setIsError(true);
-    // switch (msg) {
-    //   case 
-    // }
+    serErrorMessage(errorMessages[msg] || 'Неизвестная ошибка');
   };
 
   const TaskDataConstructor = () => {
@@ -48,7 +50,7 @@ const TaskWindow = ({ onClose }) => {
         interval: false,
       },
     });
-  }
+  };
 
   const [taskData, setTaskData] = useState(TaskDataConstructor());
 
@@ -74,7 +76,7 @@ const TaskWindow = ({ onClose }) => {
         overflow -= 1;
       }
       return botsToInterval;
-    }
+    };
 
     const timeToInterval = Math.round(taskData.task_time / taskData.countIntervals * 1000);
     const sumPercentage = taskData.behavior.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
@@ -164,8 +166,9 @@ const TaskWindow = ({ onClose }) => {
               <b className='mr-5'>Ошибка: </b>
               {errorMessage}
             </div>
-            <HandySvg src={images['errorClose.svg']} className={`error-msg-close mr-5`} onClose={() => {setIsError(false)}}/>
-          </div>}
+            <HandySvg src={images['errorClose.svg']} className={`error-msg-close mr-5`} onClick={handleCloseError} />
+          </div>
+        }
       </div>
     </div>
   );
