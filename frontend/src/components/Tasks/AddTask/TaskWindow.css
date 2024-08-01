@@ -34,8 +34,8 @@
   top: 92%;
   width: 458px;
   padding: 12px 15px;
-  background-color: #FAF0F0;
-  color: #F46C6C;
+  background-color: var(--error-msg-background);
+  color: var(--error-msg-color);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -68,9 +68,11 @@
 }
 
 :root {
-  
+  --error-msg-background: #FAF0F0;
+  --error-msg-color: #F46C6C;
 }
 
 [data-theme='dark'] {
-
+  --error-msg-background: #1A1F32;
+  --error-msg-color: #F46C6C;
 }

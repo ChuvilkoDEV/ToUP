@@ -202,6 +202,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 4px;
+  font-size: 14px;
 }
 
 .tooltip-icon {

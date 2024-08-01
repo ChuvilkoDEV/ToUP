@@ -16,9 +16,9 @@ const TaskForm = ({ handleTaskSettingMenu, taskData, handleTaskDataChange, sendT
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   const botInfoBlock = [
-    { emoji: 'subscribers', text: '1 подписчик' },
+    { emoji: 'subs', text: '1 подписчик' },
     { emoji: 'views', text: '1 просмотр' },
-    { emoji: 'reactions', text: '1 реакция' },
+    { emoji: 'react', text: '1 реакция' },
   ]
 
   const handleTaskTypeClick = (type) => {
@@ -68,13 +68,15 @@ const TaskForm = ({ handleTaskSettingMenu, taskData, handleTaskDataChange, sendT
             <div className='tooltip-bots-info'>
               {botInfoBlock.map((item, index) => (
                 <div key={index} className="tooltip-item">
-                  <HandySvg src={images[`${item.emoji}.svg`]} className="logo-15x15 mr-5" />
-                  <span>{`1 бот = ${item.text}`}</span>
+                    <HandySvg src={images['user-robot.svg']} className="logo-15x15 mr-5" />
+                    {`1 бот = `}
+                    <HandySvg src={images[`${item.emoji}.svg`]} className="logo-15x15 mx-1" />
+                    {`${item.text}`}
                 </div>
               ))}
               <a href="#" className="tooltip-link">Приобрести</a>
             </div>
-          )}
+          )} 
         </div>
       </div>
       <InputField

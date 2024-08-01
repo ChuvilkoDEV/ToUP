@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './TaskCard.css';
+import { Tooltip } from 'react-tooltip'
+import { HandySvg } from 'handy-svg';
 
 import ImageUtils from '../imageUtils';
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
@@ -12,18 +14,18 @@ const TaskCard = ({ task }) => {
   const [status, setStatus] = useState('В прогрессе');
   const [date, setDate] = useState('');
 
-  const getTaskTime = () => {
+  const getTaskTime = (time) => {
     // Разделяем разницу на компоненты
     const msPerMinute = 60;
     const msPerHour = 60 * msPerMinute;
     const msPerDay = 24 * msPerHour;
     const msPerWeek = 7 * msPerDay;
-    
-    const weeks = Math.floor(task.task_time / msPerWeek);
-    const days = Math.floor((task.task_time % msPerWeek) / msPerDay);
-    const hours = Math.floor((task.task_time % msPerDay) / msPerHour);
-    const minutes = Math.floor((task.task_time % msPerHour) / msPerMinute);
-    
+
+    const weeks = Math.floor(time / msPerWeek);
+    const days = Math.floor((time % msPerWeek) / msPerDay);
+    const hours = Math.floor((time % msPerDay) / msPerHour);
+    const minutes = Math.floor((time % msPerHour) / msPerMinute);
+
     // Формируем строку с оставшимся временем
     if (weeks > 0) {
       return `${weeks} ${weeks === 1 ? 'неделя' : 'недели'}`;
@@ -45,7 +47,7 @@ const TaskCard = ({ task }) => {
       'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
     ];
     const year = date.getFullYear();
-    const month = months[date.getMonth()]; 
+    const month = months[date.getMonth()];
     const day = date.getDate();
     return `${day} ${month}, ${year}`;
   };
@@ -54,7 +56,7 @@ const TaskCard = ({ task }) => {
     setProgress(Math.floor(task.complite_actions / task.count_actions * 100));
     setStatus(progress === 100 ? 'Завершено' : 'В прогрессе');
     setDate(getDate());
-    setTaskTime(getTaskTime());
+    setTaskTime(getTaskTime(task.task_time));
   });
 
   const handleToggle = () => {
@@ -74,7 +76,7 @@ const TaskCard = ({ task }) => {
     'react': 'Реакций',
     'views': 'Просмотров',
   }
-  
+
   const CardHeader = () => (
     <div className="task-card-header">
       <div className="task-due-date">
@@ -82,13 +84,15 @@ const TaskCard = ({ task }) => {
         {taskTime}
       </div>
       <div className="task-title">
-        <img src={images[`${task.task_type}.svg`]} alt="logo" />
+        <div className='task-type-logo mr-5'>
+          <HandySvg src={images[`${task.task_type}.svg`]} className="logo-20x20 currentColor" />
+        </div>
         {task.count_actions}<br />
         {typeLabel[task.task_type]}
       </div>
     </div>
   );
- 
+
   const StatusProgress = () => (
     <div className="status-progress-row">
       <div className="task-status">
@@ -99,14 +103,17 @@ const TaskCard = ({ task }) => {
         {progress === 100 ?
           <img src={images['success.svg']} alt="logo" />
           :
-          <div
-            className="tooltip-wrapper"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <img src={images['info.svg']} alt="logo" />
-            {isTooltipVisible && <div className="custom-tooltip">На выполнение осталось 3 дня</div>}
-          </div>
+          <>
+            <a
+              data-tooltip-id={`my-tooltip`}
+              data-tooltip-place="top-end"
+            >
+              <HandySvg src={images[`info.svg`]} className="logo-15x15" />
+            </a>
+            <Tooltip id={`my-tooltip`} className='task-card-remain-time'>
+              На выполнение осталось {getTaskTime((task.date_add + task.task_time) - parseInt(Date.now() / 1000))}
+            </Tooltip>
+          </>
         }
       </div>
     </div>
