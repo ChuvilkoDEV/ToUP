@@ -4,14 +4,21 @@ import './InputField.css';
 import { HandySvg } from 'handy-svg';
 
 
-const InputField = ({ label, type, placeholder, logo, logoClass, value, handleChange, options = {} }) => {
+const InputField = ({ label, type, placeholder, logo, error, value, handleChange, options = {} }) => {
   const uniqueId = React.useMemo(() => uuidv4(), []);
 
   const handleNumberChange = (e) => {
-    if (options.maxValue && e.target.value >= options.maxValue)
+    const value = parseInt(e.target.value);
+    // debugger;
+    if (!Number.isInteger(Number(value)) && value !== '') {
+      return;
+    } else if (value === 0 || value === '') {
+      e.target.value = '';
+    } else if (options.maxValue && value >= options.maxValue) {
       e.target.value = options.maxValue;
-    else if (options.minValue && e.target.value <= options.minValue)
+    } else if (value <= options.minValue) {
       e.target.value = options.minValue;
+    }
     handleChange(e);
   };
 
@@ -67,21 +74,6 @@ const InputField = ({ label, type, placeholder, logo, logoClass, value, handleCh
     );
   };
 
-  const numberField = () => {
-    return (
-      <>
-        <input
-          type="number"
-          id={uniqueId}
-          name={uniqueId}
-          placeholder={placeholder}
-          value={value}
-          onChange={handleChange}
-        />
-      </>
-    );
-  };
-
   const numberSelectInputField = () => {
     return (
       <>
@@ -110,7 +102,7 @@ const InputField = ({ label, type, placeholder, logo, logoClass, value, handleCh
     <div className='input-field'>
       <label htmlFor={uniqueId}>{label}</label>
       <div className="input-container">
-        {logo && <HandySvg src={logo} className={`${logoClass ? logoClass : 'logo-15x15'} mr-5`} />}
+        {logo && <HandySvg src={logo} className={`logo-15x15 ${error ? 'error' : ''} mr-5`} />}
         <div className="divider"></div>
         {renderInput()}
       </div>

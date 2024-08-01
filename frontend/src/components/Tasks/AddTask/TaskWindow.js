@@ -18,6 +18,7 @@ const TaskWindow = ({ onClose }) => {
     countIntervals: 5,
     behavior: Array.from({ length: 5 }, () => 50),
     bot_group: '',
+    errors: {},
   });
 
   const handleTaskDataChange = (newData) => {

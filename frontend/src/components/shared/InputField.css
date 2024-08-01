@@ -74,3 +74,11 @@ select {
   --input-field-background: #1A1F32;
   --input-field-borders: #2D3142;
 }
+
+[data-theme='dark'] input[type='number']::-webkit-outer-spin-button,
+[data-theme='dark'] input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  color: #FFFFFF; /* Цвет стрелок */
+}

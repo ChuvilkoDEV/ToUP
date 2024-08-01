@@ -9,12 +9,13 @@ export default function TimeField({ taskData, handleTaskDataChange }) {
     handleTaskDataChange({ [field]: value });
   };
 
+  const timeUnit = {
+    'hours': 60 * 60,
+    'days': 24 * 60 * 60,
+    'weeks': 7 * 24 * 60 * 60,
+  };
+
   useEffect(() => {
-    const timeUnit = {
-      'hours': 60 * 60,
-      'days': 24 * 60 * 60,
-      'weeks': 7 * 24 * 60 * 60,
-    };
     const newTaskTime = taskData.time * timeUnit[taskData.timeUnit];
     if (taskData.task_time !== newTaskTime) {
       handleChange('task_time', newTaskTime);
@@ -23,7 +24,7 @@ export default function TimeField({ taskData, handleTaskDataChange }) {
 
   const handleTimeChange = (e) => {
     const value = e.target.value;
-    if (value <= 180) {
+    if (value * timeUnit[taskData.timeUnit] <= 180 * timeUnit['days']) {
       handleChange('time', value);
     }
   };
@@ -34,12 +35,9 @@ export default function TimeField({ taskData, handleTaskDataChange }) {
 
   return (
     <InputField
-      label="Время на выполнение"
-      type="number-select-input"
-      placeholder="Выберите..."
-      logo={images['todo.svg']}
-      value={taskData.time}
-      handleChange={handleTimeChange}
+      label="Время на выполнение" type="number-select-input" placeholder="Выберите..."
+      logo={images['todo.svg']}  error={taskData.errors.count_actions}
+      value={taskData.time} handleChange={handleTimeChange}
       options={{
         includeField: {
           value: taskData.timeUnit,
@@ -50,7 +48,7 @@ export default function TimeField({ taskData, handleTaskDataChange }) {
           { label: 'Дни', value: 'days' },
           { label: 'Недели', value: 'weeks' },
         ],
-        
+        // minValue: 0, maxValue: 180
       }}
     />
   );
