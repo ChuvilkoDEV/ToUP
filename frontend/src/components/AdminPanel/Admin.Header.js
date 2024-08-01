@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import './Admin.Header.css';
 import { ThemeContext } from '../../context/ThemeContext';
+import { HandySvg } from 'handy-svg';
 
 import ImageUtils from '../imageUtils';
 const images = ImageUtils.importAllImages(require.context('@assets/admin', false, /\.(svg)$/));
@@ -10,7 +11,7 @@ function AdminHeader({ activeMenu }) {
 
   const HeaderLeftDesktop = ({ activeMenu }) => (
     <div className="admin-header-desktop-left">
-      <img src={images[`${activeMenu.logo}.svg`]} alt="logo" />
+      <HandySvg src={images[`${activeMenu.logo}.svg`]} className="bot-icon" />
       {activeMenu.title}
     </div>
   );
@@ -19,7 +20,7 @@ function AdminHeader({ activeMenu }) {
     <div className="admin-header-mobile-left">
       <h1 className="admin-header-mobile-title">
         T
-        <img src={images['telegram.svg']} alt="logo" />
+        <HandySvg src={images['telegram.svg']} className="bot-icon" />
         UP
       </h1>
     </div>
@@ -28,15 +29,15 @@ function AdminHeader({ activeMenu }) {
   const HeaderRightDesktop = () => (
     <div className="admin-header-desktop-content">
       <input type="text" placeholder="Поиск..." className="admin-search-input" />
-      <img src={images['lightTheme.svg']} alt="logo" className="admin-theme-toggle" onClick={toggleTheme} />
+      <HandySvg src={images['lightTheme.svg']} className="admin-theme-toggle" onClick={toggleTheme} />
       <div className="admin-divider"></div>
-      <img src={images['profilelogo.svg']} alt="logo" className="admin-profile-logo" />
+      <HandySvg src={images['profilelogo.svg']} className="admin-profile-logo" />
       <div className="admin-user-info">
         <span className="admin-header-user-name">Евгений</span>
         <span className="admin-header-role">Админ</span>
       </div>
       <div className='admin-header-hamburger-menu'>
-        <img src={images['hamburger.svg']} alt="logo" />
+        <HandySvg src={images['hamburger.svg']} />
       </div>
     </div>
   );

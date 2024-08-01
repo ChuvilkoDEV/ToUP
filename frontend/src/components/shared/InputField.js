@@ -1,13 +1,13 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './InputField.css';
+import { HandySvg } from 'handy-svg';
 
-const InputField = ({ label, type, placeholder, logo, value, handleChange, options = {} }) => {
+
+const InputField = ({ label, type, placeholder, logo, logoClass, value, handleChange, options = {} }) => {
   const uniqueId = React.useMemo(() => uuidv4(), []);
 
   const handleNumberChange = (e) => {
-    // debugger;
-    // let inputedNumber = parseInt(e.target.value, 10);
     if (options.maxValue && e.target.value >= options.maxValue)
       e.target.value = options.maxValue;
     else if (options.minValue && e.target.value <= options.minValue)
@@ -110,7 +110,7 @@ const InputField = ({ label, type, placeholder, logo, value, handleChange, optio
     <div className='input-field'>
       <label htmlFor={uniqueId}>{label}</label>
       <div className="input-container">
-        {logo && <img src={logo} alt="logo" />}
+        {logo && <HandySvg src={logo} className={`${logoClass ? logoClass : 'logo-15x15'} mr-5`} />}
         <div className="divider"></div>
         {renderInput()}
       </div>

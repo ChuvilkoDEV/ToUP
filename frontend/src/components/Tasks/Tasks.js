@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import Header from '@components/Header/Header';
 import Footer from '@components/Footer/Footer';
 import TaskCard from './TaskCard';
 import TaskWindow from './AddTask/TaskWindow';
+import { AuthContext } from '../../context/AuthContext';
 import './Tasks.css';
 
 import ImageUtils from '../imageUtils';
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
 const Tasks = () => {
+  const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
   const [isTaskWindowOpen, setIsTaskWindowOpen] = useState(false);
   const [tasks, setTasks] = useState([]);
 
@@ -22,15 +26,20 @@ const Tasks = () => {
           offset: 0,
           limit: 10,
         });
-
-        setTasks(response.data.data);
+        console.log(response)
+        if (response.data.status === false) {
+          logout()
+          navigate('/');
+        } else {
+          setTasks(response.data.data || []);
+        }
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
       }
     };
 
     fetchTasks();
-  }, []);
+  }, [logout, navigate]);
 
   const handleOpenTaskWindow = () => {
     setIsTaskWindowOpen(true);

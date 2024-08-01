@@ -36,9 +36,7 @@ export default function Reactions({ taskData, handleTaskDataChange }) {
       <div className='task-form-data'>
         <div className='task-form-data-row'>
           <InputField
-            label="Разброс кол-ва"
-            type="number"
-            placeholder="%"
+            label="Разброс кол-ва" type="number" placeholder="%"
             logo={images['percentage.svg']}
             value={taskData.spreadValue || ''}
             handleChange={(e) => handleDataChange('spreadValue', e.target.value)}

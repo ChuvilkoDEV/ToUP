@@ -61,6 +61,9 @@
 
 .bot-icon {
   margin-right: 8px;
+  fill: var(--default-icon);
+  width: 20px;
+  height: 20px;
 }
 
 .bot-count {
@@ -110,7 +113,6 @@
 
 .advanced-setting-btn {
   width: 45px;
-  /* height: 45px; */
   padding: 12.5px;
   border-radius: 10px;
   border: 1px solid #2D8EFF;
@@ -205,7 +207,7 @@
 .tooltip-item {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .tooltip-icon {

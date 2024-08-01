@@ -41,6 +41,12 @@ body {
   margin-right: 5px;
 }
 
+.logo-15x15 {
+  fill: var(--default-icon);
+  width: 15px;
+  height: 15px;
+}
+
 :root {
   --background-color: white; 
   --borders-color: #e2e2e2;
@@ -55,6 +61,7 @@ body {
   --task-card-border: #EFEFEF;
   --overlay-back: #F5F5F5;
   --search-field: #F9F9FA;
+  --default-icon: #2D8EFF;
 }
 
 [data-theme='dark'] {
@@ -71,9 +78,7 @@ body {
   --task-card-border: #515151;
   --overlay-back: #01061B;
   --search-field: #F7F7F91A;
-  --status-ban: #1A1F32;
-  --status-active: #1A1F32;
-  --status-proxy: #1A1F32;
+  --default-icon: #2D8EFF;
 }
 
 body {

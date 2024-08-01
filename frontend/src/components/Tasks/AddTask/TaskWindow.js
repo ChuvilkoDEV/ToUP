@@ -68,7 +68,7 @@ const TaskWindow = ({ onClose }) => {
             task_obj: taskData.task_obj,
             task_time: taskData.task_time,
             behavior: handleBehaviour(),
-            channel_id: 7777777777,
+            channel_id: '7777777777',
           },
         ],
       };

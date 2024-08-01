@@ -5,8 +5,9 @@ import Reactions from './TaskTypes/Reactions';
 import Views from './TaskTypes/Views';
 import TimeField from './TimeField';
 import './TaskForm.css';
-import ImageUtils from '../../imageUtils';
+import { HandySvg } from 'handy-svg';
 
+import ImageUtils from '../../imageUtils';
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
 const TaskForm = ({ handleTaskSettingMenu, taskData, handleTaskDataChange, sendTasksToServer }) => {
@@ -53,7 +54,7 @@ const TaskForm = ({ handleTaskSettingMenu, taskData, handleTaskDataChange, sendT
         <div className='left-side-bots'>
           <p className='mb-0'>У вас имеется</p>
           <div className="bot-info-container">
-            <img src={images['user-robot.svg']} alt="logo" className="bot-icon" />
+            <HandySvg src={images['user-robot.svg']} className="bot-icon" />
             <p className="bot-count">4000 ботов</p>
           </div>
         </div>
@@ -62,17 +63,17 @@ const TaskForm = ({ handleTaskSettingMenu, taskData, handleTaskDataChange, sendT
           onMouseEnter={() => setIsTooltipVisible(true)}
           onMouseLeave={() => setIsTooltipVisible(false)}
         >
-          <img src={images['info.svg']} alt="info" />
+          <HandySvg src={images['info.svg']} className="logo-15x15" />
           {isTooltipVisible && (
-          <div className='tooltip-bots-info'>
-            {botInfoBlock.map((item, index) => (
-              <div key={index} className="tooltip-item">
-                <img src={images[`${item.emoji}.svg`]} alt={item.emoji} className="tooltip-icon" />
-                <span>{`1 бот = ${item.text}`}</span>
-              </div>
-            ))}
-            <a href="#" className="tooltip-link">Приобрести</a>
-          </div>
+            <div className='tooltip-bots-info'>
+              {botInfoBlock.map((item, index) => (
+                <div key={index} className="tooltip-item">
+                  <HandySvg src={images[`${item.emoji}.svg`]} className="logo-15x15 mr-5" />
+                  <span>{`1 бот = ${item.text}`}</span>
+                </div>
+              ))}
+              <a href="#" className="tooltip-link">Приобрести</a>
+            </div>
           )}
         </div>
       </div>
@@ -111,7 +112,7 @@ const TaskForm = ({ handleTaskSettingMenu, taskData, handleTaskDataChange, sendT
         </button>
         {taskData.task_type !== 'subs' &&
           <div className='advanced-setting-btn' onClick={handleTaskSettingMenu}>
-            <img src={images['settings.svg']} alt="logo" />
+            <HandySvg src={images[`settings.svg`]} className="logo-15x15" />
           </div>}
       </div>
       {error && <p className="error">{error}</p>}
