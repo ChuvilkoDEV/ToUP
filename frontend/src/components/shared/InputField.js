@@ -99,9 +99,9 @@ const InputField = ({ label, type, placeholder, logo, error, value, handleChange
   };
 
   return (
-    <div className='input-field'>
+    <div className={`input-field`}>
       <label htmlFor={uniqueId}>{label}</label>
-      <div className="input-container">
+      <div className={`input-container ${error ? 'error' : ''}`}>
         {logo && <HandySvg src={logo} className={`logo-15x15 ${error ? 'error' : ''} mr-5`} />}
         <div className="divider"></div>
         {renderInput()}

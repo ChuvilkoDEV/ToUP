@@ -7,19 +7,29 @@ import TaskSettings from './AdvancedSettings/TaskSettings';
 
 const TaskWindow = ({ onClose }) => {
   const [isTaskSettingOpen, setIsTaskSettingOpen] = useState(false);
-  const [taskData, setTaskData] = useState({
-    task_type: 'subs',
-    target_url: '',
-    count_actions: 0,
-    task_obj: [],
-    task_time: 1,
-    time: 1,
-    timeUnit: 'days',
-    countIntervals: 5,
-    behavior: Array.from({ length: 5 }, () => 50),
-    bot_group: '',
-    errors: {},
-  });
+
+  const TaskDataConstructor = () => {
+    return ({
+      task_type: 'subs',
+      target_url: '',
+      count_actions: 0,
+      task_obj: [],
+      task_time: 1,
+      time: 1,
+      timeUnit: 'days',
+      countIntervals: 5,
+      behavior: Array.from({ length: 5 }, () => 50),
+      bot_group: '',
+      errors: { 
+        spread: false, 
+        count_actions: false,
+        link: false,
+        interval: false,
+      },
+    });
+  }
+
+  const [taskData, setTaskData] = useState(TaskDataConstructor());
 
   const handleTaskDataChange = (newData) => {
     setTaskData((prevState) => ({
@@ -41,21 +51,20 @@ const TaskWindow = ({ onClose }) => {
       if (overflow >= 1) {
         botsToInterval += 1;
         overflow -= 1;
-      } 
+      }
       return botsToInterval;
     }
 
     const timeToInterval = Math.round(taskData.task_time / taskData.countIntervals * 1000);
     const sumPercentage = taskData.behavior.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    const now = Date.now(); 
+    const now = Date.now();
     const ans = [[now, countBotsPerInterval(sumPercentage, 0)]];
     for (let i = 1; i < taskData.countIntervals; i++) {
-      ans.push([ans[i - 1][0] + timeToInterval, countBotsPerInterval(sumPercentage, i)]); 
+      ans.push([ans[i - 1][0] + timeToInterval, countBotsPerInterval(sumPercentage, i)]);
     }
-    ans[ans.length - 1][1] += taskData.count_actions % taskData.countIntervals; 
+    ans[ans.length - 1][1] += taskData.count_actions % taskData.countIntervals;
     return ans;
   };
-  
 
   const sendTasksToServer = async () => {
     try {
@@ -65,7 +74,7 @@ const TaskWindow = ({ onClose }) => {
           {
             task_type: taskData.task_type,
             target_url: taskData.target_url,
-            count_actions: taskData.count_actions,
+            count_actions: parseInt(taskData.count_actions),
             task_obj: taskData.task_obj,
             task_time: taskData.task_time,
             behavior: handleBehaviour(),
@@ -75,18 +84,7 @@ const TaskWindow = ({ onClose }) => {
       };
 
       await axios.post('http://147.45.111.226:8001/api/addtask', formattedData);
-      setTaskData({
-        task_type: 'subs',
-        target_url: '',
-        count_actions: 0,
-        task_obj: [],
-        task_time: 1,
-        time: 1,
-        timeUnit: 'days',
-        countIntervals: 5,
-        behavior: Array.from({ length: 5 }, () => 50),
-        bot_group: '', 
-      });
+      setTaskData(TaskDataConstructor());
     } catch (error) {
       console.error('Ошибка при отправке задач:', error);
     }

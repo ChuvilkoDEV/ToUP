@@ -121,12 +121,6 @@
   align-items: center;
 }
 
-.task-form .error {
-  color: red;
-  text-align: left;
-  margin-top: 10px;
-}
-
 .reactions-popup {
   position: absolute;
   top: 234px;

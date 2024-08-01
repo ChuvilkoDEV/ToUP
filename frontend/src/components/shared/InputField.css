@@ -1,6 +1,6 @@
 .input-field {
   width: 100%;
-  box-sizing: border-box; /* Важно добавить это свойство */
+  box-sizing: border-box;
 }
 
 .input-field label {
@@ -24,10 +24,20 @@
   height: 45px;
 }
 
-.input-container img {
+.input-container.error {
+  border: 1px solid var(--error-border);
+  background-color: var(--error-background);
+}
+
+.input-container svg {
   width: 15px;
   height: 15px;
   margin-right: 8px;
+}
+
+.input-container.error svg {
+  color: var(--error-border);
+  fill: currentColor;
 }
 
 .input-container .divider {
@@ -37,16 +47,26 @@
   margin-right: 5px;
 }
 
+.input-container.error .divider {
+  background-color: var(--error-border);
+}
+
 .input-container input,
-select {
+.input-container select {
   border: none;
   border-radius: 10px;
   flex: 1;
   outline: none;
   background-color: var(--input-field-background);
   color: var(--text-color);
-  width: 100%; /* Замените фиксированную ширину на 100% */
-  box-sizing: border-box; /* Важно добавить это свойство */
+  width: 100%;
+  box-sizing: border-box; 
+}
+
+.input-container.error input,
+.input-container.error select {
+  background-color: var(--error-background);
+  color: var(--error-border);
 }
 
 .little-select-field {
@@ -82,3 +102,15 @@ select {
   margin: 0;
   color: #FFFFFF; /* Цвет стрелок */
 }
+
+:root {
+  --error-border: #F46C6C; 
+  --error-background: #FAF0F0;
+}
+
+[data-theme='dark'] {
+  --error-border: #F46C6C; 
+  --error-background: #1A1F32;
+}
+
+

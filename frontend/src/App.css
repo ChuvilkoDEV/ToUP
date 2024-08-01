@@ -47,6 +47,10 @@ body {
   height: 15px;
 }
 
+.currentColor {
+  fill: currentColor;
+}
+
 :root {
   --background-color: white; 
   --borders-color: #e2e2e2;

@@ -54,7 +54,7 @@ export default function Reactions({ taskData, handleTaskDataChange }) {
           <div className='input-field'>
             <label>Реакции</label>
             <div className="input-container" onClick={() => setShowReactions(!showReactions)}>
-              <img src={images['emoji.svg']} alt="logo" />
+              <img src={images['emoji.svg']} alt="logo" className='mr-5' />
               <div className="divider"></div>
               Реакции: {taskData.task_obj.length}
             </div>

@@ -36,13 +36,10 @@ const TaskSettings = ({ taskData, handleTaskDataChange, handleTaskSettingMenu })
       <div className="task-settings-fields">
         <TimeField taskData={taskData} handleTaskDataChange={handleTaskDataChange} />
         <InputField
-          label="Интервал"
-          type="number"
-          placeholder="Выберите..."
-          logo={images['todo.svg']}
-          value={taskData.countIntervals}
-          handleChange={handleIntervalChange}
-          options={{ maxValue: 24, minValue: 1 }}
+          label="Интервал" type="number" placeholder="Выберите..."
+          logo={images['todo.svg']} error={taskData.errors.interval}
+          value={taskData.countIntervals} handleChange={handleIntervalChange}
+          options={{ minValue: 1, maxValue: 24, }}
         />
       </div>
     )
