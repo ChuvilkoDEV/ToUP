@@ -48,7 +48,6 @@ export default function TimeField({ taskData, handleTaskDataChange }) {
           { label: 'Дни', value: 'days' },
           { label: 'Недели', value: 'weeks' },
         ],
-        // minValue: 0, maxValue: 180
       }}
     />
   );

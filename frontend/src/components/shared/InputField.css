@@ -78,8 +78,8 @@
 }
 
 .little-select-field option {
-  color: black;
-  background-color: #303546;
+  color: var(--text-color);
+  background-color: var(--select-field-option-background);
   /* var(--little-input-field); */
 }
 
@@ -87,12 +87,14 @@
   --little-input-field: #F5F5F5;
   --input-field-background: white;
   --input-field-borders: #e2e2e2;
+  --select-field-option-background: white;
 }
 
 [data-theme='dark'] {
   --little-input-field: #F5F5F51A;
   --input-field-background: #1A1F32;
   --input-field-borders: #2D3142;
+  --select-field-option-background: #303546;
 }
 
 [data-theme='dark'] input[type='number']::-webkit-outer-spin-button,

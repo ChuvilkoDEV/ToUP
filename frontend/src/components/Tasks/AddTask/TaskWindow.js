@@ -4,9 +4,30 @@ import BlueRectangle from './BlueRectangle';
 import TaskForm from './TaskForm';
 import './TaskWindow.css';
 import TaskSettings from './AdvancedSettings/TaskSettings';
+import { HandySvg } from 'handy-svg';
+import ImageUtils from '@components/imageUtils';
+
+const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
 const TaskWindow = ({ onClose }) => {
   const [isTaskSettingOpen, setIsTaskSettingOpen] = useState(false);
+  const [isError, setIsError] = useState(true);
+  const [errorMessage, serErrorMessage] = useState('Проверка');
+
+  const errorMessages = {
+    'react': 'Вы должны выбрать хотя бы одну реакцию',
+    'subs': 'Идентификатор канала должен содержать только цифры',
+    'link': 'Введена неверная ссылка',
+    'count': 'Количество действий не может быть меньше 1',
+    'behavior': 'Введен неверный график',
+  }
+
+  const errorHandler = (msg) => {
+    setIsError(true);
+    // switch (msg) {
+    //   case 
+    // }
+  };
 
   const TaskDataConstructor = () => {
     return ({
@@ -14,14 +35,14 @@ const TaskWindow = ({ onClose }) => {
       target_url: '',
       count_actions: 0,
       task_obj: [],
-      task_time: 1,
+      task_time: 86400,
       time: 1,
       timeUnit: 'days',
       countIntervals: 5,
       behavior: Array.from({ length: 5 }, () => 50),
       bot_group: '',
-      errors: { 
-        spread: false, 
+      errors: {
+        spread: false,
         count_actions: false,
         link: false,
         interval: false,
@@ -76,15 +97,19 @@ const TaskWindow = ({ onClose }) => {
             target_url: taskData.target_url,
             count_actions: parseInt(taskData.count_actions),
             task_obj: taskData.task_obj,
-            task_time: taskData.task_time,
+            task_time: parseInt(taskData.task_time),
             behavior: handleBehaviour(),
             channel_id: '7777777777',
           },
         ],
       };
 
-      await axios.post('http://147.45.111.226:8001/api/addtask', formattedData);
-      setTaskData(TaskDataConstructor());
+      const response = await axios.post('http://147.45.111.226:8001/api/addtask', formattedData);
+      if (response.status) {
+        setTaskData(TaskDataConstructor());
+      } else {
+        errorHandler(response.msg);
+      }
     } catch (error) {
       console.error('Ошибка при отправке задач:', error);
     }
@@ -132,6 +157,15 @@ const TaskWindow = ({ onClose }) => {
             </>
           )}
         </div>
+        {isError &&
+          <div className='error-msg-container'>
+            <div className='error-msg-content'>
+              <HandySvg src={images['error.svg']} className={`logo-15x15 mr-5`} />
+              <b className='mr-5'>Ошибка: </b>
+              {errorMessage}
+            </div>
+            <HandySvg src={images['errorClose.svg']} className={`error-msg-close mr-5`} onClose={() => {setIsError(false)}}/>
+          </div>}
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import Header from '@components/Header/Header';
 import Footer from '@components/Footer/Footer';
 import TaskCard from './TaskCard';
@@ -12,7 +11,6 @@ import ImageUtils from '../imageUtils';
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
 const Tasks = () => {
-  const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
   const [isTaskWindowOpen, setIsTaskWindowOpen] = useState(false);
   const [tasks, setTasks] = useState([]);
@@ -28,8 +26,7 @@ const Tasks = () => {
         });
         console.log(response)
         if (response.data.status === false) {
-          logout()
-          navigate('/');
+          logout();
         } else {
           setTasks(response.data.data || []);
         }
@@ -39,7 +36,7 @@ const Tasks = () => {
     };
 
     fetchTasks();
-  }, [logout, navigate]);
+  }, [logout]);
 
   const handleOpenTaskWindow = () => {
     setIsTaskWindowOpen(true);

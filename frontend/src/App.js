@@ -10,36 +10,31 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-import ChartComponent from './components/Tasks/AddTask/AdvancedSettings/ChartComponent';
-
 function App() {
   const { theme } = useContext(ThemeContext);
   const { isAuthenticated, isAdmin } = useContext(AuthContext);
 
   return (
-    <Router>
-      <div className={`App ${theme}`}>
-        <Routes>
-          {isAdmin && <>
-            <Route path="/admin" element={isAdmin ? <AdminPanel /> : <Navigate to="/" />} />
-          </>}
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/" />} />
-          <Route path="/tasks" element={isAuthenticated ? <Tasks /> : <Navigate to="/" />} />
-          <Route path="/test" element={
-            <ChartComponent />
-          } />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </div>
-    </Router>
+    <div className={`App ${theme}`}>
+      <Routes>
+        {isAdmin && <>
+          <Route path="/admin" element={isAdmin ? <AdminPanel /> : <Navigate to="/" />} />
+        </>}
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/" />} />
+        <Route path="/tasks" element={isAuthenticated ? <Tasks /> : <Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </div>
   );
 }
 
 export default function RootApp() {
   return (
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <Router>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </Router>
   );
 }
