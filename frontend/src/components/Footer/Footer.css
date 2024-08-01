@@ -1,8 +1,9 @@
 .footer {
   background-color: var(--background-color);
-  padding: 50px 0px;
+  padding-top: 50px;
   margin-top: 20px;
   text-align: center;
+  width: 100%;
   max-width: 1240px;
   margin: 0 auto;
 }

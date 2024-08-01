@@ -1,8 +1,10 @@
 .tasks {
   padding: 28px 0;
   text-align: center;
+  width: 100%;
   max-width: 1240px;
   margin: 0 auto;
+  flex: 1;
 }
 
 .tasks-title {

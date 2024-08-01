@@ -1,3 +1,9 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 115vh;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
