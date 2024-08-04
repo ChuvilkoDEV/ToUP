@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { ThemeContext } from '../../context/ThemeContext';
+import Notification from './Notification';
 
 import { HandySvg } from 'handy-svg';
 import ImageUtils from '../imageUtils';
@@ -89,12 +90,6 @@ export default function Desktop({ handleLogoutClick, handleLoginClick, handleReg
     </div>
   );
 
-  const NotificationMenu = () => (
-    <div className="user-dropdown-menu">
-      
-    </div>
-  );
-
   const AuthenticatedRight = () => (
     <>
       <button className="header-button narrow-button">
@@ -108,7 +103,7 @@ export default function Desktop({ handleLogoutClick, handleLoginClick, handleReg
         <img src={images['userProfile.svg']} alt="logo" />
       </button>
       {isProfileMenuOpen && <ProfileMenu />}
-      {isNotificationOpen && <NotificationMenu />}
+      {isNotificationOpen && <Notification />}
     </>
   );
 

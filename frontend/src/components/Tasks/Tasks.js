@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import Header from '@components/Header/Header';
 import Footer from '@components/Footer/Footer';
@@ -10,12 +10,22 @@ import './Tasks.css';
 import ImageUtils from '../imageUtils';
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
-const Tasks = () => {
-  const { logout } = useContext(AuthContext);
-  const [isTaskWindowOpen, setIsTaskWindowOpen] = useState(false);
-  const [tasks, setTasks] = useState([]);
+class Tasks extends Component {
+  static contextType = AuthContext;
 
-  const fetchTasks = async (offset, limit) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isTaskWindowOpen: false,
+      tasks: [], // Инициализируем пустым массивом
+    };
+  }
+
+  componentDidMount() {
+    this.fetchTasks(0, 15);
+  }
+
+  fetchTasks = async (offset, limit) => {
     const token = localStorage.getItem('token');
     try {
       const response = await axios.post('http://147.45.111.226:8001/api/gettask', {
@@ -24,58 +34,56 @@ const Tasks = () => {
         limit: limit,
       });
       if (response.data.status === false) {
-        logout();
+        this.context.logout();
       } else {
-        setTasks(response.data.data || []);
+        this.setState({ tasks: response.data.data || [] });
       }
     } catch (error) {
       console.error('Ошибка при получении данных:', error);
     }
   };
 
-  useEffect(() => {
-    fetchTasks(0, 15);
-  }, []);
-
-  const handleOpenTaskWindow = () => {
-    setIsTaskWindowOpen(true);
+  handleOpenTaskWindow = () => {
+    this.setState({ isTaskWindowOpen: true });
   };
 
-  const handleCloseTaskWindow = () => {
-    setIsTaskWindowOpen(false);
+  handleCloseTaskWindow = () => {
+    this.setState({ isTaskWindowOpen: false });
   };
 
-  const TasksTitle = () => (
+  TasksTitle = () => (
     <div className='tasks-title'>
       <h1>Все задачи</h1>
       <div className='tasks-buttons'>
         <button className='px-5'>Сортировать</button>
-        <button onClick={handleOpenTaskWindow}>
+        <button onClick={this.handleOpenTaskWindow}>
           <img src={images['add.svg']} alt="Добавить задачу" />
         </button>
       </div>
     </div>
   );
 
-  const TasksCards = () => (
+  TasksCards = () => (
     <div className="tasks-grid">
-      {tasks.map(task => (
+      {this.state.tasks.map(task => (
         <TaskCard key={task.id} task={task} />
       ))}
     </div>
   );
 
-  return (
-    <>
-      <Header />
-      <div className="tasks">
-        <TasksTitle />
-        <TasksCards />
-        {isTaskWindowOpen && <TaskWindow handleClose={handleCloseTaskWindow} />}
-      </div>
-      <Footer />
-    </>
-  );
+  render() {
+    return (
+      <>
+        <Header />
+        <div className="tasks">
+          <this.TasksTitle />
+          <this.TasksCards />
+          {this.state.isTaskWindowOpen && <TaskWindow handleClose={this.handleCloseTaskWindow} />}
+        </div>
+        <Footer />
+      </>
+    );
+  }
 }
 
 export default Tasks;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import BlueRectangle from './BlueRectangle';
 import TaskForm from './TaskForm';
@@ -9,12 +9,18 @@ import ImageUtils from '@components/imageUtils';
 
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
-const TaskWindow = ({ handleClose }) => {
-  const [isTaskSettingOpen, setIsTaskSettingOpen] = useState(false);
-  const [isError, setIsError] = useState(true);
-  const [errorMessage, serErrorMessage] = useState('Проверка');
+class TaskWindow extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isTaskSettingOpen: false,
+      isError: true,
+      errorMessage: 'Проверка',
+      taskData: this.TaskDataConstructor(),
+    };
+  }
 
-  const errorMessages = {
+  errorMessages = {
     'react': 'Вы должны выбрать хотя бы одну реакцию',
     'subs': 'Идентификатор канала должен содержать только цифры',
     'link': 'Введена неверная ссылка',
@@ -22,53 +28,50 @@ const TaskWindow = ({ handleClose }) => {
     'behavior': 'Введен неверный график',
   };
 
-  const handleCloseError = () => {
-    setIsError(false);
+  TaskDataConstructor = () => ({
+    task_type: 'subs',
+    target_url: '',
+    count_actions: 0,
+    task_obj: [],
+    task_time: 86400,
+    time: 1,
+    timeUnit: 'days',
+    countIntervals: 5,
+    behavior: Array.from({ length: 5 }, () => 50),
+    bot_group: '',
+    errors: {
+      spread: false,
+      count_actions: false,
+      link: false,
+      interval: false,
+    },
+  });
+
+  handleCloseError = () => {
+    this.setState({ isError: false });
   };
 
-  const errorHandler = (msg) => {
-    setIsError(true);
-    serErrorMessage(errorMessages[msg] || 'Неизвестная ошибка');
+  errorHandler = (msg) => {
+    this.setState({ isError: true, errorMessage: this.errorMessages[msg] || 'Неизвестная ошибка' });
   };
 
-  const TaskDataConstructor = () => {
-    return ({
-      task_type: 'subs',
-      target_url: '',
-      count_actions: 0,
-      task_obj: [],
-      task_time: 86400,
-      time: 1,
-      timeUnit: 'days',
-      countIntervals: 5,
-      behavior: Array.from({ length: 5 }, () => 50),
-      bot_group: '',
-      errors: {
-        spread: false,
-        count_actions: false,
-        link: false,
-        interval: false,
+  handleTaskDataChange = (newData) => {
+    this.setState((prevState) => ({
+      taskData: {
+        ...prevState.taskData,
+        ...newData,
       },
-    });
-  };
-
-  const [taskData, setTaskData] = useState(TaskDataConstructor());
-
-  const handleTaskDataChange = (newData) => {
-    setTaskData((prevState) => ({
-      ...prevState,
-      ...newData,
     }));
   };
 
-  const handleTaskSettingMenu = () => {
-    setIsTaskSettingOpen(!isTaskSettingOpen);
+  handleTaskSettingMenu = () => {
+    this.setState((prevState) => ({ isTaskSettingOpen: !prevState.isTaskSettingOpen }));
   };
 
-  const handleBehaviour = () => {
+  handleBehaviour = () => {
     let overflow = 0;
     const countBotsPerInterval = (sumPercentage, index) => {
-      let botsToInterval = parseInt(taskData.count_actions, 10) * (taskData.behavior[index] / sumPercentage);
+      let botsToInterval = parseInt(this.state.taskData.count_actions, 10) * (this.state.taskData.behavior[index] / sumPercentage);
       overflow += botsToInterval % 1;
       botsToInterval = Math.floor(botsToInterval)
       if (overflow >= 1) {
@@ -78,29 +81,29 @@ const TaskWindow = ({ handleClose }) => {
       return botsToInterval;
     };
 
-    const timeToInterval = Math.round(taskData.task_time / taskData.countIntervals * 1000);
-    const sumPercentage = taskData.behavior.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    const timeToInterval = Math.round(this.state.taskData.task_time / this.state.taskData.countIntervals * 1000);
+    const sumPercentage = this.state.taskData.behavior.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     const now = Date.now();
     const ans = [[now, countBotsPerInterval(sumPercentage, 0)]];
-    for (let i = 1; i < taskData.countIntervals; i++) {
+    for (let i = 1; i < this.state.taskData.countIntervals; i++) {
       ans.push([ans[i - 1][0] + timeToInterval, countBotsPerInterval(sumPercentage, i)]);
     }
-    ans[ans.length - 1][1] += taskData.count_actions % taskData.countIntervals;
+    ans[ans.length - 1][1] += this.state.taskData.count_actions % this.state.taskData.countIntervals;
     return ans;
   };
 
-  const sendTasksToServer = async () => {
+  sendTasksToServer = async () => {
     try {
       const formattedData = {
         token: localStorage.getItem('token'),
         data: [
           {
-            task_type: taskData.task_type,
-            target_url: taskData.target_url,
-            count_actions: parseInt(taskData.count_actions),
-            task_obj: taskData.task_obj,
-            task_time: parseInt(taskData.task_time),
-            behavior: handleBehaviour(),
+            task_type: this.state.taskData.task_type,
+            target_url: this.state.taskData.target_url,
+            count_actions: parseInt(this.state.taskData.count_actions),
+            task_obj: this.state.taskData.task_obj,
+            task_time: parseInt(this.state.taskData.task_time),
+            behavior: this.handleBehaviour(),
             channel_id: '7777777777',
           },
         ],
@@ -108,71 +111,67 @@ const TaskWindow = ({ handleClose }) => {
 
       const response = await axios.post('http://147.45.111.226:8001/api/addtask', formattedData);
       if (response.status) {
-        setTaskData(TaskDataConstructor());
-        handleClose()
+        this.setState({ taskData: this.TaskDataConstructor() });
+        this.props.handleClose();
       } else {
-        errorHandler(response.msg);
+        this.errorHandler(response.msg);
       }
     } catch (error) {
       console.error('Ошибка при отправке задач:', error);
     }
   };
 
-  useEffect(() => {
-    const handleMouseDown = (e) => {
-      if (!e.target.closest('.task-window')) {
-        handleClose();
-      }
-    };
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleMouseDown);
+  }
 
-    document.addEventListener('mousedown', handleMouseDown);
-    return () => {
-      document.removeEventListener('mousedown', handleMouseDown);
-    };
-  }, [handleClose]);
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleMouseDown);
+  }
 
-  useEffect(() => {
-    setTaskData((prevTaskData) => ({
-      ...prevTaskData,
-      behavior: Array.from({ length: prevTaskData.countIntervals }, () => 50),
-    }));
-  }, [taskData.countIntervals]);
+  handleMouseDown = (e) => {
+    if (!e.target.closest('.task-window')) {
+      this.props.handleClose();
+    }
+  };
 
-  return (
-    <div className="task-window-overlay">
-      <div className="task-window">
-        <div className="task-content">
-          {isTaskSettingOpen ? (
-            <TaskSettings
-              taskData={taskData}
-              handleTaskDataChange={handleTaskDataChange}
-              handleTaskSettingMenu={handleTaskSettingMenu}
-            />
-          ) : (
-            <>
-              <TaskForm
-                handleTaskSettingMenu={handleTaskSettingMenu}
-                taskData={taskData}
-                handleTaskDataChange={handleTaskDataChange}
-                sendTasksToServer={sendTasksToServer}
+  render() {
+    return (
+      <div className="task-window-overlay">
+        <div className="task-window">
+          <div className="task-content">
+            {this.state.isTaskSettingOpen ? (
+              <TaskSettings
+                taskData={this.state.taskData}
+                handleTaskDataChange={this.handleTaskDataChange}
+                handleTaskSettingMenu={this.handleTaskSettingMenu}
               />
-              <BlueRectangle />
-            </>
-          )}
-        </div>
-        {isError &&
-          <div className='error-msg-container'>
-            <div className='error-msg-content'>
-              <HandySvg src={images['error.svg']} className={`logo-15x15 mr-5`} />
-              <b className='mr-5'>Ошибка: </b>
-              {errorMessage}
-            </div>
-            <HandySvg src={images['errorClose.svg']} className={`error-msg-close mr-5`} onClick={handleCloseError} />
+            ) : (
+              <>
+                <TaskForm
+                  handleTaskSettingMenu={this.handleTaskSettingMenu}
+                  taskData={this.state.taskData}
+                  handleTaskDataChange={this.handleTaskDataChange}
+                  sendTasksToServer={this.sendTasksToServer}
+                />
+                <BlueRectangle />
+              </>
+            )}
           </div>
-        }
+          {this.state.isError &&
+            <div className='error-msg-container'>
+              <div className='error-msg-content'>
+                <HandySvg src={images['error.svg']} className={`logo-15x15 mr-5`} />
+                <b className='mr-5'>Ошибка: </b>
+                {this.state.errorMessage}
+              </div>
+              <HandySvg src={images['errorClose.svg']} className={`error-msg-close mr-5`} onClick={this.handleCloseError} />
+            </div>
+          }
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default TaskWindow;

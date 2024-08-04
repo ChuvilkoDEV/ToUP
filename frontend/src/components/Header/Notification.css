@@ -1,0 +1,77 @@
+.notification-dropdown-menu {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background-color: var(--header-dropdown-menu);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 215px;
+  z-index: 1000;
+  font-size: 14px;
+  color: var(--text-color);
+  text-align: left;
+  max-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.notification-title {
+  font-weight: 600;
+  margin-bottom: 14px;
+  padding: 10px 15px;
+}
+
+.notification-type-container {
+  display: flex;
+  width: 100%;
+}
+
+.notification-type {
+  flex: 1 1;
+  text-align: center;
+  color: #0000004D;
+  cursor: pointer;
+  border-bottom: 1px solid #d9d9d949;
+}
+
+.notification-type.active {
+  color: #2D8EFF;
+  border-bottom: 1px solid #2D8EFF;
+}
+
+.notification-list-container {
+  width: 100%;
+  flex-grow: 1;
+  /* позволяет контейнеру расти */
+  overflow-y: auto;
+  /* включает прокрутку по вертикали */
+}
+
+.notification-container {
+  display: flex;
+  padding: 10px 15px;
+  border-bottom: 1px solid #d9d9d949;
+}
+
+.notification-container:hover {
+  background-color: #00000005;
+}
+
+.notification-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid #E7EAEE;
+}
+
+.notification-label {
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.notification-info {
+  color: #000000;
+  opacity: 0.3;
+  font-size: 12px;
+}
