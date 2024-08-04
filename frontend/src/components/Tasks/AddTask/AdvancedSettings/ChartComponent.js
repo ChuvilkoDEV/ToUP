@@ -41,10 +41,15 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
     const newBehavior = [...chartRef.current.data.datasets[0].data];
     handleTaskDataChange({ behavior: newBehavior });
 
+    const maxValue = Math.max(...newBehavior);
     const chartInstance = chartRef.current;
     if (chartInstance) {
-      chartInstance.options.scales.y.max = 100;
-      chartInstance.options.scales.y.min = 0;
+      debugger
+      Chart.defaults.scales.linear.min = 0;
+      Chart.defaults.scales.linear.max = maxValue * 1.2;
+
+      // chartInstance.options.scales.y.suggestedMax = maxValue * 1.2;
+      // chartInstance.options.scales.y.suggestedMin = 0;
       chartInstance.update();
     }
   };
@@ -57,8 +62,11 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
         scales: {
           y: {
             beginAtZero: true,
-            min: 0,
-            max: 100,
+            // min: 0,
+            // max: 100,
+            suggestedMin: 0,
+            suggestedMax: 100
+
           },
         },
         plugins: {
