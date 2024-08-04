@@ -11,10 +11,17 @@ export default function Desktop({ handleLogoutClick, handleLoginClick, handleReg
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { isAuthenticated } = useContext(AuthContext);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const location = useLocation();
 
   const toggleMenu = () => {
     setIsProfileMenuOpen(!isProfileMenuOpen);
+    setIsNotificationOpen(false);
+  };
+
+  const toggleNotification = () => {
+    setIsNotificationOpen(!isNotificationOpen);
+    setIsProfileMenuOpen(false);
   };
 
   const getLinkClass = (path) => {
@@ -82,19 +89,26 @@ export default function Desktop({ handleLogoutClick, handleLoginClick, handleReg
     </div>
   );
 
+  const NotificationMenu = () => (
+    <div className="user-dropdown-menu">
+      
+    </div>
+  );
+
   const AuthenticatedRight = () => (
     <>
       <button className="header-button narrow-button">
         <img src={images['wallet.svg']} alt="logo" className='mr-5' />
         13.500 ₽
       </button>
-      <button className="header-button hiding-button">
+      <button className="header-button hiding-button" onClick={toggleNotification} >
         <img src={images['notification.svg']} alt="logo" />
       </button>
       <button className="header-button hiding-button" onClick={toggleMenu}>
         <img src={images['userProfile.svg']} alt="logo" />
       </button>
-      {isProfileMenuOpen && <ProfileMenu toggleTheme={toggleTheme} handleLogoutClick={handleLogoutClick} />}
+      {isProfileMenuOpen && <ProfileMenu />}
+      {isNotificationOpen && <NotificationMenu />}
     </>
   );
 

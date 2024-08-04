@@ -15,28 +15,27 @@ const Tasks = () => {
   const [isTaskWindowOpen, setIsTaskWindowOpen] = useState(false);
   const [tasks, setTasks] = useState([]);
 
-  useEffect(() => {
-    const fetchTasks = async () => {
-      const token = localStorage.getItem('token');
-      try {
-        const response = await axios.post('http://147.45.111.226:8001/api/gettask', {
-          token: token,
-          offset: 0,
-          limit: 10,
-        });
-        console.log(response)
-        if (response.data.status === false) {
-          logout();
-        } else {
-          setTasks(response.data.data || []);
-        }
-      } catch (error) {
-        console.error('Ошибка при получении данных:', error);
+  const fetchTasks = async (offset, limit) => {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await axios.post('http://147.45.111.226:8001/api/gettask', {
+        token: token,
+        offset: offset,
+        limit: limit,
+      });
+      if (response.data.status === false) {
+        logout();
+      } else {
+        setTasks(response.data.data || []);
       }
-    };
+    } catch (error) {
+      console.error('Ошибка при получении данных:', error);
+    }
+  };
 
-    fetchTasks();
-  }, [logout, isTaskWindowOpen]);
+  useEffect(() => {
+    fetchTasks(0, 15);
+  }, []);
 
   const handleOpenTaskWindow = () => {
     setIsTaskWindowOpen(true);

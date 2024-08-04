@@ -79,9 +79,21 @@ const TaskCard = ({ task }) => {
 
   const CardHeader = () => (
     <div className="task-card-header">
-      <div className="task-due-date">
-        <img src={images[`calendarClock.svg`]} alt="logo" />
-        {taskTime}
+      <div className='upper'>
+        <a
+          data-tooltip-id={`menu-tooltip-${task.id}`}
+          data-tooltip-class-name={`menu-tooltip`}
+          data-tooltip-place="bottom-start"
+        >
+          <HandySvg src={images[`menuDots.svg`]} className='logo-15x15' />
+        </a>
+        <Tooltip id={`menu-tooltip-${task.id}`} className='menu-tooltip'>
+          <button className=''></button>
+        </Tooltip>
+        <div className="task-due-date">
+          <img src={images[`calendarClock.svg`]} alt="logo" />
+          {taskTime}
+        </div>
       </div>
       <div className="task-title">
         <div className='task-type-logo mr-5'>
@@ -105,12 +117,13 @@ const TaskCard = ({ task }) => {
           :
           <>
             <a
-              data-tooltip-id={`my-tooltip`}
+              data-tooltip-id={`info-tooltip-${task.id}`}
+              data-tooltip-class-name={`info-tooltip`}
               data-tooltip-place="top-end"
             >
               <HandySvg src={images[`info.svg`]} className="logo-15x15" />
             </a>
-            <Tooltip id={`my-tooltip`} className='task-card-remain-time'>
+            <Tooltip id={`info-tooltip-${task.id}`} className='task-card-remain-time'>
               На выполнение осталось {getTaskTime((task.date_add + task.task_time) - parseInt(Date.now() / 1000))}
             </Tooltip>
           </>
