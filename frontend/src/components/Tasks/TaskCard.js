@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './TaskCard.css';
-import { Tooltip } from 'react-tooltip'
+import { Tooltip } from 'react-tooltip';
 import { HandySvg } from 'handy-svg';
 
 import ImageUtils from '../imageUtils';
@@ -8,14 +8,17 @@ const images = ImageUtils.importAllImages(require.context('@assets/tasks', false
 
 const TaskCard = ({ task }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
   const [taskTime, setTaskTime] = useState('');
   const [progress, setProgress] = useState(0);
   const [status, setStatus] = useState('В прогрессе');
   const [date, setDate] = useState('');
 
+  const handleEditToggle = () => {
+    setIsEditOpen(!isEditOpen);
+  };
+
   const getTaskTime = (time) => {
-    // Разделяем разницу на компоненты
     const msPerMinute = 60;
     const msPerHour = 60 * msPerMinute;
     const msPerDay = 24 * msPerHour;
@@ -26,7 +29,6 @@ const TaskCard = ({ task }) => {
     const hours = Math.floor((time % msPerDay) / msPerHour);
     const minutes = Math.floor((time % msPerHour) / msPerMinute);
 
-    // Формируем строку с оставшимся временем
     if (weeks > 0) {
       return `${weeks} ${weeks === 1 ? 'неделя' : 'недели'}`;
     } else if (days > 0) {
@@ -63,40 +65,37 @@ const TaskCard = ({ task }) => {
     setIsExpanded(!isExpanded);
   };
 
-  const handleMouseEnter = () => {
-    setIsTooltipVisible(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsTooltipVisible(false);
-  };
-
   const typeLabel = {
     'subs': 'Подписчиков',
     'react': 'Реакций',
     'views': 'Просмотров',
-  }
+  };
+
+  const EditMenu = () => (
+    <div className='task-card-edit-menu'>
+      <div className='task-card-edit-menu-item'>
+        <span className='mr-5'>Остановить</span>
+        <HandySvg src={images[`stopTask.svg`]} className='logo-15x15' />
+      </div>
+      <div className='task-card-edit-menu-item'>
+        <span className='mr-5'>Изменить</span>
+        <HandySvg src={images[`changeTask.svg`]} className='logo-15x15' />
+      </div>
+    </div>
+  );
 
   const CardHeader = () => (
     <div className="task-card-header">
       <div className='upper'>
-        <a
-          data-tooltip-id={`menu-tooltip-${task.id}`}
-          data-tooltip-class-name={`menu-tooltip`}
-          data-tooltip-place="bottom-start"
-        >
-          <HandySvg src={images[`menuDots.svg`]} className='logo-15x15' />
-        </a>
-        <Tooltip id={`menu-tooltip-${task.id}`} className='menu-tooltip'>
-          <button className=''></button>
-        </Tooltip>
+        <HandySvg src={images[`menuDots.svg`]} className='logo-15x15 edit-menu-btn' onClick={handleEditToggle} />
+        {isEditOpen && <EditMenu />}
         <div className="task-due-date">
           <img src={images[`calendarClock.svg`]} alt="logo" />
           {taskTime}
         </div>
       </div>
       <div className="task-title">
-        <div className='task-type-logo mr-5'>
+        <div className='task-type-logo'>
           <HandySvg src={images[`${task.task_type}.svg`]} className="logo-20x20 currentColor" />
         </div>
         {task.count_actions}<br />
@@ -193,7 +192,7 @@ const TaskCard = ({ task }) => {
   const CardFooter = () => {
     return isExpanded ?
       <ExpandedStaistic /> :
-      <ClosedStaistic />
+      <ClosedStaistic />;
   };
 
   return (
