@@ -1,0 +1,65 @@
+.dropzone {
+  border: 2px dashed #cccccc;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+  height: 80px;
+}
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 60px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7.5px 10px;
+  border: 1px solid #DEDEDE;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.file-item-info {
+  display: flex;
+  gap: 5px;
+}
+
+.file-item-logo {
+  background-color: #2D8EFF1A;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-item-property {
+  line-height: 0.9;
+  display: block;
+  text-align: left;
+}
+
+.file-item-name,
+.file-item-weight {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.file-item-weight {
+  opacity: 0.3;
+}
+
+.blue-text {
+  color: #2D8EFF;
+}

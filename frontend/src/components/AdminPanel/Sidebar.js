@@ -45,7 +45,7 @@ export default function Sidebar({ menus, onMenuClick, activeMenu }) {
     <div className="sidebar-footer">
       <button>Добавить задачу</button>
       <button onClick={handleSessionWindow}>Добавить сессию</button>
-      {isSessionWindowOpen && <SessionWindow />}
+      {isSessionWindowOpen && <SessionWindow handleClose={handleSessionWindow}/>}
     </div>
   );
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTable } from 'react-table';
-import ImageUtils from '../../imageUtils';
 
+import ImageUtils from '@components/imageUtils';
 const images = ImageUtils.importAllImages(require.context('@assets/admin', false, /\.(svg)$/));
 
 function SessionsTable({ columns, data, title }) {

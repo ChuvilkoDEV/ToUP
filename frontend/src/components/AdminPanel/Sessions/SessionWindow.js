@@ -1,67 +1,95 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import InputField from '@components/shared/InputField';
+import DropzoneField from '@components/shared/DropzoneField';
 import './SessionWindow.css';
-import { HandySvg } from 'handy-svg';
-import ImageUtils from '@components/imageUtils';
-import { useDropzone } from 'react-dropzone';
 
+import ImageUtils from '@components/imageUtils';
 const images = ImageUtils.importAllImages(require.context('@assets/admin', false, /\.(svg)$/));
 
-export default function AddSession() {
-  const [company, setCompany] = useState('');
-  const [group, setGroup] = useState('');
-  const [accountID, setAccountID] = useState('');
-  const [files, setFiles] = useState([]);
+class SessionWindow extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      company: '',
+      group: '',
+      accountID: '',
+      proxies: [],
+      sessions: [],
+    };
 
-  const onDrop = acceptedFiles => {
-    setFiles([...files, ...acceptedFiles]);
+    this.handleMouseDown = this.handleMouseDown.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleMouseDown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleMouseDown);
+  }
+
+  handleMouseDown(e) {
+    if (!e.target.closest('.session-window')) {
+      this.props.handleClose();
+    }
+  }
+
+  handleChange = (field) => (e) => {
+    this.setState({ [field]: e.target.value });
   };
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  render() {
+    const { company, group, accountID, proxies, sessions } = this.state;
 
-  return (
-    <div className='session-window-overlay'>
-      <div className='session-window'>
-        <div className='session-form-container'>
-          <span className='session-window-title'>Добавить сессии</span>
-          <InputField
-            label="Компания" type="text" placeholder="Введите название компании"
-            logo={images['link.svg']}
-            value={company || ''}
-            handleChange={(e) => setCompany(e.target.value)}
-          />
-          <InputField
-            label="Группа" type="text" placeholder="Выберите группу"
-            logo={images['link.svg']}
-            value={group || ''}
-            handleChange={(e) => setGroup(e.target.value)}
-          />
-          <div {...getRootProps({ className: 'dropzone' })}>
-            <input {...getInputProps()} />
-            {isDragActive ? (
-              <p>Перетащите файлы сюда...</p>
-            ) : (
-              <p>Перетащите файлы сюда или нажмите, чтобы выбрать файлы</p>
-            )}
+    return (
+      <div className='session-window-overlay'>
+        <div className='session-window'>
+          <div className='session-form-container'>
+            <span className='session-window-title'>Добавить сессии</span>
+            <InputField
+              label="Компания"
+              type="text"
+              placeholder="Введите название компании"
+              logo={images['link.svg']}
+              value={company}
+              handleChange={this.handleChange('company')}
+            />
+            <InputField
+              label="Группа"
+              type="text"
+              placeholder="Выберите группу"
+              logo={images['link.svg']}
+              value={group}
+              handleChange={this.handleChange('group')}
+            />
+            <DropzoneField
+              files={proxies}
+              setFiles={(files) => this.setState({ proxies: files })}
+              text="прокси (*.txt)"
+            />
+            <DropzoneField
+              files={sessions}
+              setFiles={(files) => this.setState({ sessions: files })}
+              text="сессий (*.session)"
+            />
+            <button className='add-session-button'>Добавить</button>
           </div>
-          <div>
-            {files.map(file => (
-              <div key={file.name}>{file.name}</div>
-            ))}
+          <div className='session-form-container'>
+            <span className='session-window-title'>Удалить сессию</span>
+            <InputField
+              label="Account ID"
+              type="text"
+              placeholder="Введите ID аккаунта"
+              logo={images['link.svg']}
+              value={accountID}
+              handleChange={this.handleChange('accountID')}
+            />
+            <button className='delete-session-button'>Удалить</button>
           </div>
-          <button className='add-session-button'>Добавить</button>
-        </div>
-        <div className='session-form-container'>
-          <span className='session-window-title'>Удалить сессию</span>
-          <InputField
-            label="Account ID" type="text" placeholder="Введите ID аккаунта"
-            logo={images['link.svg']}
-            value={accountID || ''}
-            handleChange={(e) => setAccountID(e.target.value)}
-          />
-          <button className='delete-session-button'>Удалить</button>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+export default SessionWindow;
