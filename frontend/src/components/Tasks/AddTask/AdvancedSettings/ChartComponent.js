@@ -7,6 +7,7 @@ Chart.register(dragDataPlugin);
 
 const ChartComponent = ({ taskData, handleTaskDataChange }) => {
   const chartRef = useRef(null);
+  const countBots = 4000;
 
   const createChartData = () => ({
     labels: Array.from({ length: taskData.countIntervals }, (_, i) => i.toString()),
@@ -37,20 +38,26 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
     }
   }, [taskData.behavior]);
 
+  const updateBehavior = (behavior) => {
+    const percentageRatio = [];
+    const sum = behavior.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    behavior.forEach((value) => percentageRatio.push(taskData.count_actions * (value / sum)));
+    return percentageRatio;
+  };
+
   const handleDragEnd = (e, datasetIndex, index, value) => {
-    const newBehavior = [...chartRef.current.data.datasets[0].data];
+    const currentData = [...chartRef.current.data.datasets[0].data];
+    currentData[index] = value;
+    const newBehavior = updateBehavior(currentData);
     handleTaskDataChange({ behavior: newBehavior });
+    chartRef.current.data.datasets[0].data = newBehavior;
 
     const maxValue = Math.max(...newBehavior);
     const chartInstance = chartRef.current;
     if (chartInstance) {
-      debugger
-      Chart.defaults.scales.linear.min = 0;
-      Chart.defaults.scales.linear.max = maxValue * 1.2;
-
-      // chartInstance.options.scales.y.suggestedMax = maxValue * 1.2;
-      // chartInstance.options.scales.y.suggestedMin = 0;
-      chartInstance.update();
+      chartInstance.options.scales.y.min = 0;
+      chartInstance.options.scales.y.max = maxValue * 1.2;
+      chartInstance.update('none');
     }
   };
 
@@ -59,14 +66,20 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
       ref={chartRef}
       data={createChartData()}
       options={{
+        animation: false, // Отключение анимации
         scales: {
+          x: {
+            grid: {
+              display: false, // Убрать вертикальные линии
+            },
+          },
           y: {
             beginAtZero: true,
-            // min: 0,
-            // max: 100,
             suggestedMin: 0,
-            suggestedMax: 100
-
+            suggestedMax: 1,
+            grid: {
+              display: false, // Убрать горизонтальные линии
+            },
           },
         },
         plugins: {

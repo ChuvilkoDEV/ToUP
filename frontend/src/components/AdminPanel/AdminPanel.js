@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import Sessions from './Sessions';
+import Sessions from './Sessions/Sessions';
 import Sidebar from './Sidebar';
 import AdminHeader from './Admin.Header';
 import './AdminPanel.css';
 
 const menus = [
   { 'logo': 'accounts', 'title': 'Все аккаунты', 'href': '#' },
+  { 'logo': 'sessions', 'title': 'Сессии', 'href': '#' },
   { 'logo': 'tasks', 'title': 'Все задачи', 'href': '#' },
   { 'logo': 'support', 'title': 'Тех. поддержка', 'href': '#' },
 ];
 
 function AdminPanel() {
-  const [activeMenu, setActiveMenu] = useState(menus[0]); // Изначально активное меню - первое в списке
+  const [activeMenu, setActiveMenu] = useState(menus[0]); 
 
   const handleMenuClick = (menu) => {
     setActiveMenu(menu);

@@ -11,7 +11,7 @@ function AdminHeader({ activeMenu }) {
 
   const HeaderLeftDesktop = ({ activeMenu }) => (
     <div className="admin-header-desktop-left">
-      <HandySvg src={images[`${activeMenu.logo}.svg`]} className="bot-icon" />
+      <HandySvg src={images[`${activeMenu.logo}.svg`]} className="logo-15x15 currentColor" />
       {activeMenu.title}
     </div>
   );

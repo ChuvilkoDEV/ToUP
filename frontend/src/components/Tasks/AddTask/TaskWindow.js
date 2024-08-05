@@ -4,9 +4,9 @@ import BlueRectangle from './BlueRectangle';
 import TaskForm from './TaskForm';
 import './TaskWindow.css';
 import TaskSettings from './AdvancedSettings/TaskSettings';
+
 import { HandySvg } from 'handy-svg';
 import ImageUtils from '@components/imageUtils';
-
 const images = ImageUtils.importAllImages(require.context('@assets/tasks', false, /\.(svg)$/));
 
 class TaskWindow extends Component {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTable } from 'react-table';
-import ImageUtils from '../imageUtils';
+import ImageUtils from '../../imageUtils';
 
 const images = ImageUtils.importAllImages(require.context('@assets/admin', false, /\.(svg)$/));
 

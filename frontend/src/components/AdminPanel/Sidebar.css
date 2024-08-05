@@ -59,10 +59,11 @@ body {
   text-decoration: none;
   color: var(--sidebar-link);
   font-weight: 400;
-  display: block;
+  display: flex;
   padding: 10px 15px;
   border-radius: 3px;
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
