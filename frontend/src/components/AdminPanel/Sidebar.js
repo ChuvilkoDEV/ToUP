@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import SessionWindow from './Sessions/SessionWindow';
 import './Sidebar.css';
 
 import { HandySvg } from 'handy-svg';
@@ -6,6 +7,12 @@ import ImageUtils from '@components/imageUtils';
 const images = ImageUtils.importAllImages(require.context('@assets/admin', false, /\.(svg)$/));
 
 export default function Sidebar({ menus, onMenuClick, activeMenu }) {
+  const [isSessionWindowOpen, setIsSessionWindowOpen] = useState(false);
+
+  const handleSessionWindow = () => (
+    setIsSessionWindowOpen(!isSessionWindowOpen)
+  );
+
   const SidebarHeader = () => (
     <div className="sidebar-header">
       <div className="sidebar-header-container">
@@ -37,7 +44,8 @@ export default function Sidebar({ menus, onMenuClick, activeMenu }) {
   const SidebarFooter = () => (
     <div className="sidebar-footer">
       <button>Добавить задачу</button>
-      <button>Добавить сессию</button>
+      <button onClick={handleSessionWindow}>Добавить сессию</button>
+      {isSessionWindowOpen && <SessionWindow />}
     </div>
   );
 

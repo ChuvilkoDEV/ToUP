@@ -1,0 +1,65 @@
+.session-window-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.session-window {
+  width: 781px;
+  height: 492px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: var(--background-color);
+  display: flex;
+  position: relative;
+  gap: 20px;
+}
+
+.session-form-container {
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.session-window-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.add-session-button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--color-buttons) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.delete-session-button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--background-color) !important;
+  color: var(--color-buttons) !important;
+  border: 1px solid var(--color-buttons) !important;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.dropzone {
+  border: 2px dashed #cccccc;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
