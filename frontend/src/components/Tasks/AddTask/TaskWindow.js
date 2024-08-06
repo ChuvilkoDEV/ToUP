@@ -49,7 +49,7 @@ class TaskWindow extends Component {
     time: 1,
     timeUnit: 'days',
     countIntervals: 5,
-    behavior: Array.from({ length: 5 }, () => 50),
+    behavior: Array.from({ length: 5 }, () => 0),
     bot_group: '',
     errors: this.ErrorsConstructor(),
   });
@@ -60,12 +60,27 @@ class TaskWindow extends Component {
   };
 
   handleTaskDataChange = (newData) => {
-    this.setState((prevState) => ({
-      taskData: {
+    this.setState((prevState) => {
+      const updatedData = {
         ...prevState.taskData,
         ...newData,
-      },
-    }));
+      };
+
+      // Если изменяется countIntervals, сбросить и перестроить поведение
+      if (newData.countIntervals !== undefined) {
+        const averageCount = 0;
+        if (newData.countIntervals !== 0)
+          averageCount = this.state.taskData.count_actions / newData.countIntervals;
+        updatedData.behavior = Array.from({ length: newData.countIntervals }, () => averageCount);
+      } else if (newData.countIntervals !== undefined){
+        const averageCount = 0;
+        if (this.state.taskData.countIntervals !== 0)
+          averageCount = newData.count_actions / this.state.taskData.countIntervals
+        updatedData.behavior = Array.from({ length: newData.countIntervals }, () => averageCount);
+      }
+
+      return { taskData: updatedData };
+    });
   };
 
   handleTaskSettingMenu = () => {
@@ -119,11 +134,10 @@ class TaskWindow extends Component {
     };
 
     const timeToInterval = Math.round(this.state.taskData.task_time / this.state.taskData.countIntervals * 1000);
-    const sumPercentage = this.state.taskData.behavior.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     const now = Date.now();
-    const ans = [[now, countBotsPerInterval(sumPercentage, 0)]];
+    const ans = [[now, this.state.taskData.behavior[0]]];
     for (let i = 1; i < this.state.taskData.countIntervals; i++) {
-      ans.push([ans[i - 1][0] + timeToInterval, countBotsPerInterval(sumPercentage, i)]);
+      ans.push([ans[i - 1][0] + timeToInterval, this.state.taskData.behavior[i]]);
     }
     ans[ans.length - 1][1] += this.state.taskData.count_actions % this.state.taskData.countIntervals;
     return ans;

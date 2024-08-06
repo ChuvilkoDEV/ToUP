@@ -7,7 +7,6 @@ Chart.register(dragDataPlugin);
 
 const ChartComponent = ({ taskData, handleTaskDataChange }) => {
   const chartRef = useRef(null);
-  const countBots = 4000;
 
   const createChartData = () => ({
     labels: Array.from({ length: taskData.countIntervals }, (_, i) => i.toString()),
@@ -25,6 +24,7 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
     ],
   });
 
+
   useEffect(() => {
     const chart = chartRef.current;
     if (chart) {
@@ -34,16 +34,29 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
       gradient.addColorStop(1, 'rgba(45,142,255,0)');
       chart.data.datasets[0].backgroundColor = gradient;
       chart.data.datasets[0].data = taskData.behavior;
+      chart.data.labels = Array.from({ length: taskData.countIntervals }, (_, i) => i.toString());
       chart.update();
     }
-  }, [taskData.behavior]);
+  }, [taskData.behavior, taskData.countIntervals]);
+
 
   const updateBehavior = (behavior) => {
     const percentageRatio = [];
     const sum = behavior.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     behavior.forEach((value) => percentageRatio.push(taskData.count_actions * (value / sum)));
+
+    let overflow = 0;
+    for (let i = 0; i < percentageRatio.length; i++) {
+      overflow += percentageRatio[i] % 1;
+      percentageRatio[i] = Math.floor(percentageRatio[i]);
+      if (overflow >= 1) {
+        percentageRatio[i] += 1;
+        overflow -= 1;
+      }
+    }
     return percentageRatio;
   };
+
 
   const handleDragEnd = (e, datasetIndex, index, value) => {
     const currentData = [...chartRef.current.data.datasets[0].data];
@@ -61,16 +74,17 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
     }
   };
 
+
   return (
     <Line
       ref={chartRef}
       data={createChartData()}
       options={{
-        animation: false, // Отключение анимации
+        animation: false,
         scales: {
           x: {
             grid: {
-              display: false, // Убрать вертикальные линии
+              display: false,
             },
           },
           y: {
@@ -78,7 +92,7 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
             suggestedMin: 0,
             suggestedMax: 1,
             grid: {
-              display: false, // Убрать горизонтальные линии
+              display: false,
             },
           },
         },
