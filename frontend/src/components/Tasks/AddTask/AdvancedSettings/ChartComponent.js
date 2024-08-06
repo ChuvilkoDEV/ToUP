@@ -24,7 +24,6 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
     ],
   });
 
-
   useEffect(() => {
     const chart = chartRef.current;
     if (chart) {
@@ -38,7 +37,6 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
       chart.update();
     }
   }, [taskData.behavior, taskData.countIntervals]);
-
 
   const updateBehavior = (behavior) => {
     const percentageRatio = [];
@@ -57,7 +55,6 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
     return percentageRatio;
   };
 
-
   const handleDragEnd = (e, datasetIndex, index, value) => {
     const currentData = [...chartRef.current.data.datasets[0].data];
     currentData[index] = value;
@@ -73,7 +70,6 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
       chartInstance.update('none');
     }
   };
-
 
   return (
     <Line

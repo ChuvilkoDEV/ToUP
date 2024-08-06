@@ -38,7 +38,7 @@ class TaskWindow extends Component {
     count_actions: false,
     interval: false,
     time: false,
-  })
+  });
 
   TaskDataConstructor = () => ({
     task_type: 'subs',
@@ -66,16 +66,10 @@ class TaskWindow extends Component {
         ...newData,
       };
 
-      // Если изменяется countIntervals, сбросить и перестроить поведение
       if (newData.countIntervals !== undefined) {
-        const averageCount = 0;
+        let averageCount = 0;
         if (newData.countIntervals !== 0)
           averageCount = this.state.taskData.count_actions / newData.countIntervals;
-        updatedData.behavior = Array.from({ length: newData.countIntervals }, () => averageCount);
-      } else if (newData.countIntervals !== undefined){
-        const averageCount = 0;
-        if (this.state.taskData.countIntervals !== 0)
-          averageCount = newData.count_actions / this.state.taskData.countIntervals
         updatedData.behavior = Array.from({ length: newData.countIntervals }, () => averageCount);
       }
 
@@ -90,7 +84,7 @@ class TaskWindow extends Component {
   errorHandler = (msg) => {
     let key = '';
     switch (msg) {
-      case "You dount have reaction in task":
+      case "You don't have reaction in task":
         key = 'react';
         break;
       case "Bad channel id":
@@ -119,27 +113,13 @@ class TaskWindow extends Component {
     this.handleTaskDataChange({ errors: newErrors });
   };
 
-
   handleBehaviour = () => {
-    let overflow = 0;
-    const countBotsPerInterval = (sumPercentage, index) => {
-      let botsToInterval = parseInt(this.state.taskData.count_actions, 10) * (this.state.taskData.behavior[index] / sumPercentage);
-      overflow += botsToInterval % 1;
-      botsToInterval = Math.floor(botsToInterval)
-      if (overflow >= 1) {
-        botsToInterval += 1;
-        overflow -= 1;
-      }
-      return botsToInterval;
-    };
-
     const timeToInterval = Math.round(this.state.taskData.task_time / this.state.taskData.countIntervals * 1000);
     const now = Date.now();
     const ans = [[now, this.state.taskData.behavior[0]]];
     for (let i = 1; i < this.state.taskData.countIntervals; i++) {
       ans.push([ans[i - 1][0] + timeToInterval, this.state.taskData.behavior[i]]);
     }
-    ans[ans.length - 1][1] += this.state.taskData.count_actions % this.state.taskData.countIntervals;
     return ans;
   };
 
