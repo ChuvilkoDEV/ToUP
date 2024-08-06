@@ -28,6 +28,13 @@ class TaskWindow extends Component {
     'behavior': 'Введен неверный график',
   };
 
+  ErrorsConstructor = () => ({
+    spread: false,
+    count_actions: false,
+    link: false,
+    interval: false,
+  })
+
   TaskDataConstructor = () => ({
     task_type: 'subs',
     target_url: '',
@@ -39,20 +46,12 @@ class TaskWindow extends Component {
     countIntervals: 5,
     behavior: Array.from({ length: 5 }, () => 50),
     bot_group: '',
-    errors: {
-      spread: false,
-      count_actions: false,
-      link: false,
-      interval: false,
-    },
+    errors: this.ErrorsConstructor(),
   });
 
   handleCloseError = () => {
     this.setState({ isError: false });
-  };
-
-  errorHandler = (msg) => {
-    this.setState({ isError: true, errorMessage: this.errorMessages[msg] || 'Неизвестная ошибка' });
+    this.handleTaskDataChange({ errors: this.ErrorsConstructor() });
   };
 
   handleTaskDataChange = (newData) => {
@@ -67,6 +66,36 @@ class TaskWindow extends Component {
   handleTaskSettingMenu = () => {
     this.setState((prevState) => ({ isTaskSettingOpen: !prevState.isTaskSettingOpen }));
   };
+
+  errorHandler = (msg) => {
+    let newErrors = this.ErrorsConstructor();
+    
+    switch(msg) {
+      case "You don't have reaction in task":
+        this.setState({
+          isError: true,
+          errorMessage: this.errorMessages['react'],
+        });
+        break;
+      case "Bad target url":
+        newErrors['link'] = true; 
+        this.setState({
+          isError: true,
+          errorMessage: this.errorMessages['link'],
+        });
+        break;
+      default:
+        this.setState({
+          isError: true,
+          errorMessage: this.errorMessages[msg] || 'Неизвестная ошибка',
+        });
+        break;
+    }
+  
+    // Обновляем taskData.errors
+    this.handleTaskDataChange({ errors: newErrors });
+  };
+  
 
   handleBehaviour = () => {
     let overflow = 0;
@@ -110,7 +139,8 @@ class TaskWindow extends Component {
       };
 
       const response = await axios.post('http://147.45.111.226:8001/api/addtask', formattedData);
-      if (response.status) {
+      debugger;
+      if (response.data.status) {
         this.setState({ taskData: this.TaskDataConstructor() });
         this.props.handleClose();
       } else {

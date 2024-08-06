@@ -17,6 +17,10 @@ class SessionWindow extends Component {
       proxyFile: [],
       proxies: [],
       sessions: [],
+      showProgress: false,
+      uploaded: 0,
+      successful: 0,
+      errors: 0,
     };
 
     this.handleMouseDown = this.handleMouseDown.bind(this);
@@ -42,52 +46,67 @@ class SessionWindow extends Component {
   };
 
   handleProxyFileChange = (e) => {
-    this.setState({ proxyFile: e.target.files[0] });
+    this.setState({ proxyFile: e.target.files });
   }
 
-  handleProxiesUpload() {
-    debugger;
-    const file = this.state.proxyFile[0];
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      debugger;
-      const text = event.target.result;
-      const lines = text.split('\n').map(line => line.trim()).filter(line => line.length > 0);
-      this.setState({ proxies: lines });
-    };
-    reader.readAsText(file);
+  handleProxiesUpload = () => {
+    return new Promise((resolve, reject) => {
+      const proxyFile = this.state.proxyFile;
+      if (proxyFile.length === 0) {
+        resolve([]);
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const proxies = event.target.result.split('\n').filter(Boolean);
+        this.setState({ proxies }, resolve);
+      };
+      reader.onerror = reject;
+      reader.readAsText(proxyFile[0]);
+    });
   }
 
   async handleAddSessions() {
-    this.handleProxiesUpload();
+    await this.handleProxiesUpload();
     const { group, proxies, sessions } = this.state;
     const token = localStorage.getItem('token');
     const category = '1';
-
+  
+    this.setState({ showProgress: true, uploaded: 0, successful: 0, errors: 0 });
+  
     for (let i = 0; i < sessions.length; i++) {
-      const formData = {
-        token: token,
-        file: sessions[i],
-        proxy: proxies[Math.floor(i / 5)],
-        group: group,
-        category: category,
-      };
-
+      const formData = new FormData();
+      formData.append('token', token);
+      formData.append('file', sessions[i]);
+      formData.append('proxy', proxies[Math.floor(i / 5)]);
+      formData.append('group', group);
+      formData.append('category', category);
+  
       try {
         const response = await axios.post('http://147.45.111.226:8001/api/uploadSessions', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
-        console.log(response.data);
+        console.log('Response:', response);
+        this.setState((prevState) => ({
+          uploaded: prevState.uploaded + 1,
+          successful: prevState.successful + 1,
+        }));
       } catch (error) {
-        console.error(error);
+        console.error('Error uploading session:', error);
+        this.setState((prevState) => ({
+          uploaded: prevState.uploaded + 1,
+          errors: prevState.errors + 1,
+        }));
       }
     }
   }
+  
 
   render() {
-    const { company, group, accountID, proxyFile, sessions } = this.state;
+    const { company, group, accountID, proxyFile, sessions, showProgress, uploaded, successful, errors } = this.state;
 
     return (
       <div className='session-window-overlay'>
@@ -138,6 +157,15 @@ class SessionWindow extends Component {
             <button className='delete-session-button'>Удалить</button>
           </div>
         </div>
+        {showProgress && (
+          <div className='progress-overlay'>
+            <div className='progress-window'>
+              <span>Загружено: {uploaded}/{sessions.length}</span><br />
+              <span>Успешно: {successful}</span><br />
+              <span>Ошибка: {errors}</span>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
