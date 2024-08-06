@@ -14,8 +14,8 @@ class TaskWindow extends Component {
     super(props);
     this.state = {
       isTaskSettingOpen: false,
-      isError: true,
-      errorMessage: 'Проверка',
+      isError: false,
+      errorMessage: '',
       taskData: this.TaskDataConstructor(),
     };
   }
@@ -24,15 +24,20 @@ class TaskWindow extends Component {
     'react': 'Вы должны выбрать хотя бы одну реакцию',
     'subs': 'Идентификатор канала должен содержать только цифры',
     'link': 'Введена неверная ссылка',
-    'count': 'Количество действий не может быть меньше 1',
+    'count_actions': 'Количество действий не может быть меньше 1',
     'behavior': 'Введен неверный график',
+    'interval': 'Введен некорректный интервал',
+    'time': 'Введено некорректное время',
+    'unknown': "Неизвестная ошибка",
   };
 
   ErrorsConstructor = () => ({
+    subs: false,
+    link: false,
     spread: false,
     count_actions: false,
-    link: false,
     interval: false,
+    time: false,
   })
 
   TaskDataConstructor = () => ({
@@ -68,34 +73,37 @@ class TaskWindow extends Component {
   };
 
   errorHandler = (msg) => {
-    let newErrors = this.ErrorsConstructor();
-    
-    switch(msg) {
-      case "You don't have reaction in task":
-        this.setState({
-          isError: true,
-          errorMessage: this.errorMessages['react'],
-        });
+    let key = '';
+    switch (msg) {
+      case "You dount have reaction in task":
+        key = 'react';
+        break;
+      case "Bad channel id":
+        key = 'subs';
         break;
       case "Bad target url":
-        newErrors['link'] = true; 
-        this.setState({
-          isError: true,
-          errorMessage: this.errorMessages['link'],
-        });
+        key = 'link';
+        break;
+      case "The number of executions cannot be less than 1":
+        key = 'count_actions';
+        break;
+      case "Bad behavior":
+        key = 'behavior';
         break;
       default:
-        this.setState({
-          isError: true,
-          errorMessage: this.errorMessages[msg] || 'Неизвестная ошибка',
-        });
+        key = 'unknown';
         break;
     }
-  
-    // Обновляем taskData.errors
+
+    this.setState({
+      isError: true,
+      errorMessage: this.errorMessages[key],
+    });
+    let newErrors = this.ErrorsConstructor();
+    newErrors[key] = true;
     this.handleTaskDataChange({ errors: newErrors });
   };
-  
+
 
   handleBehaviour = () => {
     let overflow = 0;
@@ -139,12 +147,11 @@ class TaskWindow extends Component {
       };
 
       const response = await axios.post('http://147.45.111.226:8001/api/addtask', formattedData);
-      debugger;
       if (response.data.status) {
         this.setState({ taskData: this.TaskDataConstructor() });
         this.props.handleClose();
       } else {
-        this.errorHandler(response.msg);
+        this.errorHandler(response.data.msg);
       }
     } catch (error) {
       console.error('Ошибка при отправке задач:', error);

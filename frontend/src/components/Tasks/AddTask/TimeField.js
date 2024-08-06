@@ -36,7 +36,7 @@ export default function TimeField({ taskData, handleTaskDataChange }) {
   return (
     <InputField
       label="Время на выполнение" type="number-select-input" placeholder="Выберите..."
-      logo={images['todo.svg']}  error={taskData.errors.count_actions}
+      logo={images['todo.svg']}  error={taskData.errors.time}
       value={taskData.time} handleChange={handleTimeChange}
       options={{
         includeField: {
