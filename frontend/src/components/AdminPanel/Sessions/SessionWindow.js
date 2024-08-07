@@ -72,17 +72,19 @@ class SessionWindow extends Component {
     const { group, proxies, sessions } = this.state;
     const token = localStorage.getItem('token');
     const category = '1';
-  
+    console.log(proxies ? true : false);
+    console.log(proxies);
+
     this.setState({ showProgress: true, uploaded: 0, successful: 0, errors: 0 });
-  
+
     for (let i = 0; i < sessions.length; i++) {
       const formData = new FormData();
       formData.append('token', token);
       formData.append('file', sessions[i]);
-      formData.append('proxy', proxies[Math.floor(i / 5)]);
+      formData.append('proxy', proxies.length ? proxies[Math.floor(i / 5)] : "-");
       formData.append('group', group);
       formData.append('category', category);
-  
+
       try {
         const response = await axios.post('http://147.45.111.226:8001/api/uploadSessions', formData, {
           headers: {
@@ -103,7 +105,7 @@ class SessionWindow extends Component {
       }
     }
   }
-  
+
 
   render() {
     const { company, group, accountID, proxyFile, sessions, showProgress, uploaded, successful, errors } = this.state;

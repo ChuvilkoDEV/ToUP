@@ -71,7 +71,7 @@
 .progress-window {
   width: 300px;
   padding: 20px;
-  background-color: white;
+  background-color: var(--session-form-background-color);
   border-radius: 10px;
   text-align: center;
 }
