@@ -5,10 +5,11 @@ import dragDataPlugin from 'chartjs-plugin-dragdata';
 
 Chart.register(dragDataPlugin);
 
-const ChartComponent = ({ taskData, handleTaskDataChange }) => {
+const ChartComponent = ({taskData, handleTaskDataChange}) => {
   const chartRef = useRef(null);
 
-  const createChartData = () => ({
+  const createChartData = () => {
+    return {
     labels: Array.from({ length: taskData.countIntervals }, (_, i) => i.toString()),
     datasets: [
       {
@@ -22,7 +23,7 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
         fill: true,
       },
     ],
-  });
+  }};
 
   useEffect(() => {
     const chart = chartRef.current;
@@ -66,7 +67,7 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
     const chartInstance = chartRef.current;
     if (chartInstance) {
       chartInstance.options.scales.y.min = 0;
-      chartInstance.options.scales.y.max = maxValue * 1.2;
+      chartInstance.options.scales.y.max = maxValue * 1.5;
       chartInstance.update('none');
     }
   };
@@ -86,10 +87,12 @@ const ChartComponent = ({ taskData, handleTaskDataChange }) => {
           y: {
             beginAtZero: true,
             suggestedMin: 0,
-            suggestedMax: 1,
+            suggestedMax: Math.max(...taskData.behavior) * 1.5,
+            max: Math.max(...taskData.behavior) * 1.5,
             grid: {
               display: false,
             },
+            stepSize: 1,
           },
         },
         plugins: {

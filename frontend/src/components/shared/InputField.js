@@ -9,16 +9,16 @@ const InputField = ({ label, type, placeholder, logo, error, value, handleChange
 
   const handleNumberChange = (e) => {
     const value = parseInt(e.target.value);
-    // debugger;
-    if (!Number.isInteger(Number(value)) && value !== '') {
+    if (!Number.isInteger(Number(value)) && value !== '')
       return;
-    } else if (value === 0 || value === '') {
+    else if (value === 0 || value === '')
       e.target.value = '';
-    } else if (options.maxValue && value >= options.maxValue) {
+    else if (options.maxValue && value >= options.maxValue)
       e.target.value = options.maxValue;
-    } else if (value <= options.minValue) {
+    else if (value <= options.minValue)
       e.target.value = options.minValue;
-    }
+    else
+      e.target.value = value;
     handleChange(e);
   };
 

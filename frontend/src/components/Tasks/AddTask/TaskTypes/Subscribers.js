@@ -31,7 +31,7 @@ export default function Subscribers({ taskData, handleTaskDataChange }) {
         <div className='task-form-data-row'>
           <InputField
             label="ID канала" type="text" placeholder="Ваш ID канала"
-            logo={images['hastag.svg']} error={taskData.errors.link}
+            logo={images['hastag.svg']} error={taskData.errors.channel_id}
             value={taskData.channel_id || ''}
             handleChange={(e) => handleDataChange('channel_id', e.target.value)}
           />

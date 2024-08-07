@@ -21,7 +21,7 @@ const TaskSettings = ({ taskData, handleTaskDataChange, handleTaskSettingMenu })
     return (
       <>
         <div className='task-setting-back-btn' onClick={handleTaskSettingMenu}>
-          <HandySvg src={images['back.svg']} className={`logo-15x15`} onClick={handleTaskSettingMenu} />
+          <HandySvg src={images['back.svg']} className={`logo-15x15`} />
         </div>
         <div className="task-settings-header">
           <h3>Продвинутые настройки задачи</h3>

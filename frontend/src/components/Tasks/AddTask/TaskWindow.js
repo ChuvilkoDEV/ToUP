@@ -62,6 +62,7 @@ class TaskWindow extends Component {
 
   handleTaskDataChange = (newData) => {
     this.setState((prevState) => {
+      // debugger;
       const updatedData = {
         ...prevState.taskData,
         ...newData,
@@ -69,16 +70,26 @@ class TaskWindow extends Component {
 
       if (newData.countIntervals !== undefined) {
         let averageCount = 0;
-        if (newData.countIntervals !== 0)
-          averageCount = this.state.taskData.count_actions / newData.countIntervals;
-        updatedData.behavior = Array.from({ length: newData.countIntervals }, () => averageCount);
+        if (newData.countIntervals != 0)
+          averageCount = updatedData.count_actions / newData.countIntervals;
+        updatedData.behavior = Array.from({ length: updatedData.countIntervals }, () => averageCount);
       }
 
       if (newData.count_actions !== undefined) {
         let averageCount = 0;
-        if (newData.countIntervals !== 0)
-          averageCount = newData.count_actions / this.state.taskData.countIntervals;
-        updatedData.behavior = Array.from({ length: newData.countIntervals }, () => averageCount);
+        if (updatedData.countIntervals != 0)
+          averageCount = newData.count_actions / updatedData.countIntervals;
+        updatedData.behavior = Array.from({ length: updatedData.countIntervals }, () => averageCount);
+      }
+
+      let overflow = 0;
+      for (let i = 0; i < updatedData.behavior.length; i++) {
+        overflow += updatedData.behavior[i] % 1;
+        updatedData.behavior[i] = Math.floor(updatedData.behavior[i]);
+        if (overflow >= 1) {
+          updatedData.behavior[i] += 1;
+          overflow -= 1;
+        }
       }
 
       return { taskData: updatedData };
