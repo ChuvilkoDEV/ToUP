@@ -9,10 +9,10 @@ const InputField = ({ label, type, placeholder, logo, error, value, handleChange
 
   const handleNumberChange = (e) => {
     const value = parseInt(e.target.value);
-    if (!Number.isInteger(Number(value)) && value !== '')
-      return;
-    else if (value === 0 || value === '')
-      e.target.value = '';
+    // debugger;
+    console.log(!Number.isInteger(value));
+    if (isNaN(value) || !Number.isInteger(value))
+      e.target.value = 0;
     else if (options.maxValue && value >= options.maxValue)
       e.target.value = options.maxValue;
     else if (value <= options.minValue)
@@ -56,7 +56,7 @@ const InputField = ({ label, type, placeholder, logo, error, value, handleChange
 
   const textField = (type) => {
     return (<input
-      type={type}
+      type={type === 'number' ? 'text' : type}
       id={uniqueId}
       name={uniqueId}
       placeholder={placeholder}

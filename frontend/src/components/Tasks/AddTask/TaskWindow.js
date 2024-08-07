@@ -62,7 +62,6 @@ class TaskWindow extends Component {
 
   handleTaskDataChange = (newData) => {
     this.setState((prevState) => {
-      // debugger;
       const updatedData = {
         ...prevState.taskData,
         ...newData,

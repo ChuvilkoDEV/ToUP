@@ -67,7 +67,7 @@ const ChartComponent = ({taskData, handleTaskDataChange}) => {
     const chartInstance = chartRef.current;
     if (chartInstance) {
       chartInstance.options.scales.y.min = 0;
-      chartInstance.options.scales.y.max = maxValue * 1.5;
+      chartInstance.options.scales.y.max = maxValue * 1.3;
       chartInstance.update('none');
     }
   };
@@ -87,8 +87,8 @@ const ChartComponent = ({taskData, handleTaskDataChange}) => {
           y: {
             beginAtZero: true,
             suggestedMin: 0,
-            suggestedMax: Math.max(...taskData.behavior) * 1.5,
-            max: Math.max(...taskData.behavior) * 1.5,
+            suggestedMax: Math.max(...taskData.behavior) * 1.3,
+            max: Math.max(...taskData.behavior) * 1.3,
             grid: {
               display: false,
             },
