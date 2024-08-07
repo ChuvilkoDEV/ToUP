@@ -53,7 +53,7 @@ const TaskSettings = ({ taskData, handleTaskDataChange, handleTaskSettingMenu })
       </div>
       <div className="task-settings-footer">
         <button className="reset-button">Сбросить настройки</button>
-        <button className="save-button">Сохранить изменения</button>
+        <button className="save-button" onClick={handleTaskSettingMenu}>Сохранить изменения</button>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import DropzoneField from '@components/shared/DropzoneField';
 import './SessionWindow.css';
 
 import ImageUtils from '@components/imageUtils';
-const images = ImageUtils.importAllImages(require.context('@assets/admin', false, /\.(svg)$/));
+const images = ImageUtils.importAllImages(require.context('@assets/admin/sessions', false, /\.(svg)$/));
 
 class SessionWindow extends Component {
   constructor(props) {
@@ -117,7 +117,7 @@ class SessionWindow extends Component {
               label="Компания"
               type="text"
               placeholder="Введите название компании"
-              logo={images['link.svg']}
+              logo={images['company.svg']}
               value={company}
               handleChange={this.handleChange('company')}
             />
@@ -125,7 +125,7 @@ class SessionWindow extends Component {
               label="Группа"
               type="text"
               placeholder="Выберите группу"
-              logo={images['link.svg']}
+              logo={images['group.svg']}
               value={group}
               handleChange={this.handleChange('group')}
             />
@@ -150,7 +150,7 @@ class SessionWindow extends Component {
               label="Account ID"
               type="text"
               placeholder="Введите ID аккаунта"
-              logo={images['link.svg']}
+              logo={images['user.svg']}
               value={accountID}
               handleChange={this.handleChange('accountID')}
             />
