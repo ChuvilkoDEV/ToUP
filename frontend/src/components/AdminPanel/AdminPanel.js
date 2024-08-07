@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import Sessions from './Sessions/Sessions';
 import Sidebar from './Sidebar';
 import AdminHeader from './Admin.Header';
+import Accounts from './Accounts/Accounts';
 import './AdminPanel.css';
 
 const menus = [
-  { 'logo': 'accounts', 'title': 'Все аккаунты', 'href': '#' },
-  { 'logo': 'sessions', 'title': 'Сессии', 'href': '#' },
-  { 'logo': 'tasks', 'title': 'Все задачи', 'href': '#' },
-  { 'logo': 'support', 'title': 'Тех. поддержка', 'href': '#' },
+  { 'logo': 'accounts', 'title': 'Все аккаунты', 'component': <Accounts /> },
+  { 'logo': 'sessions', 'title': 'Сессии', 'component': <Sessions /> },
+  { 'logo': 'tasks', 'title': 'Все задачи', 'component': <Accounts /> },
+  { 'logo': 'support', 'title': 'Тех. поддержка', 'component': <Accounts /> },
 ];
 
 function AdminPanel() {
@@ -24,7 +25,7 @@ function AdminPanel() {
       <div className='right-sidebar'>
         <AdminHeader activeMenu={activeMenu} />
         <div className="main-content-area">
-          <Sessions />
+          {activeMenu.component}
         </div>
       </div>
     </div>
