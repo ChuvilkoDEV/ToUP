@@ -18,22 +18,30 @@ export default function Subscribers({ taskData, handleTaskDataChange }) {
             logo={images['percentage.svg']} error={taskData.errors.spread}
             value={taskData.spreadValue || ''}
             handleChange={(e) => handleDataChange('spreadValue', e.target.value)}
-            options={{minValue: 0, maxValue: 100}}
+            options={{ minValue: 0, maxValue: 100 }}
           />
           <InputField
             label="Кол-во подписчиков" type="number" placeholder="Подписчики"
             logo={images['users-alt.svg']} error={taskData.errors.count_actions}
             value={taskData.count_actions || ''}
             handleChange={(e) => handleDataChange('count_actions', e.target.value)}
-            options={{minValue: 0, maxValue: 4000}}
+            options={{ minValue: 0, maxValue: 4000 }}
           />
         </div>
-        <InputField
-          label="Ссылка на канал" type="text" placeholder="Укажите ссылку на канал"
-          logo={images['link.svg']} error={taskData.errors.link}
-          value={taskData.target_url || ''}
-          handleChange={(e) => handleDataChange('target_url', e.target.value)}
-        />
+        <div className='task-form-data-row'>
+          <InputField
+            label="ID канала" type="text" placeholder="Ваш ID канала"
+            logo={images['hastag.svg']} error={taskData.errors.link}
+            value={taskData.channel_id || ''}
+            handleChange={(e) => handleDataChange('channel_id', e.target.value)}
+          />
+          <InputField
+            label="Ссылка на канал" type="text" placeholder="Укажите ссылку на канал"
+            logo={images['link.svg']} error={taskData.errors.link}
+            value={taskData.target_url || ''}
+            handleChange={(e) => handleDataChange('target_url', e.target.value)}
+          />
+        </div>
       </div>
     </>
   );

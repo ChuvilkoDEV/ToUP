@@ -43,6 +43,7 @@ class TaskWindow extends Component {
   TaskDataConstructor = () => ({
     task_type: 'subs',
     target_url: '',
+    channel_id: '',
     count_actions: 0,
     task_obj: [],
     task_time: 86400,
@@ -70,6 +71,13 @@ class TaskWindow extends Component {
         let averageCount = 0;
         if (newData.countIntervals !== 0)
           averageCount = this.state.taskData.count_actions / newData.countIntervals;
+        updatedData.behavior = Array.from({ length: newData.countIntervals }, () => averageCount);
+      }
+
+      if (newData.count_actions !== undefined) {
+        let averageCount = 0;
+        if (newData.countIntervals !== 0)
+          averageCount = newData.count_actions / this.state.taskData.countIntervals;
         updatedData.behavior = Array.from({ length: newData.countIntervals }, () => averageCount);
       }
 
@@ -135,7 +143,7 @@ class TaskWindow extends Component {
             task_obj: this.state.taskData.task_obj,
             task_time: parseInt(this.state.taskData.task_time),
             behavior: this.handleBehaviour(),
-            channel_id: '7777777777',
+            channel_id: this.state.taskData.channel_id,
           },
         ],
       };
