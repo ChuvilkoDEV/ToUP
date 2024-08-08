@@ -146,6 +146,7 @@ class SessionWindow extends Component {
             />
             <button className='add-session-button' onClick={this.handleAddSessions}>Добавить</button>
           </div>
+          <div className='session-window-divider' />
           <div className='session-form-container'>
             <span className='session-window-title'>Удалить сессию</span>
             <InputField

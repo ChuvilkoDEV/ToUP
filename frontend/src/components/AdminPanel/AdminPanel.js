@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import Sessions from './Sessions/Sessions';
 import Sidebar from './Sidebar';
 import AdminHeader from './Admin.Header';
+import Sessions from './Sessions/Sessions';
 import Accounts from './Accounts/Accounts';
+import SessionWindow from './Sessions/SessionWindow';
+import TaskWindow from '@components/Tasks/AddTask/TaskWindow';
 import './AdminPanel.css';
 
 const menus = [
@@ -13,7 +15,18 @@ const menus = [
 ];
 
 function AdminPanel() {
-  const [activeMenu, setActiveMenu] = useState(menus[0]); 
+  const [activeMenu, setActiveMenu] = useState(menus[0]);
+  const [isSessionWindowOpen, setIsSessionWindowOpen] = useState(false);
+  const [isTaskWindowOpen, setIsTaskWindowOpen] = useState(false);
+
+
+  const handleSessionWindow = () => (
+    setIsSessionWindowOpen(!isSessionWindowOpen)
+  );
+
+  const handleTaskWindow = () => (
+    setIsTaskWindowOpen(!isTaskWindowOpen)
+  );
 
   const handleMenuClick = (menu) => {
     setActiveMenu(menu);
@@ -21,13 +34,18 @@ function AdminPanel() {
 
   return (
     <div className='admin-panel'>
-      <Sidebar menus={menus} onMenuClick={handleMenuClick} activeMenu={activeMenu} />
+      <Sidebar
+        menus={menus} onMenuClick={handleMenuClick} activeMenu={activeMenu}
+        handleSessionWindow={handleSessionWindow} handleTaskWindow={handleTaskWindow}
+      />
       <div className='right-sidebar'>
         <AdminHeader activeMenu={activeMenu} />
         <div className="main-content-area">
           {activeMenu.component}
         </div>
       </div>
+      {isSessionWindowOpen && <SessionWindow handleClose={handleSessionWindow} />}
+      {isTaskWindowOpen && <TaskWindow handleClose={handleTaskWindow} />}
     </div>
   );
 }

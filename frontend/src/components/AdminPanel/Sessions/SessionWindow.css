@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 2000;
 }
 
 .session-window {
@@ -76,11 +76,36 @@
   text-align: center;
 }
 
+.session-window-divider {
+  height: 100%;
+  width: 0px;
+  border: 1px solid var(--session-form-divider);
+}
+
+
+@media (max-width: 850px) {
+  .session-window {
+    width: 390px;
+    height: 704px;
+    flex-direction: column;
+  }
+
+  .session-window-title {
+    font-size: 26px;
+  }
+
+  .session-window-divider {
+    width: 100%;
+    height: 0px;
+  }
+}
 
 :root {
   --session-form-background-color: white;
+  --session-form-divider: #E4E4E4;
 }
 
 [data-theme='dark'] {
   --session-form-background-color: #1A1F32;
+  --session-form-divider: #E4E4E4;
 }

@@ -6,12 +6,8 @@ import { HandySvg } from 'handy-svg';
 import ImageUtils from '@components/imageUtils';
 const images = ImageUtils.importAllImages(require.context('@assets/admin', false, /\.(svg)$/));
 
-export default function Sidebar({ menus, onMenuClick, activeMenu }) {
-  const [isSessionWindowOpen, setIsSessionWindowOpen] = useState(false);
 
-  const handleSessionWindow = () => (
-    setIsSessionWindowOpen(!isSessionWindowOpen)
-  );
+export default function Sidebar({ menus, onMenuClick, activeMenu, handleSessionWindow, handleTaskWindow }) {
 
   const SidebarHeader = () => (
     <div className="sidebar-header">
@@ -43,9 +39,8 @@ export default function Sidebar({ menus, onMenuClick, activeMenu }) {
 
   const SidebarFooter = () => (
     <div className="sidebar-footer">
-      <button>Добавить задачу</button>
+      <button onClick={handleTaskWindow}>Добавить задачу</button>
       <button onClick={handleSessionWindow}>Добавить сессию</button>
-      {isSessionWindowOpen && <SessionWindow handleClose={handleSessionWindow}/>}
     </div>
   );
 
